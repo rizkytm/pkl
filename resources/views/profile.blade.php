@@ -19,16 +19,20 @@
     <section class="content">
 
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
 
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
+              <img class="profile-user-img img-responsive img-circle" src="{{ url('asset/dist/img/user4-128x128.jpg') }}" alt="User profile picture">
 
-              <h3 class="profile-username text-center">Nina Mcintire</h3>
+              <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
 
-              <p class="text-muted text-center">Software Engineer</p>
+              @if (Auth::user()->name === "admin")
+              <p class="text-muted text-center">Admin</p>
+			  @else
+              <p class="text-muted text-center">Staff</p>
+              @endif
 
             <div class="box-header with-border">
               <h3 class="box-title">About Me</h3>
@@ -73,15 +77,15 @@
 
         </div>
         <!-- /.col -->
-        <div class="col-md-9">
+        <div class="col-md-8">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-              <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
-              <li><a href="#settings" data-toggle="tab">Settings</a></li>
+              <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
+              <li><a href="#activity" data-toggle="tab">Activity</a></li>
+              <li><a href="#timeline" data-toggle="tab">Timeline</a></li>              
             </ul>
             <div class="tab-content">
-              <div class="active tab-pane" id="activity">
+              <div class="tab-pane" id="activity">
                 <!-- Post -->
                 <div class="post">
                   <div class="user-block">
@@ -292,7 +296,7 @@
               </div>
               <!-- /.tab-pane -->
 
-              <div class="tab-pane" id="settings">
+              <div class="active tab-pane" id="settings">
                 <form class="form-horizontal">
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
@@ -309,35 +313,26 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+                    <label for="inputName" class="col-sm-2 control-label">NIP</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" placeholder="Name">
+                      <input type="text" class="form-control" id="inputNIP" placeholder="NIP">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+                    <label for="inputAddress" class="col-sm-2 control-label">Address</label>
 
                     <div class="col-sm-10">
-                      <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                      <input type="text" class="form-control" id="inputAddress" placeholder="Address">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+                    <label for="inputBiodata" class="col-sm-2 control-label">Biodata</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                      <textarea class="form-control" id="inputBiodata" placeholder="Biodata"></textarea>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
+                  </div>                  
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                       <button type="submit" class="btn btn-danger">Submit</button>
