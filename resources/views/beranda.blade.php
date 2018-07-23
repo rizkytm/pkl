@@ -75,12 +75,6 @@
       </div>
       <!-- /.row (main row) -->
 
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-
 @include('partials.footer')
 
 @include('partials.controlsidebar')
