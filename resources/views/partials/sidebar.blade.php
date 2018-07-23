@@ -30,9 +30,7 @@
         <li {!! Route::is('home') ? 'class="active"' : '' !!}>
           <a href="{{ route('home') }}">
             <i class="fa fa-dashboard"></i> <span>Beranda</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+          
           </a>
 
         </li>
@@ -95,9 +93,7 @@
           <li {!! Route::is('wawancara') ? 'class="active"' : '' !!}>
           <a href="{{ route('wawancara') }}">
             <i class="fa fa-edit"></i> <span>Wawancara</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+
           </a>
 
         </li>
@@ -105,9 +101,7 @@
           <li {!! Route::is('') ? 'class="active"' : '' !!}>
           <a href="#">
             <i class="fa fa-table"></i> <span>Revisi Wawancara</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+
           </a>
           <ul class="treeview-menu">
             <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
