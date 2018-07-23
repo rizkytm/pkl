@@ -115,8 +115,12 @@
                 <img src="{{ url('asset/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ Auth::user()->name }} - Web Developer
-                  <small>Member since Nov. 2018</small>
+                  {{ Auth::user()->name }}
+                  @if (Auth::user()->name === "admin")
+                  <small>Admin</small>
+                  @else
+                  <small>Staff</small>
+                  @endif
                 </p>
               </li>
               
