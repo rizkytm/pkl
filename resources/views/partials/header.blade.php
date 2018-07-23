@@ -46,9 +46,9 @@
     <!-- Logo -->
     <a href="{{ url('/home') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>SIW</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>SI</b>  Wawancara</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -115,11 +115,11 @@
                 <img src="{{ url('asset/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ Auth::user()->name }} - Web Developer
+                  {{ Auth::user()->name }} - Staff
                   <small>Member since Nov. 2018</small>
                 </p>
               </li>
-              
+
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">

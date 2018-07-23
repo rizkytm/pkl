@@ -31,11 +31,11 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html"><b>Sistem INformasi</b> Wawancara</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg"><b>Masuk</b></p>
 
     <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
         @csrf
@@ -78,7 +78,7 @@
     </form>
 
     <div class="social-auth-links text-center">
-      
+
     </div>
     <!-- /.social-auth-links -->
 

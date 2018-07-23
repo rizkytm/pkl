@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>AdminLTE 2 | Registration Page</title>
+  <title><b>Sistem Informasi</b></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -31,17 +31,17 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html"><b>Sistem Informasi</b> Wawancara</a>
   </div>
 
   <div class="register-box-body">
-    <p class="login-box-msg">Register a new membership</p>
+    <p class="login-box-msg"><b>Daftar Member Baru</b></p>
 
     <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
         @csrf
       <div class="form-group has-feedback">
         <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="Full Name" required autofocus>
-                            
+
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
         @if ($errors->has('name'))
             <span class="invalid-feedback" role="alert">
@@ -86,10 +86,10 @@
     </form>
 
     <div class="social-auth-links text-center">
-      
+
     </div>
 
-    
+
   </div>
   <!-- /.form-box -->
 </div>
