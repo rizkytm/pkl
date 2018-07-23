@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/beranda', 'HomeController@beranda')->name('beranda');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/wawancara', 'WawancaraController@index')->name('wawancara');

@@ -27,10 +27,12 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
-          <a href="#">
+        <li {!! Route::is('home') ? 'class="active"' : '' !!}>
+          <a href="{{ route('home') }}">
             <i class="fa fa-dashboard"></i> <span>Beranda</span>
-
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
 
         </li>
@@ -89,20 +91,18 @@
             <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
           </ul>
         </li> -->
-        <li class="treeview">
-          <a href="#">
+        <li>
+          <li {!! Route::is('wawancara') ? 'class="active"' : '' !!}>
+          <a href="{{ route('wawancara') }}">
             <i class="fa fa-edit"></i> <span>Wawancara</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-            <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
-          </ul>
+
         </li>
         <li class="treeview">
+          <li {!! Route::is('') ? 'class="active"' : '' !!}>
           <a href="#">
             <i class="fa fa-table"></i> <span>Revisi Wawancara</span>
             <span class="pull-right-container">

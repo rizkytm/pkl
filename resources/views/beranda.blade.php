@@ -28,7 +28,7 @@
             <div class="inner">
               <h3>150</h3>
 
-              <p>Wawancara Belum Dikirim</p>
+              <p>Wawancara Yang Belum Dikirim</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
