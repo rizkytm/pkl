@@ -60,7 +60,7 @@
       </div>
       <div class="form-group has-feedback">
         <input id="NIP" type="text" class="form-control{{ $errors->has('NIP') ? ' is-invalid' : '' }}" name="NIP" value="{{ old('NIP') }}" placeholder="NIP" required>
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <span class="glyphicon glyphicon-list-alt form-control-feedback"></span>
         @if ($errors->has('NIP'))
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $errors->first('NIP') }}</strong>
