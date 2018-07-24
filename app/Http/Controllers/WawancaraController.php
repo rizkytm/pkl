@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class WawancaraController extends Controller
 {
@@ -10,4 +11,14 @@ class WawancaraController extends Controller
     {
     	return view('wawancara');
     }
+
+
+    public function showTable()
+	{
+	 	$posts = Post::paginate(10);
+	 	$posts->links();
+	  	
+		return view('revisi', compact('posts'));
+	}
+
 }

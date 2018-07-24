@@ -98,15 +98,10 @@
 
         </li>
         <li class="treeview">
-          <li {!! Route::is('') ? 'class="active"' : '' !!}>
-          <a href="#">
+          <li {!! Route::is('revisi') ? 'class="active"' : '' !!}>
+          <a href="{{ route('revisi') }}">
             <i class="fa fa-table"></i> <span>Revisi Wawancara</span>
-
           </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
-          </ul>
         </li>
         <li>
           <a href="pages/calendar.html">
