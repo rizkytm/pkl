@@ -7,7 +7,11 @@
 <section class="content-header">
   <h1>
     Wawancara
-    <small>advanced tables</small>
+    <a href="{{ route('tambah.wawancara') }}">
+      <button type="button" class="btn btn-primary">
+        <span class="glyphicon glyphicon-plus"></span> Tambah Wawancara
+      </button>
+    </a>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
+use App\Questions;
 
 class WawancaraController extends Controller
 {
@@ -14,7 +14,8 @@ class WawancaraController extends Controller
 
     public function create()
     {
-    	return view('tambahwawancara');
+    	$questions = Questions::all();
+    	return view('tambahwawancara', compact('questions'));
     }
 
     public function showTable()

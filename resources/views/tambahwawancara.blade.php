@@ -6,11 +6,6 @@
 <section class="content-header">
   <h1>
     Data Tables
-    <a href="{{ route('tambah.wawancara') }}">
-      <button type="button" class="btn btn-primary">
-        <span class="glyphicon glyphicon-plus"></span> Tambah Wawancara
-      </button>
-    </a>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -28,12 +23,24 @@
           <h3 class="box-title">Wawancara</h3>
         </div>
         <!-- /.box-header -->
-        <div class="box-body">
-			<div class="form-group">				
-				<form name="add_name" id="add_name">
-					
-		         </form>
+        <div class="box-body">        	
+			<form class="" action="#" method="post" enctype="multipart/form-data">
+			{{ csrf_field() }}
+			@foreach($questions as $question)
+			<div class="form-group has-feedback {{ $errors->has('question') ? ' has-error' : '' }}">
+				<label for="">{{ $question->question}}</label>
+				<input type="text" class="form-control" name="answer" placeholder="Jawaban">
+				@if ($errors->has('answer'))
+					<span class="help-block">
+						<p>{{ $errors->first('answer') }}</p>
+					</span>
+				@endif
 			</div>
+			@endforeach
+			<div class="form-group">
+				<input type="submit" class="btn btn-primary" value="Save">
+			</div>
+			</form>
         </div>
         <!-- /.box-body -->
       </div>
