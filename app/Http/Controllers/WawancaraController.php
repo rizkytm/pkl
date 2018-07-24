@@ -32,6 +32,15 @@ class WawancaraController extends Controller
       return view('selesai');
     }
 
-
+    public function store(Request $request)
+    {
+    	$rules = [];
+        foreach($request->input('answer') as $key => $value) {
+            $rules["answer.{$key}"] = 'required';
+            Questions::create(['answer'=>$value]);
+        }        
+        
+        return redirect()->back();
+    }
 
 }

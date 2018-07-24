@@ -24,12 +24,12 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">        	
-			<form class="" action="#" method="post" enctype="multipart/form-data">
+			<form class="" action="{{ route('wawancara.store') }}" method="post" enctype="multipart/form-data">
 			{{ csrf_field() }}
 			@foreach($questions as $question)
 			<div class="form-group has-feedback {{ $errors->has('question') ? ' has-error' : '' }}">
 				<label for="">{{ $question->question}}</label>
-				<input type="text" class="form-control" name="answer" placeholder="Jawaban">
+				<input type="text" class="form-control" name="answer[]" placeholder="Jawaban">
 				@if ($errors->has('answer'))
 					<span class="help-block">
 						<p>{{ $errors->first('answer') }}</p>
