@@ -23,5 +23,4 @@ Route::get('/beranda', 'HomeController@beranda')->name('beranda');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/wawancara', 'WawancaraController@index')->name('wawancara');
 Route::get('/revisi', 'WawancaraController@showTable')->name('revisi');
-
-
+Route::get('/selesai', 'WawancaraController@selesai')->name('selesai');

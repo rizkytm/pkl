@@ -12,13 +12,19 @@ class WawancaraController extends Controller
     	return view('wawancara');
     }
 
-
     public function showTable()
-	{
-	 	$posts = Post::paginate(10);
-	 	$posts->links();
-	  	
-		return view('revisi', compact('posts'));
-	}
+ 	  {
+ 	 	$posts = Post::paginate(10);
+ 	 	$posts->links();
+
+ 		return view('revisi', compact('posts'));
+ 	  }
+
+    public function selesai()
+    {
+      return view('selesai');
+    }
+
+
 
 }

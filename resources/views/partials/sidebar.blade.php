@@ -30,7 +30,7 @@
         <li {!! Route::is('home') ? 'class="active"' : '' !!}>
           <a href="{{ route('home') }}">
             <i class="fa fa-dashboard"></i> <span>Beranda</span>
-          
+
           </a>
 
         </li>
@@ -104,14 +104,15 @@
           </a>
         </li>
         <li>
-          <a href="pages/calendar.html">
+          <li {!! Route::is('selesai') ? 'class="active"' : '' !!}>
+          <a href="{{ route('selesai') }}">
             <i class="fa fa-calendar"></i> <span>Wawancara Selesai</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
+              <small class="label pull-right bg-blue">4</small>
             </span>
           </a>
         </li>
+
 
         <!-- <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
