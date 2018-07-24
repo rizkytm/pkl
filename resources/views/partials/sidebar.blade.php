@@ -107,9 +107,6 @@
           <li {!! Route::is('selesai') ? 'class="active"' : '' !!}>
           <a href="{{ route('selesai') }}">
             <i class="fa fa-calendar"></i> <span>Wawancara Selesai</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-blue">4</small>
-            </span>
           </a>
         </li>
 
