@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Questions;
+use App\Post;
 
 class WawancaraController extends Controller
 {
