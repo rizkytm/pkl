@@ -12,6 +12,11 @@ class WawancaraController extends Controller
     	return view('wawancara');
     }
 
+    public function create()
+    {
+    	return view('tambahwawancara');
+    }
+
     public function showTable()
  	  {
  	 	$posts = Post::paginate(10);
