@@ -42,5 +42,4 @@ class WawancaraController extends Controller
         
         return redirect()->back();
     }
-
 }
