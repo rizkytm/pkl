@@ -29,7 +29,10 @@ class WawancaraController extends Controller
 
     public function selesai()
     {
-      return view('selesai');
+        $posts = Post::paginate(10);
+        $posts->links();
+        
+        return view('selesai', compact('posts'));
     }
 
     public function store(Request $request)
