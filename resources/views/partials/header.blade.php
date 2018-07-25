@@ -125,10 +125,10 @@
               </li>
 
               <!-- Menu Footer-->
-              <li class="user-footer">
+              <li class="user-footer">@foreach($user as $users)
                 <div class="pull-left">
-                  <a href="{{ route('profile') }}" class="btn btn-default btn-flat">Profile</a>
-                </div>
+                  <a href="{{ route('profile', $users) }}" class="btn btn-default btn-flat">Profile</a>
+                </div>@endforeach
                 <div class="pull-right">
                   <a href="{{ route('logout') }}"
                       onclick="event.preventDefault();

@@ -23,8 +23,8 @@
 
           <!-- Profile Image -->
           <div class="box box-primary">
-            <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="{{ url('asset/dist/img/user4-128x128.jpg') }}" alt="User profile picture">
+            <div class="box-body box-profile">@foreach($user as $users)
+              <img class="profile-user-img img-responsive img-circle" src="../../storage/{{ $users->avatar }}" alt="User profile picture" height="128px" width="128px">@endforeach
 
               <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
 
@@ -81,8 +81,8 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
-              <li><a href="#activity" data-toggle="tab">Activity</a></li>
-              <li><a href="#timeline" data-toggle="tab">Timeline</a></li>              
+              <!-- <li><a href="#activity" data-toggle="tab">Activity</a></li>
+              <li><a href="#timeline" data-toggle="tab">Timeline</a></li> -->              
             </ul>
             <div class="tab-content">
               <div class="tab-pane" id="activity">
@@ -295,51 +295,92 @@
                 </ul>
               </div>
               <!-- /.tab-pane -->
-
+			
               <div class="active tab-pane" id="settings">
-                <form class="form-horizontal">
+              	@foreach($user as $users)
+                <form class="form-horizontal" action="{{ route('profile.edit', $users) }}" method="post" enctype="multipart/form-data">
+                	{{ csrf_field() }}
+					{{ method_field('PATCH') }}
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
 
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" placeholder="Name">
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ $users->name }}">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                      <input type="email" class="form-control" id="emailmail" name="email" placeholder="Email" value="{{ $users->email }}">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">NIP</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputNIP" placeholder="NIP">
+                      <input type="text" class="form-control" id="inputNIP" placeholder="NIP" name="NIP" value="{{ $users->NIP }}">
+                    </div>
+                  </div>
+				  <div class="form-group">
+                    <label for="inputJabatan" class="col-sm-2 control-label">Jabatan</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputJabatan" placeholder="Jabatan" name="jabatan" value="{{ $users->jabatan }}">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputAddress" class="col-sm-2 control-label">Address</label>
+                    <label for="inputNo_HP" class="col-sm-2 control-label">No HP</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputAddress" placeholder="Address">
+                      <input type="text" class="form-control" id="inputNo_HP" placeholder="No HP" name="no_hp" value="{{ $users->no_hp }}">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputBiodata" class="col-sm-2 control-label">Biodata</label>
+                    <label for="inputAddress" class="col-sm-2 control-label">Alamat</label>
 
                     <div class="col-sm-10">
-                      <textarea class="form-control" id="inputBiodata" placeholder="Biodata"></textarea>
+                      <textarea type="text" class="form-control" id="inputAddress" placeholder="Alamat" name="alamat">{{ $users->alamat }}</textarea>
                     </div>
-                  </div>                  
+                  </div>
+                  <div class="form-group">
+                    <label for="avatar" class="col-sm-2 control-label">Foto Profile</label>
+
+					<div class="col-sm-6">
+                    <input id="avatar" type="file" class="form-control{{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar">
+
+                   			 	@if ($errors->has('avatar'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('avatar') }}</strong>
+                                    </span>
+                                @endif
+                    </div>
+                    <div class="col-sm-4"> 
+                    			@if(auth()->user()->avatar != null)
+					
+                            	<a href="{{ route('avatar.delete', $users) }}"
+                            	class="btn btn-danger"
+                            	onclick="event.preventDefault();
+                            	document.getElementById('remove-avatar').submit();"
+                            	>Hapus Avatar</a>
+
+                            	@endif                  
+                                
+                   </div>
+                   </div>                  
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
+                      <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                   </div>
                 </form>
+                @endforeach
+                <form action="#" id="remove-avatar" method="POST">
+                    	{{ csrf_field() }}
+                    	{{ method_field('DELETE') }}
+                    </form>
               </div>
+              
               <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->
