@@ -17,8 +17,13 @@ class ProfileController extends Controller
 
     public function edit(User $user, Request $request)
     {
-    	$avatar = $request->file('avatar')->store('avatars');
-    	$user->update([
+    	$this->validate(request(), [    		
+    		'avatar' => 'nullable'
+    	]);
+    	if ($request->hasFile('avatar'))
+    	{
+    		$avatar = $request->file('avatar')->store('avatars');
+    		$user->update([
     		'name' => request('name'),
     		'email' => request('email'),
     		'NIP' => request('NIP'),
@@ -27,6 +32,20 @@ class ProfileController extends Controller
     		'alamat' => request('alamat'),
     		'avatar' => $avatar
     	]);
+    	}
+    	else
+    	{
+    		$user->update([
+    		'name' => request('name'),
+    		'email' => request('email'),
+    		'NIP' => request('NIP'),
+    		'jabatan' => request('jabatan'),	
+    		'no_hp' => request('no_hp'),
+    		'alamat' => request('alamat'),
+    	]);
+    	}
+    	
+    	
 
     	// if($request->user()->avatar)
     	// {

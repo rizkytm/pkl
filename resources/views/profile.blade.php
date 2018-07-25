@@ -374,11 +374,12 @@
                     </div>
                   </div>
                 </form>
-                @endforeach
-                <form action="#" id="remove-avatar" method="POST">
+                
+                <form action="{{ route('avatar.delete', $users) }}" id="remove-avatar" method="POST">
                     	{{ csrf_field() }}
                     	{{ method_field('DELETE') }}
                     </form>
+                    @endforeach
               </div>
               
               <!-- /.tab-pane -->

@@ -5,34 +5,35 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Questions;
 use App\Post;
+use App\User;
 
 class WawancaraController extends Controller
 {
-    public function index()
+    public function index(User $user)
     {
-    	return view('wawancara');
+    	return view('wawancara', compact('user'));
     }
 
-    public function create()
+    public function create(User $user)
     {
     	$questions = Questions::all();
-    	return view('tambahwawancara', compact('questions'));
+    	return view('tambahwawancara', compact('questions', 'user'));
     }
 
-    public function showTable()
+    public function showTable(User $user)
  	  {
  	 	$posts = Post::paginate(10);
  	 	$posts->links();
 
- 		return view('revisi', compact('posts'));
+ 		return view('revisi', compact('posts', 'user'));
  	  }
 
-    public function selesai()
+    public function selesai(User $user)
     {
         $posts = Post::paginate(10);
         $posts->links();
         
-        return view('selesai', compact('posts'));
+        return view('selesai', compact('posts', 'user'));
     }
 
     public function store(Request $request)
