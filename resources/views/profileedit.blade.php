@@ -24,7 +24,7 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="storage/{{ Auth::user()->avatar }}" alt="User profile picture" height="128px" width="128px">
+              <img class="profile-user-img img-responsive img-circle" src="../../storage/{{ Auth::user()->avatar }}" alt="User profile picture" height="128px" width="128px">
 
               <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
 
@@ -298,56 +298,56 @@
 			
               <div class="active tab-pane" id="settings">
               	@foreach($user as $users)
-                <form class="form-horizontal" action="{{ route('profile.editpage', $users) }}" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" action="{{ route('profile.edit', $users) }}" method="post" enctype="multipart/form-data">
                 	{{ csrf_field() }}
-					{{ method_field('GET') }}
+					{{ method_field('PATCH') }}
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="disabledInput" name="name" placeholder="Name" value="{{ Auth::user()->name }}" disabled>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ Auth::user()->name }}">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="disabledInput" name="email" placeholder="Email" value="{{ Auth::user()->email }}" disabled>
+                      <input type="email" class="form-control" id="emailmail" name="email" placeholder="Email" value="{{ Auth::user()->email }}">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">NIP</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="disabledInput" placeholder="NIP" name="NIP" value="{{ Auth::user()->NIP }}" disabled>
+                      <input type="text" class="form-control" id="inputNIP" placeholder="NIP" name="NIP" value="{{ Auth::user()->NIP }}">
                     </div>
                   </div>
 				  <div class="form-group">
                     <label for="inputJabatan" class="col-sm-2 control-label">Jabatan</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="disabledInput" placeholder="Jabatan" name="jabatan" value="{{ Auth::user()->jabatan }}" disabled>
+                      <input type="text" class="form-control" id="inputJabatan" placeholder="Jabatan" name="jabatan" value="{{ Auth::user()->jabatan }}">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputNo_HP" class="col-sm-2 control-label">No HP</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="disabledInput" placeholder="No HP" name="no_hp" value="{{ Auth::user()->no_hp }}" disabled>
+                      <input type="text" class="form-control" id="inputNo_HP" placeholder="No HP" name="no_hp" value="{{ Auth::user()->no_hp }}">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputAddress" class="col-sm-2 control-label">Alamat</label>
 
                     <div class="col-sm-10">
-                      <textarea type="text" class="form-control" id="disabledInput" placeholder="Alamat" name="alamat" disabled>{{ Auth::user()->alamat }}</textarea>
+                      <textarea type="text" class="form-control" id="inputAddress" placeholder="Alamat" name="alamat">{{ Auth::user()->alamat }}</textarea>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="avatar" class="col-sm-2 control-label">Foto Profile</label>
 
 					<div class="col-sm-6">
-                    <input id="avatar" type="file" class="form-control{{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar" disabled>
+                    <input id="avatar" type="file" class="form-control{{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar">
 
                    			 	@if ($errors->has('avatar'))
                                     <span class="invalid-feedback" role="alert">
@@ -355,13 +355,22 @@
                                     </span>
                                 @endif
                     </div>
-                    <div class="col-sm-4">                    			              
+                    <div class="col-sm-4"> 
+                    			@if(auth()->user()->avatar != null)
+					
+                            	<a href="{{ route('avatar.delete', $users) }}"
+                            	class="btn btn-danger"
+                            	onclick="event.preventDefault();
+                            	document.getElementById('remove-avatar').submit();"
+                            	>Hapus Avatar</a>
+
+                            	@endif                  
                                 
                    </div>
                    </div>                  
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-primary">Edit</button>
+                      <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                   </div>
                 </form>

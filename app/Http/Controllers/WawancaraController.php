@@ -10,35 +10,32 @@ use Auth;
 
 class WawancaraController extends Controller
 {
-    public function index(User $user)
+    public function index()
     {
-        $user = User::where("id", "=", Auth::user()->id)->get();
-    	return view('wawancara', compact('user'));
+    	return view('wawancara');
     }
 
-    public function create(User $user)
+    public function create()
     {
     	$questions = Question::all();
         $user = User::where("id", "=", Auth::user()->id)->get();
-    	return view('tambahwawancara', compact('questions', 'user'));
+    	return view('tambahwawancara', compact('questions'));
     }
 
-    public function showTable(User $user)
+    public function showTable()
  	  {
  	 	$posts = Post::paginate(10);
  	 	$posts->links();
-        $user = User::where("id", "=", Auth::user()->id)->get();
 
- 		return view('revisi', compact('posts', 'user'));
+ 		return view('revisi', compact('posts'));
  	  }
 
-    public function selesai(User $user)
+    public function selesai()
     {
         $posts = Post::paginate(10);
         $posts->links();
-        $user = User::where("id", "=", Auth::user()->id)->get();
         
-        return view('selesai', compact('posts', 'user'));
+        return view('selesai', compact('posts'));
     }
 
     public function store(Request $request)

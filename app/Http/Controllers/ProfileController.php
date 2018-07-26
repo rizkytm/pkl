@@ -15,6 +15,12 @@ class ProfileController extends Controller
     	return view('profile', compact('user'));
     }
 
+    public function editpage(User $user)
+    {
+        $user = User::where("id", "=", Auth::user()->id)->get();
+        return view('profileedit', compact('user'));
+    }
+
     public function edit(User $user, Request $request)
     {
     	$this->validate(request(), [    		

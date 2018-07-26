@@ -20,7 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/beranda', 'HomeController@beranda')->name('beranda');
 
-Route::get('/profile/{user}/edit', 'ProfileController@index')->name('profile');
+Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/profile/{user}/edit', 'ProfileController@editpage')->name('profile.editpage');
 Route::get('/wawancara', 'WawancaraController@index')->name('wawancara');
 Route::get('/tambahwawancara', 'WawancaraController@create')->name('tambah.wawancara');
 Route::post('/tambahwawancara', 'WawancaraController@store')->name('wawancara.store');
