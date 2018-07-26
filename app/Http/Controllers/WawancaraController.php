@@ -3,20 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Questions;
+use App\Question;
 use App\Post;
 use App\User;
+use Auth;
 
 class WawancaraController extends Controller
 {
     public function index(User $user)
     {
+        $user = User::where("id", "=", Auth::user()->id)->get();
     	return view('wawancara', compact('user'));
     }
 
     public function create(User $user)
     {
-    	$questions = Questions::all();
+    	$questions = Question::all();
+        $user = User::where("id", "=", Auth::user()->id)->get();
     	return view('tambahwawancara', compact('questions', 'user'));
     }
 
@@ -24,6 +27,7 @@ class WawancaraController extends Controller
  	  {
  	 	$posts = Post::paginate(10);
  	 	$posts->links();
+        $user = User::where("id", "=", Auth::user()->id)->get();
 
  		return view('revisi', compact('posts', 'user'));
  	  }
@@ -32,6 +36,7 @@ class WawancaraController extends Controller
     {
         $posts = Post::paginate(10);
         $posts->links();
+        $user = User::where("id", "=", Auth::user()->id)->get();
         
         return view('selesai', compact('posts', 'user'));
     }

@@ -105,15 +105,15 @@
 
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ url('asset/dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@foreach($user as $users)
+              <img src="../../storage/{{ $users->avatar }}" class="user-image" alt="User Image">
               <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{ url('asset/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
-
+                <img src="../../storage/{{ $users->avatar }}" class="img-circle" alt="User Image">@endforeach
+          
                 <p>
                   {{ Auth::user()->name }}
                   @if (Auth::user()->name === "admin")
@@ -125,10 +125,12 @@
               </li>
 
               <!-- Menu Footer-->
-              <li class="user-footer">@foreach($user as $users)
+              <li class="user-footer">
                 <div class="pull-left">
+                  @foreach($user as $users)
                   <a href="{{ route('profile', $users) }}" class="btn btn-default btn-flat">Profile</a>
-                </div>@endforeach
+                  @endforeach
+                </div>
                 <div class="pull-right">
                   <a href="{{ route('logout') }}"
                       onclick="event.preventDefault();
