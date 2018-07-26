@@ -29,3 +29,5 @@ Route::get('/selesai', 'WawancaraController@selesai')->name('selesai');
 
 Route::patch('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
 Route::delete('profil/{user}/edit', 'ProfileController@destroy')->name('avatar.delete');
+
+Route::get('/admin', 'AdminController@admin')->middleware('is_admin')->name('admin');
