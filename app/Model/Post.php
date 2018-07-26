@@ -20,11 +20,12 @@ class Post extends Model
 
     public function question()
     {
-    	return $this->belongsTo(Question::class);
+    	return $this->belongsTo(Questions::class);
     }
 
-    public function comment()
+    public function comments()
     {
     	return $this->hasMany(Comment::class);
     }
 }
+
