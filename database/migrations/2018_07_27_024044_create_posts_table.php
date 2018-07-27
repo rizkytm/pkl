@@ -19,14 +19,11 @@ class CreatePostsTable extends Migration
             $table->string('narasumber');
             $table->string('topic');
             $table->integer('category_id')->unsigned();
-            $table->integer('question_id')->unsigned();
-            $table->text('answer');
-            $table->string('file')->nullable();
+            $table->integer('condition')->unsigned()->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('CASCADE');
-            $table->foreign('question_id')->references('id')->on('questions')->onDelete('CASCADE');
         });
     }
 

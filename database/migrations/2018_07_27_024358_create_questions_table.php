@@ -17,7 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->increments('id');
             $table->integer('nomor')->unsigned();
             $table->integer('category_id')->unsigned();
-            $table->string('question');
+            $table->text('question')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('CASCADE');
