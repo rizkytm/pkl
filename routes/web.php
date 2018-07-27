@@ -32,3 +32,10 @@ Route::patch('/profile/{user}/edit', 'ProfileController@edit')->name('profile.ed
 Route::delete('profil/{user}/edit', 'ProfileController@destroy')->name('avatar.delete');
 
 Route::get('/admin', 'AdminController@admin')->middleware('is_admin')->name('admin');
+
+
+Route::get('/tambahkategori', 'WawancaraController@tambahkategori')->name('tambah.kategori');
+Route::post('/tambahkategori', 'WawancaraController@storekategori')->name('store.kategori');
+
+Route::get('/tambahpertanyaan', 'WawancaraController@tambahpertanyaan')->name('tambah.pertanyaan');
+Route::post('/tambahpertanyaan', 'WawancaraController@storepertanyaan')->name('store.pertanyaan');

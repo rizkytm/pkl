@@ -7,6 +7,7 @@ use App\Question;
 use App\Post;
 use App\User;
 use Auth;
+use App\Category;
 
 class WawancaraController extends Controller
 {
@@ -46,6 +47,36 @@ class WawancaraController extends Controller
             Questions::create(['answer'=>$value]);
         }        
         
+        return redirect()->back();
+    }
+
+    public function tambahkategori()
+    {
+        return view('tambahkategori');
+    }
+
+    public function storekategori(Request $request)
+    {
+        Category::create([
+            'name' => request('name')
+        ]);
+        return redirect()->back();
+    }
+
+    public function tambahpertanyaan()
+    {
+        $categories = Category::all();
+        $countquestion = Question::where("id", "=", 1)->count() + 1;
+        return view('tambahpertanyaan', compact('categories', 'countquestion'));
+    }
+
+    public function storepertanyaan(Request $request)
+    {
+        Question::create([
+            'category_id' => request('category_id'),
+            'nomor' => (Question::where('category_id', request('category_id'))->count() + 1),
+            'question' => request('name')
+        ]);
         return redirect()->back();
     }
 }
