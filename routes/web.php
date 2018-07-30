@@ -23,6 +23,8 @@ Route::get('/beranda', 'HomeController@beranda')->name('beranda');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/profile/{user}/edit', 'ProfileController@editpage')->name('profile.editpage');
 Route::get('/wawancara', 'WawancaraController@index')->name('wawancara');
+Route::post('/wawancara', 'WawancaraController@storeWawancara')->name('store.wawancara');
+
 Route::get('/tambahwawancara', 'WawancaraController@create')->name('tambah.wawancara');
 Route::post('/tambahwawancara', 'WawancaraController@store')->name('wawancara.store');
 Route::get('/revisi', 'WawancaraController@showTable')->name('revisi');

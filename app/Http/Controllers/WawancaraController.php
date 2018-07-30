@@ -14,7 +14,22 @@ class WawancaraController extends Controller
 {
     public function index()
     {
-    	return view('wawancara');
+        $categories = Category::paginate(5);
+        $categories->links();
+
+        return view('wawancara', compact('categories'));
+    }
+
+    public function storeWawancara(Request $request)
+    {
+        Post::create([
+            'user_id' => auth()->id(),
+            'narasumber' => request('narasumber'),
+            'topic' => request('topic'),
+            'category_id' => request('kategori_id')
+        ]);
+
+        return redirect()->back();
     }
 
     public function create()
