@@ -8,6 +8,7 @@ use App\Post;
 use App\User;
 use Auth;
 use App\Category;
+use App\Answer;
 
 class WawancaraController extends Controller
 {
@@ -79,4 +80,24 @@ class WawancaraController extends Controller
         ]);
         return redirect()->back();
     }
+
+    public function jawabpertanyaan()
+    {
+        $questions = Question::where("category_id", "=", 3)->get();
+        return view('jawabpertanyaan', compact('questions'));
+    }
+
+    public function storejawaban(Request $request)
+    {
+        $input = $request->all();
+        foreach($request->input('answers') as $key => $value) {
+        Answer::Create(array(
+        'answer' => $value,
+        'post_id' => $input['post_id'],
+        'question_id' => $input['qid'][$key],
+    ));
+}
+    return redirect()->back();
+    }
+
 }

@@ -39,3 +39,6 @@ Route::post('/tambahkategori', 'WawancaraController@storekategori')->name('store
 
 Route::get('/tambahpertanyaan', 'WawancaraController@tambahpertanyaan')->name('tambah.pertanyaan');
 Route::post('/tambahpertanyaan', 'WawancaraController@storepertanyaan')->name('store.pertanyaan');
+
+Route::get('/jawabpertanyaan', 'WawancaraController@jawabpertanyaan')->name('jawab.pertanyaan');
+Route::post('/jawabpertanyaan', 'WawancaraController@storejawaban')->name('store.jawaban');
