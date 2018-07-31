@@ -12,28 +12,40 @@ use App\Answer;
 
 class WawancaraController extends Controller
 {
-    public function tampil()
-    {
-        $posts = Post::orderBy("created_at", "desc")->first();
-        $id = $posts->category_id;
-        $pid = $posts->id;
-        $categories = Category::where("id", $id)->first();
+    // public function tampil()
+    // {
+    //     $posts = Post::orderBy("created_at", "desc")->first();
+    //     $id = $posts->category_id;
+    //     $pid = $posts->id;
+    //     $categories = Category::where("id", $id)->first();
 
-        $questions = Question::where("category_id", $id)->get();
-        $answers = Answer::where("post_id", $pid)->get();
+    //     $questions = Question::where("category_id", $id)->get();
+    //     $answers = Answer::where("post_id", $pid)->get();
 
-        return view('tampil', compact('posts', 'categories', 'users', 'questions', 'answers'));
-    }
+    //     return view('tampil', compact('posts', 'categories', 'users', 'questions', 'answers'));
+    // }
 
 
     public function index()
     {
-        //$categories = Category::all();
         $posts = Post::paginate(10);
         $categories = Category::paginate(10);
         $categories->links();
 
         return view('wawancara', compact('categories', 'posts'));
+    }
+
+    public function show($id)
+    {
+        $posts = Post::find($id);
+        $cid = $posts->category_id;
+        $pid = $posts->id;
+        $categories = Category::where("id", $cid)->first();
+
+        $questions = Question::where("category_id", $cid)->get();
+        $answers = Answer::where("post_id", $pid)->get();
+
+        return view('tampil', compact('posts', 'categories', 'users', 'questions', 'answers'));
     }
 
 

@@ -100,7 +100,7 @@
                     <td>{{ $post->category->name }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
-                      <a class="btn btn-warning" href="#" disabled> waiting... </a>
+                      <a class="btn btn-warning" href="{{ route('show.tampil',$post) }}"> preview </a>
                     </td>
                   </tr>
                 @endforeach
