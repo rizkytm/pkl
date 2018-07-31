@@ -12,13 +12,30 @@ use App\Answer;
 
 class WawancaraController extends Controller
 {
+    public function tampil()
+    {
+        $posts = Post::where("user_id", "=", Auth::user()->id)->first();
+        $id = $posts->category_id;
+        $pid = $posts->id;
+        $categories = Category::where("id", $id)->first();
+
+        $questions = Question::where("category_id", $id)->get();
+        $answers = Answer::where("post_id", $pid)->get();
+
+        return view('tampil', compact('posts', 'categories', 'users', 'questions', 'answers'));
+    }
+
+
     public function index()
     {
-        $categories = Category::paginate(5);
+        //$categories = Category::all();
+        $posts = Post::paginate(10);
+        $categories = Category::paginate(10);
         $categories->links();
 
-        return view('wawancara', compact('categories'));
+        return view('wawancara', compact('categories', 'posts'));
     }
+
 
     public function storeWawancara(Request $request)
     {

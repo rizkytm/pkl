@@ -44,3 +44,6 @@ Route::post('/tambahpertanyaan', 'WawancaraController@storepertanyaan')->name('s
 
 Route::get('/jawabpertanyaan', 'WawancaraController@jawabpertanyaan')->name('jawab.pertanyaan');
 Route::post('/jawabpertanyaan', 'WawancaraController@storejawaban')->name('store.jawaban');
+
+
+Route::get('/tampil', 'WawancaraController@tampil')->name('get.tampil');
