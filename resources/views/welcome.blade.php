@@ -79,16 +79,13 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    SIW
+
+                <div style="height:245px;margin-top:5px">
+                  <img  height="210" src="{{ asset('asset/dist/img/logo.png') }}" ></img>
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="{{ route('welcome') }}" style="font-size:25px">Sistem Informasi Wawancara</a>
                 </div>
             </div>
         </div>
