@@ -23,7 +23,7 @@ class ProfileController extends Controller
 
     public function edit(User $user, Request $request)
     {
-    	$this->validate(request(), [    		
+    	$this->validate(request(), [
     		'avatar' => 'nullable'
     	]);
     	if ($request->hasFile('avatar'))
@@ -33,7 +33,7 @@ class ProfileController extends Controller
     		'name' => request('name'),
     		'email' => request('email'),
     		'NIP' => request('NIP'),
-    		'jabatan' => request('jabatan'),	
+    		'jabatan' => request('jabatan'),
     		'no_hp' => request('no_hp'),
     		'alamat' => request('alamat'),
     		'avatar' => $avatar
@@ -45,23 +45,23 @@ class ProfileController extends Controller
     		'name' => request('name'),
     		'email' => request('email'),
     		'NIP' => request('NIP'),
-    		'jabatan' => request('jabatan'),	
+    		'jabatan' => request('jabatan'),
     		'no_hp' => request('no_hp'),
     		'alamat' => request('alamat'),
     	]);
     	}
-    	
-    	
+
+
 
     	// if($request->user()->avatar)
     	// {
     	// 	Storage::delete($request->user()->avatar);
     	// }
 
-    	
+
 
     	// $request->user()->update([
-    		
+
     	// ]);
 
     	return redirect()->back();
@@ -70,7 +70,7 @@ class ProfileController extends Controller
     public function destroy(User $user, Request $request)
     {
     	if($request->user()->avatar)
-    	{	
+    	{
     		Storage::delete($request->user()->avatar);
     	}
 

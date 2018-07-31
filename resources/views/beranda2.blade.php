@@ -9,12 +9,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-      Beranda
-
+      Beranda ADMIN
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Beranda</li>
+        <li class="active">Beranda Admin</li>
       </ol>
     </section>
 
@@ -28,7 +27,7 @@
             <div class="inner">
               <h3>150</h3>
 
-              <p>Wawancara Yang Belum Dikirim</p>
+              <p>Laporan Masuk</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -43,7 +42,7 @@
             <div class="inner">
               <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-              <p>Revisi Wawancara</p>
+              <p>Hasil Revisi Laporan</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>

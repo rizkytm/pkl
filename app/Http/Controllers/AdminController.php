@@ -12,9 +12,12 @@ class AdminController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function admin(User $user)
     {
     	$user = User::where("id", "=", Auth::user()->id)->get();
-        return view('wawancara', compact('user'));
+        return view('beranda2', compact('user'));
     }
+
+
 }
