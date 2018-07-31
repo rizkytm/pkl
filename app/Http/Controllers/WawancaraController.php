@@ -131,7 +131,7 @@ class WawancaraController extends Controller
         'question_id' => $input['qid'][$key],
     ));
 }
-    return redirect()->back();
+    return redirect()->route('get.tampil');
     }
 
 }
