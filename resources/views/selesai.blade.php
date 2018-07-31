@@ -37,13 +37,13 @@
               </thead>
               <tbody>
                 @foreach ($posts as $post)
-                  <tr>
+                  <tr>                
                     <td>{{ $post->id }}</td>
                     <td>{{ $post->narasumber }}</td>
                     <td>{{ $post->topic }}</td>
-                    <td>{{ $post->category }}</td>
+                    <td>{{ $post->category->name }}</td>
                     <td>{{ $post->created_at }}</td>
-                    <td>Selesai</td>
+                    <td>#</td>
                   </tr>
                 @endforeach
               </tbody>
