@@ -32,7 +32,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Sistem Informasi</b> Wawancara</a>
+    <a href="{{ route('welcome') }}"><b>Sistem Informasi</b> Wawancara</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
