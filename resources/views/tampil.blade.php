@@ -70,10 +70,10 @@
                 @foreach($answer->question()->get() as $questions)
                 <div class="form-group">
                   <label for="exampleInputEmail1">{{ $questions->question }}</label>
-                  <input name="answers[]" type="text" class="form-control" id="name" placeholder="Jawaban" value="{{ $answers->answer }}">
+                  <input name="answers[]" type="text" class="form-control" id="name" placeholder="Jawaban" value="{{ $answer->answer }}">
                 </div>
                 @endforeach
-                @endforeach                 
+                @endforeach           
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>

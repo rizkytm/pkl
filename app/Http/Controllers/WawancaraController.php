@@ -14,7 +14,7 @@ class WawancaraController extends Controller
 {
     public function tampil()
     {
-        $posts = Post::where("user_id", "=", Auth::user()->id)->first();
+        $posts = Post::orderBy("created_at", "desc")->first();
         $id = $posts->category_id;
         $pid = $posts->id;
         $categories = Category::where("id", $id)->first();
