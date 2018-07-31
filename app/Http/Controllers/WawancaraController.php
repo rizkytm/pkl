@@ -29,7 +29,7 @@ class WawancaraController extends Controller
             'category_id' => request('kategori_id')
         ]);
 
-        return redirect()->back();
+        return redirect()->route('jawab.pertanyaan');
     }
 
     public function create()
@@ -98,8 +98,10 @@ class WawancaraController extends Controller
 
     public function jawabpertanyaan()
     {
-        $questions = Question::where("category_id", "=", 3)->get();
-        return view('jawabpertanyaan', compact('questions'));
+        $posts = Post::orderBy('created_at', 'desc')->first();
+        $id = $posts->category_id;
+        $questions = Question::where('category_id', $id)->get();
+        return view('jawabpertanyaan', compact('questions', 'posts'));
     }
 
     public function storejawaban(Request $request)
