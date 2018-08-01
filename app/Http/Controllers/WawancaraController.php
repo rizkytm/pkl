@@ -10,6 +10,7 @@ use Auth;
 use App\Category;
 use App\Answer;
 use Validator;
+use App\File;
 
 class WawancaraController extends Controller
 {
@@ -52,12 +53,26 @@ class WawancaraController extends Controller
 
     public function storeWawancara(Request $request)
     {
-        Post::create([
+        $this->validate(request(), [
+            'files' => 'mimes:pdf,doc,docx,mp3,wav'
+        ]);
+
+        $post = Post::create([
             'user_id' => auth()->id(),
             'narasumber' => request('narasumber'),
             'topic' => request('topic'),
             'category_id' => request('kategori_id')
         ]);
+
+        $files = $request->file('files');
+
+        foreach ($files as $file) {
+            $filename = $file->store('files');
+            File::create([
+                'post_id' => $post->id,
+                'filename' => $filename
+            ]);
+        }
 
         return redirect()->route('jawab.pertanyaan');
     }

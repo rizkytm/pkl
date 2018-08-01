@@ -25,7 +25,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <form class="form-horizontal" action="{{ route('store.wawancara') }}" method="post"> 
+          <form class="form-horizontal" action="{{ route('store.wawancara') }}" method="post" enctype="multipart/form-data"> 
             {{ csrf_field() }}
             {{ method_field('POST') }}
             <div class="form-group">
@@ -50,6 +50,13 @@
                   <option value="{{ $category->id }}">{{$category->name}}</option>
                 @endforeach
                 </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-2">Upload File</label>
+              <div class="col-sm-10">
+                <input type="file" name="files[]" multiple />
               </div>
             </div>
 
