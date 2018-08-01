@@ -72,7 +72,8 @@
                 @endforeach           
               </div>
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" disabled>Submit</button>
+                <button type="submit" class="btn btn-danger" disabled>Download as PDF</button>
               </div>
             </form>
       </div>
