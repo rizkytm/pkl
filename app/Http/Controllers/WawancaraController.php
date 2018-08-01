@@ -53,9 +53,6 @@ class WawancaraController extends Controller
 
     public function storeWawancara(Request $request)
     {
-        $this->validate(request(), [
-            'files' => 'mimes:pdf,doc,docx,mp3,wav'
-        ]);
 
         $post = Post::create([
             'user_id' => auth()->id(),
