@@ -38,15 +38,16 @@
                 </tr>
               </thead>
               <tbody>
+                <?php $counter=1; ?>
                 @foreach ($posts as $post)
                   <tr>                
-                    <td>{{ $post->id }}</td>
+                    <td><?php echo $counter++; ?></td>
                     <td>{{ $post->narasumber }}</td>
                     <td>{{ $post->topic }}</td>
                     <td>{{ $post->category->name }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
-                      <a class="btn btn-warning" href="#" onclick="return confirm('Apakah anda yakin akan mengedit ?')"> Edit </a>
+                      <a class="btn btn-warning"> Edit </a>
                     </td>
                   </tr>
                 @endforeach

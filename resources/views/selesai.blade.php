@@ -36,14 +36,17 @@
                 </tr>
               </thead>
               <tbody>
+                <?php $counter=1; ?>
                 @foreach ($posts as $post)
                   <tr>                
-                    <td>{{ $post->id }}</td>
+                    <td><?php echo $counter++; ?></td>
                     <td>{{ $post->narasumber }}</td>
                     <td>{{ $post->topic }}</td>
                     <td>{{ $post->category->name }}</td>
                     <td>{{ $post->created_at }}</td>
-                    <td>#</td>
+                    <td>
+                      <button class="btn btn-warning"> selesai </button>
+                    </td>
                   </tr>
                 @endforeach
               </tbody>
