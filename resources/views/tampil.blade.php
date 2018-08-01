@@ -54,10 +54,6 @@
     <!-- /.col -->
   </div>
   <!-- /.row -->
-</section>
-<!-- /.content -->
-
-<section class="content">
   <div class="row">
     <div class="col-md-12">
       <div class="box box-primary">
@@ -84,7 +80,7 @@
     <!-- /.box-body -->
   </div>
 </section>
-
+<!-- /.content -->
 
 </div>
 <!-- /.content-wrapper -->

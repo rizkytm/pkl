@@ -9,6 +9,7 @@ use App\User;
 use Auth;
 use App\Category;
 use App\Answer;
+use Validator;
 
 class WawancaraController extends Controller
 {
@@ -135,15 +136,25 @@ class WawancaraController extends Controller
 
     public function storejawaban(Request $request)
     {
+        $validator = Validator::make($request->all(),[
+            'answers' => 'nullable',
+        ]);
+
+        $errors = $validator->errors();
+
         $input = $request->all();
         foreach($request->input('answers') as $key => $value) {
-        Answer::Create(array(
-        'answer' => $value,
-        'post_id' => $input['post_id'],
-        'question_id' => $input['qid'][$key],
-    ));
+            if($request->has('answers'))
+            {
+                Answer::Create(array(
+                    'answer' => $value,
+                    'post_id' => $input['post_id'],
+                    'question_id' => $input['qid'][$key],
+                ));
+            }
+        
 }
-    return redirect()->route('get.tampil');
+    return redirect()->back();
     }
 
 }
