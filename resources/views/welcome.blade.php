@@ -87,7 +87,12 @@
                 <div class="links">
                     <a href="{{ route('welcome') }}" style="font-size:25px">Sistem Informasi Wawancara</a>
                 </div>
+                <div class="links">
+                    <a href="{{ route('welcome') }}" style="font-size:25px">Ditjen PAUD dan Dikmas KEMENDIKBUD</a>
+                </div>
+
             </div>
         </div>
     </body>
+
 </html>
