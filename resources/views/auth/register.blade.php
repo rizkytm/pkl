@@ -60,15 +60,6 @@
         @endif
       </div>
       <div class="form-group has-feedback">
-        <input id="NIP" type="text" class="form-control{{ $errors->has('NIP') ? ' is-invalid' : '' }}" name="NIP" value="{{ old('NIP') }}" placeholder="NIP" required>
-        <span class="glyphicon glyphicon-list-alt form-control-feedback"></span>
-        @if ($errors->has('NIP'))
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('NIP') }}</strong>
-            </span>
-        @endif
-      </div>
-      <div class="form-group has-feedback">
         <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         @if ($errors->has('password'))
