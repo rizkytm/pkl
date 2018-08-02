@@ -24,7 +24,7 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="../../storage/{{ Auth::user()->avatar }}" alt="User profile picture" height="128px" width="128px">
+              <img class="profile-user-img img-responsive img-circle" src="{{ asset('storage/'.Auth::user()->avatar) }}" alt="User profile picture" height="128px" width="128px">
 
               <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
 
