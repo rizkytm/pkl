@@ -11,13 +11,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['web','auth']], function(){
+  Route::get('/', function () {
+      return view('welcome');
+  })->name('welcome');
+
+  Route::get('/home', function() {
+    if (Auth::user()->admin == 0){
+      return view('beranda');
+    } else{
+      $users['users'] = \App\User::all();
+      return view('beranda2', $users);
+    }
+  })->name('home');
+});
+
+//Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/beranda', 'HomeController@beranda')->name('beranda');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
@@ -33,7 +46,6 @@ Route::get('/selesai', 'WawancaraController@selesai')->name('selesai');
 Route::patch('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
 Route::delete('profil/{user}/edit', 'ProfileController@destroy')->name('avatar.delete');
 
-Route::get('/admin', 'AdminController@admin')->middleware('is_admin')->name('admin');
 
 
 Route::get('/tambahkategori', 'WawancaraController@tambahkategori')->name('tambah.kategori');
@@ -48,7 +60,3 @@ Route::post('/jawabpertanyaan', 'WawancaraController@storejawaban')->name('store
 
 Route::get('/tampil', 'WawancaraController@tampil')->name('get.tampil');
 Route::get('/tampillagi/{id}', 'WawancaraController@show')->name('show.tampil');
-
-
-Route::get('/tampiledit/{id}', 'WawancaraController@edittampil')->name('edit.tampil');
-Route::post('/tampiledit/{id}', 'WawancaraController@postedittampil')->name('post.edit.tampil');
