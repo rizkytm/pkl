@@ -60,3 +60,5 @@ Route::post('/jawabpertanyaan', 'WawancaraController@storejawaban')->name('store
 
 Route::get('/tampil', 'WawancaraController@tampil')->name('get.tampil');
 Route::get('/tampillagi/{id}', 'WawancaraController@show')->name('show.tampil');
+
+Route::get('/newjawabpertanyaan', 'WawancaraController@new')->name('new.jawab.pertanyaan');

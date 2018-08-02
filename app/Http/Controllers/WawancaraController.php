@@ -182,4 +182,8 @@ class WawancaraController extends Controller
     return redirect()->back();
     }
 
+    public function new()
+    {
+        return view('newjawabpertanyaan');
+    }
 }

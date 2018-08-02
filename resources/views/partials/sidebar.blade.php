@@ -9,7 +9,6 @@
         </div>
         <div class="pull-left info">
           <p><span class="hidden-xs"> {{ Auth::user()->name }} </span> </p>
-            <a href="#"><i class="fa fa-circle text-success"></i> Staff</a>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
