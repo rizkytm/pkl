@@ -15,11 +15,11 @@
 
 Auth::routes();
 
-Route::group(['middleware' => ['web','auth']], function(){
-  Route::get('/', function () {
-      return view('welcome');
-  })->name('welcome');
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
 
+Route::group(['middleware' => ['web','auth']], function(){
   Route::get('/home', function() {
     if (Auth::user()->admin == 0){
       return view('beranda');
