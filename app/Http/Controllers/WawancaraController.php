@@ -11,6 +11,7 @@ use App\Category;
 use App\Answer;
 use Validator;
 use App\File;
+use App\Narasumber;
 
 class WawancaraController extends Controller
 {
@@ -47,7 +48,7 @@ class WawancaraController extends Controller
         $questions = Question::where("category_id", $cid)->get();
         $answers = Answer::where("post_id", $pid)->get();
 
-        return view('tampil', compact('posts', 'categories', 'users', 'questions', 'answers'));
+        return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers'));
     }
 
 
@@ -56,20 +57,32 @@ class WawancaraController extends Controller
 
         $post = Post::create([
             'user_id' => auth()->id(),
-            'narasumber' => request('narasumber'),
+            'penulis1' => request('penulis1'),
+            'penulis2' => request('penulis2'),
+            'lembaga' => request('lembaga'),
             'topic' => request('topic'),
             'category_id' => request('kategori_id')
         ]);
-
+        
         $files = $request->file('files');
 
-        foreach ($files as $file) {
-            $filename = $file->store('files');
-            File::create([
-                'post_id' => $post->id,
-                'filename' => $filename
-            ]);
+        if (is_array($files) || is_object($files))
+        {
+            foreach ($files as $file) {
+                $filename = $file->store('files');
+                File::create([
+                    'post_id' => $post->id,
+                    'filename' => $filename
+                ]);
+            }
         }
+        
+        $narasumber = Narasumber::create([
+            'post_id' => $post->id,
+            //'narasumber' => request('narasumber'),
+            'nama' => request('nama'),
+            'kontak' => request('kontak')
+        ]);
 
         return redirect()->route('jawab.pertanyaan');
     }

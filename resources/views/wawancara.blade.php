@@ -31,10 +31,10 @@
             <div class="form-group">
               <label class="col-sm-2">Penulis</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" id="penulis_satu" name="penulis_satu" placeholder="1. ">
+                  <input type="text" class="form-control" id="penulis1" name="penulis1" placeholder="1. ">
                 </div>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" id="penulis_dua" name="penulis_dua" placeholder="2.">
+                  <input type="text" class="form-control" id="penulis2" name="penulis2" placeholder="2.">
                 </div>
             </div>
             
@@ -53,34 +53,15 @@
               <div class="col-sm-5">
                   <label>Nomor Telpon</label>
               </div>
+
               <div class="col-sm-2"></div>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" id="narasumber" name="narasumber" placeholder="1. ">
+                  <input type="text" class="form-control" id="nama" name="nama" placeholder="1. ">
                 </div>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" id="kontak_narasumber" name="kontak_narasumber" placeholder="1. ">
+                  <input type="text" class="form-control" id="kontak" name="kontak" placeholder="1. ">
                 </div>
-              <div class="col-sm-2"></div>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" id="narasumber" name="narasumber" placeholder="2. ">
-                </div>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" id="kontak_narasumber" name="kontak_narasumber" placeholder="2. ">
-                </div>
-              <div class="col-sm-2"></div>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" id="narasumber" name="narasumber" placeholder="3. ">
-                </div>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" id="kontak_narasumber" name="kontak_narasumber" placeholder="3. ">
-                </div>
-              <div class="col-sm-2"></div>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" id="narasumber" name="narasumber" placeholder="4. ">
-                </div>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" id="kontak_narasumber" name="kontak_narasumber" placeholder="4. ">
-                </div>
+              
             </div>
 
             <div class="form-group">
