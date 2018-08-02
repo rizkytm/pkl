@@ -315,20 +315,7 @@
                       <input type="email" class="form-control" id="emailmail" name="email" placeholder="Email" value="{{ Auth::user()->email }}">
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">NIP</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputNIP" placeholder="NIP" name="NIP" value="{{ Auth::user()->NIP }}">
-                    </div>
-                  </div>
-				  <div class="form-group">
-                    <label for="inputJabatan" class="col-sm-2 control-label">Jabatan</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputJabatan" placeholder="Jabatan" name="jabatan" value="{{ Auth::user()->jabatan }}">
-                    </div>
-                  </div>
+                  
                   <div class="form-group">
                     <label for="inputNo_HP" class="col-sm-2 control-label">No HP</label>
 

@@ -47,7 +47,7 @@
                     <td>{{ $post->category->name }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
-                      <a class="btn btn-warning"> Edit </a>
+                      <a class="btn btn-warning" href="{{ route('edit.tampil',$post) }}" > Edit </a>
                     </td>
                   </tr>
                 @endforeach

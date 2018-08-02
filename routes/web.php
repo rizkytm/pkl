@@ -48,3 +48,7 @@ Route::post('/jawabpertanyaan', 'WawancaraController@storejawaban')->name('store
 
 Route::get('/tampil', 'WawancaraController@tampil')->name('get.tampil');
 Route::get('/tampillagi/{id}', 'WawancaraController@show')->name('show.tampil');
+
+
+Route::get('/tampiledit/{id}', 'WawancaraController@edittampil')->name('edit.tampil');
+Route::post('/tampiledit/{id}', 'WawancaraController@postedittampil')->name('post.edit.tampil');

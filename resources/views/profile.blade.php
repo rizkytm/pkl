@@ -315,20 +315,8 @@
                       <input type="email" class="form-control" id="disabledInput" name="email" placeholder="Email" value="{{ Auth::user()->email }}" disabled>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">NIP</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="disabledInput" placeholder="NIP" name="NIP" value="{{ Auth::user()->NIP }}" disabled>
-                    </div>
-                  </div>
-				  <div class="form-group">
-                    <label for="inputJabatan" class="col-sm-2 control-label">Jabatan</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="disabledInput" placeholder="Jabatan" name="jabatan" value="{{ Auth::user()->jabatan }}" disabled>
-                    </div>
-                  </div>
+                  
+				          
                   <div class="form-group">
                     <label for="inputNo_HP" class="col-sm-2 control-label">No HP</label>
 

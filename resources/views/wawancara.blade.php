@@ -29,16 +29,64 @@
             {{ csrf_field() }}
             {{ method_field('POST') }}
             <div class="form-group">
-              <label class="col-sm-2">Nama Narasumber</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="narasumber" name="narasumber" placeholder="Nama">
+              <label class="col-sm-2">Penulis</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="penulis_satu" name="penulis_satu" placeholder="1. ">
+                </div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="penulis_dua" name="penulis_dua" placeholder="2.">
+                </div>
+            </div>
+            
+              <div class="form-group">
+                <label class="col-sm-2">Lembaga</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="lembaga" name="lembaga" placeholder="nama lembaga">
+                  </div>
+              </div>
+
+            <div class="form-group">
+              <label class="col-sm-2">Narasumber :</label>
+              <div class="col-sm-5">
+                  <label>Nama</label>
+              </div>
+              <div class="col-sm-5">
+                  <label>Nomor Telpon</label>
+              </div>
+              <div class="col-sm-2"></div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="narasumber" name="narasumber" placeholder="1. ">
+                </div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="kontak_narasumber" name="kontak_narasumber" placeholder="1. ">
+                </div>
+              <div class="col-sm-2"></div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="narasumber" name="narasumber" placeholder="2. ">
+                </div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="kontak_narasumber" name="kontak_narasumber" placeholder="2. ">
+                </div>
+              <div class="col-sm-2"></div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="narasumber" name="narasumber" placeholder="3. ">
+                </div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="kontak_narasumber" name="kontak_narasumber" placeholder="3. ">
+                </div>
+              <div class="col-sm-2"></div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="narasumber" name="narasumber" placeholder="4. ">
+                </div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="kontak_narasumber" name="kontak_narasumber" placeholder="4. ">
                 </div>
             </div>
 
             <div class="form-group">
               <label class="col-sm-2">Topik</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="topic" name="topic" placeholder="Topik">
+                  <input type="text" class="form-control" id="topic" name="topic" placeholder="topik wawancara">
                 </div>
             </div>
 
