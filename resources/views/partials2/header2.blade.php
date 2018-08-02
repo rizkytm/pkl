@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link rel="icon" type="image/png" href="{{ asset('asset/dist/img/logo.png') }}">
   <title>{{ config('app.name', 'Laravel') }}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -106,30 +107,31 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ url('asset/dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
+              <img src="storage/{{ Auth::user()->avatar }}" class="user-image" alt="User Image">
               <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{ url('asset/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                <img src="storage/{{ Auth::user()->avatar }}" class="img-circle" alt="User Image">
 
                 <p>
                   {{ Auth::user()->name }}
                   @if (Auth::user()->name === "admin")
-                  <small>Admin</small>
-                  @else
                   <small>Staff</small>
+                  @else
+                  <small>Admin</small>
                   @endif
                 </p>
               </li>
 
               <!-- Menu Footer-->
               <li class="user-footer">
-                @foreach($user as $users)
                 <div class="pull-left">
-                  <a href="{{ route('profile', $users) }}" class="btn btn-default btn-flat">Profile</a>
-                </div>@endforeach
+
+                  <a href="{{ route('profile') }}" class="btn btn-default btn-flat">Profile</a>
+
+                </div>
                 <div class="pull-right">
                   <a href="{{ route('logout') }}"
                       onclick="event.preventDefault();

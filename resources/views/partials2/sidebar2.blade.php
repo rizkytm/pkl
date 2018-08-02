@@ -5,11 +5,11 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{url('asset/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+          <img src="storage/{{ Auth::user()->avatar }}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><span class="hidden-xs"> {{ Auth::user()->name }} </span> </p>
-            <a href="#"><i class="fa fa-circle text-success"></i> Admin</a>
+            <a href="#"><i class="fa fa-circle text-success"></i> Staff</a>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -92,7 +92,7 @@
         <li>
           <li {!! Route::is('wawancara') ? 'class="active"' : '' !!}>
           <a href="{{ route('wawancara') }}">
-            <i class="fa fa-edit"></i> <span>Laporan Masuk</span>
+            <i class="fa fa-edit"></i> <span>Wawancara</span>
 
           </a>
 
@@ -100,7 +100,7 @@
         <li class="treeview">
           <li {!! Route::is('revisi') ? 'class="active"' : '' !!}>
           <a href="{{ route('revisi') }}">
-            <i class="fa fa-table"></i> <span>Revisi Laporan</span>
+            <i class="fa fa-table"></i> <span>Revisi Wawancara</span>
           </a>
         </li>
         <li>

@@ -1,6 +1,6 @@
-@include('partials.header')
+@include('partials2.header2')
 
-@include('partials.sidebar')
+@include('partials2.sidebar2')
 
 
 
@@ -74,6 +74,6 @@
   </div>
       <!-- /.row (main row) -->
 
-@include('partials.footer')
+@include('partials2.footer2')
 
-@include('partials.controlsidebar')
+@include('partials2.controlsidebar2')
