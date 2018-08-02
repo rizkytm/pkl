@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->text('alamat')->nullable()->default(null);
             $table->string('no_hp')->nullable()->default(null);
             $table->string('jabatan')->nullable()->default(null);
-            $table->string('type')->default('default');
+            $table->boolean('admin')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
