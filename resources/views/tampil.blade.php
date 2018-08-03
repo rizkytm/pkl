@@ -25,7 +25,10 @@
             <div class="form-group">
               <label class="col-sm-2">Nama Narasumber</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" name="narasumber" value="@foreach($posts as $post) {{ $post->narasumber }} @endforeach" disabled>
+                  <input type="text" class="form-control" name="narasumber"
+                  @foreach($posting as $post)                   
+                      value="@foreach($post->narasumber as $nara){{ $nara->nama }}, @endforeach"
+                  @endforeach disabled>
                 </div>
             </div>
 
@@ -72,7 +75,8 @@
                 @endforeach           
               </div>
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary" disabled>Submit</button>
+                <a href="{{ route('revisi.laporan', $posts) }}" class="btn btn-primary">Revisi</a>
+                <a href="#" class="btn btn-primary" disabled>Selesai</a>
                 <button type="submit" class="btn btn-danger" disabled>Download as PDF</button>
               </div>
             </form>

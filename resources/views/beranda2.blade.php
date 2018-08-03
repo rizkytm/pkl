@@ -105,12 +105,6 @@
   </section>
 </div>
 
-
-    </section>
-  </div>
-
-
-
       <!-- /.row (main row) -->
 
 @include('partials2.footer2')

@@ -48,7 +48,9 @@ class WawancaraController extends Controller
         $questions = Question::where("category_id", $cid)->get();
         $answers = Answer::where("post_id", $pid)->get();
 
-        return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers'));
+        $posting = Post::with('narasumber')->where('condition', '1')->get();
+
+        return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting'));
     }
 
 

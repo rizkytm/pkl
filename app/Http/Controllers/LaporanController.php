@@ -14,7 +14,7 @@ class LaporanController extends Controller
   {
       $posts = Post::with('narasumber')->where('condition', '1')->get();
 
-      return view('lap_masuk', compact('posts', 'narasumbers'));
+      return view('lap_masuk', compact('posts'));
   }
 
   public function laprevisi()
@@ -28,4 +28,13 @@ class LaporanController extends Controller
 
       return view('lap_selesai');
   }
+
+  public function revisi($id)
+    {
+        $post = Post::find($id);
+        $post->condition = 2;
+        $post->save();
+
+        return redirect()->back();
+    }
 }
