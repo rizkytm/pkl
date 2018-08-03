@@ -90,23 +90,23 @@
           </ul>
         </li> -->
         <li>
-          <li {!! Route::is('wawancara') ? 'class="active"' : '' !!}>
-          <a href="{{ route('wawancara') }}">
-            <i class="fa fa-edit"></i> <span>Wawancara</span>
+          <li {!! Route::is('masuk') ? 'class="active"' : '' !!}>
+          <a href="{{ route('masuk') }}">
+            <i class="fa fa-edit"></i> <span>Laporan Masuk</span>
 
           </a>
 
         </li>
         <li class="treeview">
-          <li {!! Route::is('revisi') ? 'class="active"' : '' !!}>
-          <a href="{{ route('revisi') }}">
-            <i class="fa fa-table"></i> <span>Revisi Wawancara</span>
+          <li {!! Route::is('laprevisi') ? 'class="active"' : '' !!}>
+          <a href="{{ route('laprevisi') }}">
+            <i class="fa fa-table"></i> <span>Laporan Revisi</span>
           </a>
         </li>
         <li>
-          <li {!! Route::is('selesai') ? 'class="active"' : '' !!}>
-          <a href="{{ route('selesai') }}">
-            <i class="fa fa-calendar"></i> <span>Wawancara Selesai</span>
+          <li {!! Route::is('lapselesai') ? 'class="active"' : '' !!}>
+          <a href="{{ route('lapselesai') }}">
+            <i class="fa fa-calendar"></i> <span>Laporan Selesai</span>
           </a>
         </li>
 

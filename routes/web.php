@@ -62,3 +62,7 @@ Route::get('/tampil', 'WawancaraController@tampil')->name('get.tampil');
 Route::get('/tampillagi/{id}', 'WawancaraController@show')->name('show.tampil');
 
 Route::get('/newjawabpertanyaan', 'WawancaraController@new')->name('new.jawab.pertanyaan');
+
+Route::get('/lapmasuk', 'LaporanController@masuk')->name('masuk');
+Route::get('/laprevisi', 'LaporanController@laprevisi')->name('laprevisi');
+Route::get('/lapselesai', 'LaporanController@lapselesai')->name('lapselesai');

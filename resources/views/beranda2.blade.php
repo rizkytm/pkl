@@ -42,7 +42,7 @@
             <div class="inner">
               <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-              <p>Hasil Revisi Laporan</p>
+              <p>Laporan Revisi</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
@@ -57,7 +57,7 @@
             <div class="inner">
               <h3>65</h3>
 
-              <p>Wawancara Selesai</p>
+              <p>Laporan Selesai</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -69,9 +69,37 @@
       </div>
       <!-- /.row -->
 
-    </section>
-        <!-- right col -->
+    <div class="box-body">
+    <table class="table table-bordered table-striped no-footer">
+        <thead>
+          <tr>
+            <th width="5"> No. </th>
+            <th> Nama </th>
+            <th> email </th>
+            <th> Aksi </th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($users as $key => $value)
+          <tr>
+            <td> {{$key+1}} </td>
+            <td> {{$value -> name}} </td>
+            <td> {{$value -> email}} </td>
+            <td>
+              <a class="btn btn-warning" href="#" > Hapus User </a>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+    </table>
   </div>
+
+
+    </section>
+  </div>
+
+
+
       <!-- /.row (main row) -->
 
 @include('partials2.footer2')
