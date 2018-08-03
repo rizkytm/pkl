@@ -69,6 +69,11 @@
       </div>
       <!-- /.row -->
   <section class="content">
+  <div class="row">
+    <a class="btn btn-primary" href="{{ route('tambah.kategori') }}">Tambah Kategori</a>
+    <a class="btn btn-success" href="{{ route('tambah.pertanyaan') }}">Tambah Pertanyaan</a>
+  </div>
+  <div class="row"><br></div>
       <div class="box">
       <div class="box-header">
         <h3 class="box-title"><b>Pengguna Sistem Informasi Wawancara :</b></h3>

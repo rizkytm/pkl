@@ -25,7 +25,7 @@
             <div class="form-group">
               <label class="col-sm-2">Nama Narasumber</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" name="narasumber" value="{{ $posts->narasumber }}" disabled>
+                  <input type="text" class="form-control" name="narasumber" value="@foreach($posts as $post) {{ $post->narasumber }} @endforeach" disabled>
                 </div>
             </div>
 
