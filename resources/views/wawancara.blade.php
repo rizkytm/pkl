@@ -35,14 +35,19 @@
                 </div>
             </div>
             
-              <div class="form-group">
+              <div class="form-group has-feedback {{ $errors->has('lembaga') ? ' has-error' : '' }}">
                 <label class="col-sm-2">Lembaga</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="lembaga" name="lembaga" placeholder="nama lembaga">
+                    <input type="text" class="form-control" id="lembaga" name="lembaga" placeholder="nama lembaga" value="{{ old('lembaga') }}">
+                    @if ($errors->has('title'))
+                      <span class="help-block">
+                        <p>{{ $errors->first('title') }}</p>
+                      </span>
+                    @endif
                   </div>
               </div>
 
-            <div class="form-group">
+            <div class="form-group has-feedback {{ $errors->has('kontak') ? ' has-error' : '' }}">
               <label class="col-sm-2">Narasumber :</label>
               <div class="col-sm-5">
                   <label>Nama</label>
@@ -56,7 +61,12 @@
                   <input type="text" class="form-control" id="nama" name="nama" placeholder="1. ">
                 </div>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" id="kontak" name="kontak" placeholder="1. ">
+                  <input type="text" class="form-control" id="kontak" name="kontak" placeholder="1. " value="{{ old('kontak') }}">
+                  @if ($errors->has('title'))
+                      <span class="help-block">
+                        <p>{{ $errors->first('title') }}</p>
+                      </span>
+                    @endif
                 </div>
               
             </div>
@@ -83,6 +93,11 @@
               <label class="col-sm-2">Upload File</label>
               <div class="col-sm-3">
                 <input class="form-control" type="file" name="files[]" multiple />
+                @if ($errors->has('files'))
+                  <span class="help-block">
+                    <p>{{ $errors->first('files') }}</p>
+                  </span>
+                @endif
               </div>
             </div>
 

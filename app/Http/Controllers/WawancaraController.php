@@ -54,6 +54,10 @@ class WawancaraController extends Controller
 
     public function storeWawancara(Request $request)
     {
+        $request->validate([
+            'kontak' => 'numeric',
+            'files' => 'mimes:doc,docx'
+        ]);
 
         $post = Post::create([
             'user_id' => auth()->id(),
@@ -84,7 +88,14 @@ class WawancaraController extends Controller
             'kontak' => request('kontak')
         ]);
 
-        return redirect()->route('wawancara')->with('success', 'Wawancara Ditambahkan');
+        if($request->hasFile('files'))
+        {
+            return redirect()->route('wawancara')->with('success', 'Wawancara Ditambahkan');
+        }
+        else
+        {
+            return redirect()->route('jawab.pertanyaan');
+        }
     }
 
     public function create()
