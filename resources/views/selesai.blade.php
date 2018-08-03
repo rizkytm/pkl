@@ -28,9 +28,9 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nama Narasumber</th>
+                  <th>Narasumber</th>
+                  <th>Lembaga</th>
                   <th>Topik</th>
-                  <th>Kategori</th>
                   <th>Tanggal Pembuatan</th>
                   <th>Status</th>
                 </tr>
@@ -40,9 +40,14 @@
                 @foreach ($posts as $post)
                   <tr>                
                     <td><?php echo $counter++; ?></td>
-                    <td>{{ $post->narasumber }}</td>
+                    <td>
+                    <?php $count=1; ?>
+                    @foreach ($narasumbers as $narasumber)
+                      <div><?php echo $count++; ?>. {{ $narasumber->nama }}</div>
+                    @endforeach
+                    </td>
+                    <td>{{ $post->lembaga }}</td>
                     <td>{{ $post->topic }}</td>
-                    <td>{{ $post->category->name }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
                       <button class="btn btn-warning"> selesai </button>
