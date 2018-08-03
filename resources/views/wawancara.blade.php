@@ -5,13 +5,10 @@
 <!-- Content Header (Page header) -->
 <div class="content-wrapper">
 <section class="content-header">
+  @include('partials._alerts')
   <h1>
     Wawancara
   </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Wawancara</li>
-  </ol>
 </section>
 
 <!-- Main content -->
@@ -73,8 +70,8 @@
 
             <div class="form-group">
               <label class="col-sm-2">Kategori</label>
-              <div class="col-sm-10">
-                <select name="kategori_id">
+              <div class="col-sm-3">
+                <select class="form-control" name="kategori_id">
                 @foreach($categories as $category)
                   <option value="{{ $category->id }}">{{$category->name}}</option>
                 @endforeach
@@ -84,8 +81,8 @@
 
             <div class="form-group">
               <label class="col-sm-2">Upload File</label>
-              <div class="col-sm-10">
-                <input type="file" name="files[]" multiple />
+              <div class="col-sm-3">
+                <input class="form-control" type="file" name="files[]" multiple />
               </div>
             </div>
 

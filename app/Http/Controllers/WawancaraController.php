@@ -84,7 +84,7 @@ class WawancaraController extends Controller
             'kontak' => request('kontak')
         ]);
 
-        return redirect()->route('jawab.pertanyaan');
+        return redirect()->route('wawancara')->with('success', 'Wawancara Ditambahkan');
     }
 
     public function create()
