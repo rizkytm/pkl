@@ -66,3 +66,5 @@ Route::get('/newjawabpertanyaan', 'WawancaraController@new')->name('new.jawab.pe
 Route::get('/lapmasuk', 'LaporanController@masuk')->name('masuk');
 Route::get('/laprevisi', 'LaporanController@laprevisi')->name('laprevisi');
 Route::get('/lapselesai', 'LaporanController@lapselesai')->name('lapselesai');
+
+Route::patch('/wawancara/{id}/update', 'WawancaraController@kirim')->name('kirim.laporan');

@@ -149,6 +149,18 @@
                     <td>{{ $post->created_at }}</td>
                     <td>
                       <a class="btn btn-warning" href="{{ route('show.tampil',$post) }}"> preview </a>
+                      @if($post->condition === null)
+                      <form class="form-horizontal" action="{{ route('kirim.laporan', $post) }}" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+          {{ method_field('PATCH') }} 
+                      <button type="submit" class="btn btn-danger"> kirim </button>
+                    </form>
+                    @elseif($post->condition === 1)
+                    <button type="submit" class="btn btn-primary"> Terkirim </button>
+                    @else
+                    <button type="submit" class="btn btn-success"> Selesai </button>
+                    @endif
+                                 
                     </td>
                   </tr>
                 @endforeach

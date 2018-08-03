@@ -199,4 +199,13 @@ class WawancaraController extends Controller
     {
         return view('newjawabpertanyaan');
     }
+
+    public function kirim($id)
+    {
+        $post = Post::find($id);
+        $post->condition = 1;
+        $post->save();
+
+        return redirect()->back();
+    }
 }

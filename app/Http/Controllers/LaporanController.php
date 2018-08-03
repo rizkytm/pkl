@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use App\Post;
+use App\Narasumber;
 
 class LaporanController extends Controller
 {
   public function masuk()
   {
+      $posts = Post::with('narasumber')->where('condition', '1')->get();
 
-      return view('lap_masuk');
+      return view('lap_masuk', compact('posts', 'narasumbers'));
   }
 
   public function laprevisi()
@@ -25,6 +28,4 @@ class LaporanController extends Controller
 
       return view('lap_selesai');
   }
-
-
 }
