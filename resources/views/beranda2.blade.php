@@ -68,7 +68,11 @@
         <!-- ./col -->
       </div>
       <!-- /.row -->
-
+  <section class="content">
+      <div class="box">
+      <div class="box-header">
+        <h3 class="box-title"><b>Pengguna Sistem Informasi Wawancara :</b></h3>
+      </div>
     <div class="box-body">
     <table class="table table-bordered table-striped no-footer">
         <thead>
@@ -92,7 +96,9 @@
           @endforeach
         </tbody>
     </table>
-  </div>
+    </div>
+  </section>
+</div>
 
 
     </section>
