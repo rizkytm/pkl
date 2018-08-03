@@ -98,16 +98,18 @@ class WawancaraController extends Controller
  	  {
  	 	$posts = Post::paginate(10);
  	 	$posts->links();
+        $narasumbers = Narasumber::paginate(10);
 
- 		return view('revisi', compact('posts'));
+ 		return view('revisi', compact('posts', 'narasumbers'));
  	  }
 
     public function selesai()
     {
         $posts = Post::paginate(10);
         $posts->links();
+        $narasumbers = Narasumber::paginate(10);
         
-        return view('selesai', compact('posts'));
+        return view('selesai', compact('posts', 'narasumbers'));
     }
 
     public function store(Request $request)
