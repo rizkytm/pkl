@@ -42,8 +42,8 @@
                     <td><?php echo $counter++; ?></td>
                     <td>
                     <?php $count=1; ?>
-                    @foreach ($narasumbers as $narasumber)
-                      <div><?php echo $count++; ?>. {{ $narasumber->nama }}</div>
+                    @foreach ($post->narasumber as $nara)
+                      <div><?php echo $count++; ?>. {{ $nara->nama }}</div>
                     @endforeach
                     </td>
                     <td>{{ $post->lembaga }}</td>

@@ -107,18 +107,16 @@ class WawancaraController extends Controller
 
     public function showTable()
  	  {
- 	 	$posts = Post::paginate(10);
- 	 	$posts->links();
-        $narasumbers = Narasumber::paginate(10);
+ 	 	//$posts = Post::paginate(10);
+ 	 	$posts = Post::with('narasumber')->where('condition', '1')->paginate(10);
 
  		return view('revisi', compact('posts', 'narasumbers'));
  	  }
 
     public function selesai()
     {
-        $posts = Post::paginate(10);
-        $posts->links();
-        $narasumbers = Narasumber::paginate(10);
+        //$posts = Post::paginate(10);
+        $posts = Post::with('narasumber')->where('condition', '1')->paginate(10);
         
         return view('selesai', compact('posts', 'narasumbers'));
     }
