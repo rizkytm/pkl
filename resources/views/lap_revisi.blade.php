@@ -36,7 +36,24 @@
                   <th>Aksi</th>
                 </tr>
               </thead>
-
+              <tbody>
+                <?php $counter=1; ?>
+                @foreach ($posts as $post)
+                  <tr>                
+                    <td><?php echo $counter++; ?></td>
+                    <td>
+                    @foreach($post->narasumber as $nara)
+                    {{ $nara->nama }},
+                    @endforeach</td>
+                    <td>{{ $post->topic }}</td>
+                    <td>{{ $post->category->name }}</td>
+                    <td>{{ $post->created_at }}</td>
+                    <td>
+                      <a class="btn btn-warning" href="{{ route('show.tampil.admin', $post) }}">Preview</a>
+                    </td>
+                  </tr>
+                @endforeach
+              </tbody>
             </table>
           </div>
           <!-- /.box-body -->

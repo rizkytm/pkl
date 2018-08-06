@@ -7,6 +7,10 @@ use App\User;
 use Auth;
 use App\Post;
 use App\Narasumber;
+use App\Category;
+use App\Question;
+use App\Answer;
+use App\Comment;
 
 class LaporanController extends Controller
 {
@@ -19,22 +23,44 @@ class LaporanController extends Controller
 
   public function laprevisi()
   {
+      $posts = Post::with('narasumber')->where('condition', '2')->get();
 
-      return view('lap_revisi');
+      return view('lap_revisi', compact('posts'));
   }
 
   public function lapselesai()
   {
+    $posts = Post::with('narasumber')->where('condition', '3')->get();
 
-      return view('lap_selesai');
+      return view('lap_selesai', compact('posts'));
   }
 
   public function revisi($id)
     {
         $post = Post::find($id);
+        Comment::create([
+          'post_id' => $post->id,
+          'user_id' => auth()->id(),
+          'message' => request('komentar'),
+        ]);
         $post->condition = 2;
         $post->save();
 
-        return redirect()->back();
+        return redirect()->route('masuk');
     }
+
+  public function show($id)
+  {
+        $posts = Post::find($id);
+        $cid = $posts->category_id;
+        $pid = $posts->id;
+        $categories = Category::where("id", $cid)->first();
+
+        $questions = Question::where("category_id", $cid)->get();
+        $answers = Answer::where("post_id", $pid)->get();
+
+        $posting = Post::with('narasumber')->where('condition', '1')->get();
+
+        return view('tampiladmin', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting'));
+  }
 }

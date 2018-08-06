@@ -46,8 +46,6 @@ Route::get('/selesai', 'WawancaraController@selesai')->name('selesai');
 Route::patch('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
 Route::delete('profil/{user}/edit', 'ProfileController@destroy')->name('avatar.delete');
 
-
-
 Route::get('/tambahkategori', 'WawancaraController@tambahkategori')->name('tambah.kategori');
 Route::post('/tambahkategori', 'WawancaraController@storekategori')->name('store.kategori');
 
@@ -68,4 +66,6 @@ Route::get('/laprevisi', 'LaporanController@laprevisi')->name('laprevisi');
 Route::get('/lapselesai', 'LaporanController@lapselesai')->name('lapselesai');
 
 Route::patch('/wawancara/{id}/update', 'WawancaraController@kirim')->name('kirim.laporan');
-Route::patch('/tampillagi/{id}/update', 'LaporanController@revisi')->name('revisi.laporan');
+
+Route::get('/tampiladmin/{id}/update', 'LaporanController@show')->name('show.tampil.admin');
+Route::patch('/tampiladmin/{id}/update', 'LaporanController@revisi')->name('revisi.laporan');

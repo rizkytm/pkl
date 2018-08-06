@@ -41,18 +41,16 @@
                 <?php $counter=1; ?>
                 @foreach ($posts as $post)
                   <tr>                
-                    <td><?php echo $counter++; ?>.</td>
+                    <td><?php echo $counter++; ?></td>
                     <td>
-                    <?php $count=1; ?>
-                    @foreach ($post->narasumber as $nara)
-                      <div><?php echo $count++; ?>. {{ $nara->nama }}</div>
-                    @endforeach
-                    </td>
-                    <td>{{ $post->lembaga }}</td>
+                    @foreach($post->narasumber as $nara)
+                    {{ $nara->nama }},
+                    @endforeach</td>
                     <td>{{ $post->topic }}</td>
+                    <td>{{ $post->category->name }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
-                      <a class="btn btn-warning" href="#" > Edit </a>
+                      <a class="btn btn-warning" href="{{ route('show.tampil.admin', $post) }}">Preview</a>
                     </td>
                   </tr>
                 @endforeach
@@ -61,7 +59,6 @@
           </div>
           <!-- /.box-body -->
 
-          <center>{!! $posts->render() !!}</center>
         </div>
     </section>
   </div>
