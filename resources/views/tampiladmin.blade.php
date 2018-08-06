@@ -23,13 +23,35 @@
             {{ csrf_field() }}
             {{ method_field('POST') }}
             <div class="form-group">
-              <label class="col-sm-2">Nama Narasumber</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="narasumber"
-                  @foreach($posting as $post)                   
-                      value="@foreach($post->narasumber as $nara){{ $nara->nama }}, @endforeach"
-                  @endforeach disabled>
+              <label class="col-sm-2">Penulis</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ $posts->penulis1 }}" disabled>
                 </div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ $posts->penulis2 }}" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2">Lembaga</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="lembaga" name="lembaga" value="{{ $posts->lembaga }}" disabled>
+              </div>
+              <label class="col-sm-2">Narasumber</label>
+              <div class="col-sm-5">
+                  <label>Nama</label>
+              </div>
+              <div class="col-sm-5">
+                  <label>Nomor Telpon</label>
+              </div>
+                @foreach($posts->narasumber as $nara)
+                <div class="col-sm-2"></div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="narasumber" value="{{ $nara->nama }}" disabled>
+                </div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="narasumber" value="{{ $nara->kontak }}" disabled>
+                </div>
+                @endforeach
             </div>
 
             <div class="form-group">
@@ -42,9 +64,8 @@
             <div class="form-group">
               <label class="col-sm-2">Kategori</label>
               <div class="col-sm-10">
-                <select name="kategori_id" disabled>
-                  <option>{{ $categories->name }}</option>
-                </select>
+                <input type="text" class="form-control" id="kategori_id" name="kategori_id" value="{{ $categories->name }}" disabled>
+
               </div>
             </div>
 
