@@ -68,4 +68,7 @@ Route::get('/lapselesai', 'LaporanController@lapselesai')->name('lapselesai');
 Route::patch('/wawancara/{id}/update', 'WawancaraController@kirim')->name('kirim.laporan');
 
 Route::get('/tampiladmin/{id}/update', 'LaporanController@show')->name('show.tampil.admin');
-Route::patch('/tampiladmin/{id}/update', 'LaporanController@revisi')->name('revisi.laporan');
+Route::patch('/tampiladmin/{id}/updat', 'LaporanController@revisi')->name('revisi.laporan');
+
+Route::get('/tampiluser/{id}/edit', 'WawancaraController@tampiluseredit')->name('tampil.user.edit');
+Route::patch('/tampiladmin/{id}/update', 'LaporanController@selesai')->name('selesai.laporan');

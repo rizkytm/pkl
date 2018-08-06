@@ -75,12 +75,14 @@
                 @endforeach           
               </div>
               <div class="box-footer">
-                <!-- <form class="form-horizontal" action="{{ route('revisi.laporan', $posts) }}" method="post" enctype="multipart/form-data">
-                  {{ csrf_field() }}
-          {{ method_field('PATCH') }} -->
+                
                 <a type="submit" class="btn btn-primary" data-toggle="modal" data-target="#komentar">Revisi</a>
-                <!-- </form> -->
-                <a href="#" class="btn btn-primary" disabled>Selesai</a>
+                
+                <form class="form-horizontal" action="{{ route('selesai.laporan', $posts) }}" method="post" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+          {{ method_field('PATCH') }}
+                <button type="submit" class="btn btn-primary">Selesai</a>
+                </form>
                 <button type="submit" class="btn btn-danger" disabled>Download as PDF</button>
               </div>
             <!-- </form> -->

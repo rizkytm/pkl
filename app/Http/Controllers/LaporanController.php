@@ -49,6 +49,15 @@ class LaporanController extends Controller
         return redirect()->route('masuk');
     }
 
+    public function selesai($id)
+    {
+        $post = Post::find($id);
+        $post->condition = 3;
+        $post->save();
+
+        return redirect()->route('masuk');
+    }
+
   public function show($id)
   {
         $posts = Post::find($id);

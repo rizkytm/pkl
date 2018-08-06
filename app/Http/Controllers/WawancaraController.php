@@ -12,6 +12,7 @@ use App\Answer;
 use Validator;
 use App\File;
 use App\Narasumber;
+use App\Comment;
 
 class WawancaraController extends Controller
 {
@@ -48,9 +49,26 @@ class WawancaraController extends Controller
         $questions = Question::where("category_id", $cid)->get();
         $answers = Answer::where("post_id", $pid)->get();
 
-        $posting = Post::with('narasumber')->where('condition', '1')->get();
+        $posting = Post::with('narasumber')->get();
 
         return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting'));
+    }
+
+    public function tampiluseredit($id)
+    {
+        $posts = Post::find($id);
+        $cid = $posts->category_id;
+        $pid = $posts->id;
+        $categories = Category::where("id", $cid)->first();
+
+        $questions = Question::where("category_id", $cid)->get();
+        $answers = Answer::where("post_id", $pid)->get();
+
+        $posting = Post::with('narasumber')->get();
+
+        $comments = Comment::where("post_id", $pid)->get();
+
+        return view('tampiluser', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'comments'));
     }
 
 

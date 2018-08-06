@@ -19,7 +19,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-body">
-          <form class="form-horizontal" action="{{ route('get.tampil') }}">
+          <form class="form-horizontal" action="#">
             {{ csrf_field() }}
             {{ method_field('POST') }}
             <div class="form-group">
@@ -28,21 +28,21 @@
                   <input type="text" class="form-control" name="narasumber"
                   @foreach($posting as $post)                   
                       value="@foreach($post->narasumber as $nara){{ $nara->nama }}, @endforeach"
-                  @endforeach disabled>
+                  @endforeach>
                 </div>
             </div>
 
             <div class="form-group">
               <label class="col-sm-2">Topik</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="topic" name="topic" value="{{ $posts->topic }}" disabled>
+                  <input type="text" class="form-control" id="topic" name="topic" value="{{ $posts->topic }}">
                 </div>
             </div>
 
             <div class="form-group">
               <label class="col-sm-2">Kategori</label>
               <div class="col-sm-10">
-                <select name="kategori_id" disabled>
+                <select name="kategori_id">
                   <option>{{ $categories->name }}</option>
                 </select>
               </div>
@@ -58,46 +58,65 @@
   </div>
   <!-- /.row -->
   <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-body">
+            @if($posts->condition === 2 || $posts->condition === 3)
+            <div class="form-group">
+              <label class="col-sm-2">Komentar</label>
+              @foreach($comments as $comment)
+                <div class="col-sm-12">
+                  <input type="text" class="form-control" id="komentar" name="komentar" value="{{ $comment->message }}"><br>
+                </div>
+                @endforeach
+            </div>
+            @endif
+
+          </form>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <div class="row">
     <div class="col-md-12">
       <div class="box box-primary">
-            <form action="{{ route('store.jawaban') }}" method="post">
+            <!-- <form action="{{ route('store.jawaban') }}" method="post">
               {{ csrf_field() }}
-              {{ method_field('POST') }}
+              {{ method_field('POST') }} -->
               <div class="box-body">
                 <input name="post_id" type="hidden" class="form-control" id="name" value="1">
                 @foreach($answers as $answer)
                 @foreach($answer->question()->get() as $questions)
                 <div class="form-group">
                   <label for="exampleInputEmail1">{{ $questions->question }}</label>
-                  <input name="answers[]" type="text" class="form-control" id="name" placeholder="Jawaban" value="{{ $answer->answer }}" disabled>
+                  <input name="answers[]" type="text" class="form-control" id="name" placeholder="Jawaban" value="{{ $answer->answer }}">
                 </div>
                 @endforeach
                 @endforeach           
               </div>
-              <div class="box-footer">                
-                      @if($posts->condition === null)
-                      <form class="form-horizontal" action="{{ route('kirim.laporan', $posts) }}" method="post" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                      {{ method_field('PATCH') }} 
-                      <button type="submit" class="btn btn-danger"> kirim </button>
-                    </form>
-                    @elseif($posts->condition === 1)
-                    <button type="submit" class="btn btn-primary"> Terkirim </button>
-                    @elseif($posts->condition === 2)
-                    <button type="submit" class="btn btn-primary"> Revisi </button>
-                    @else
-                    <button type="submit" class="btn btn-success"> Selesai </button>
-                    @endif
+              <div class="box-footer">
+                <!-- <form class="form-horizontal" action="{{ route('revisi.laporan', $posts) }}" method="post" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+          {{ method_field('PATCH') }} -->
+                <a type="submit" class="btn btn-primary" data-toggle="modal" data-target="#komentar">Revisi</a>
+                <!-- </form> -->
+                <a href="#" class="btn btn-primary" disabled>Selesai</a>
+                <button type="submit" class="btn btn-danger" disabled>Download as PDF</button>
               </div>
-            </form>
+            <!-- </form> -->
       </div>
     </div>
     <!-- /.box-body -->
   </div>
+
 </section>
 <!-- /.content -->
-
 </div>
+
+
 <!-- /.content-wrapper -->
 
 

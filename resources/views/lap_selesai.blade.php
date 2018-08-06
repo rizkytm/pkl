@@ -48,7 +48,7 @@
                     <td>{{ $post->category->name }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
-                      <a class="btn btn-warning" href="{{ route('show.tampil.admin', $post) }}">Preview</a>
+                      <a class="btn btn-warning" href="{{ route('show.tampil.admin', $post) }}">Selesai</a>
                     </td>
                   </tr>
                 @endforeach
