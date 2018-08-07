@@ -33,7 +33,7 @@ Route::group(['middleware' => ['web','auth']], function(){
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/beranda', 'HomeController@beranda')->name('beranda');
 
-Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/profile', 'ProfileController@index')->name('profile')->middleware('is_admin');
 Route::get('/profile/{user}/edit', 'ProfileController@editpage')->name('profile.editpage');
 Route::get('/wawancara', 'WawancaraController@index')->name('wawancara');
 Route::post('/wawancara', 'WawancaraController@storeWawancara')->name('store.wawancara');
@@ -68,7 +68,9 @@ Route::get('/lapselesai', 'LaporanController@lapselesai')->name('lapselesai');
 Route::patch('/wawancara/{id}/update', 'WawancaraController@kirim')->name('kirim.laporan');
 
 Route::get('/tampiladmin/{id}/update', 'LaporanController@show')->name('show.tampil.admin');
+Route::get('/tampiladmin/{id}/update/download', 'LaporanController@download')->name('download');
 Route::patch('/tampiladmin/{id}/updat', 'LaporanController@revisi')->name('revisi.laporan');
 
 Route::get('/tampiluser/{id}/edit', 'WawancaraController@tampiluseredit')->name('tampil.user.edit');
 Route::patch('/tampiladmin/{id}/update', 'LaporanController@selesai')->name('selesai.laporan');
+Route::patch('/tampiluser/{id}/kirimlagi', 'WawancaraController@tampiluserupdate')->name('update.wawancara');

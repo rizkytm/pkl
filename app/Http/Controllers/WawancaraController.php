@@ -71,12 +71,38 @@ class WawancaraController extends Controller
         return view('tampiluser', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'comments'));
     }
 
+    public function tampiluserupdate($id, Request $request)
+    {
+        // $post = Post::find($id);
+
+        // $post->update([
+        //     'topic' => request('topik'),
+        // ]);
+
+
+        
+
+        $input = $request->all();
+        foreach($request->input('answers') as $key => $value) {
+            // if($request->has('answers'))
+            // {
+                $jawaban = Answer::updateOrCreate([
+                    'answer' => $value,
+                    'post_id' => $input['post_id'],
+                    'question_id' => $input['qid'][$key],
+                ]);
+            // }
+                $jawaban->save();       
+        }
+
+        return redirect()->route('revisi');
+    }
+
 
     public function storeWawancara(Request $request)
     {
         $request->validate([
             'kontak' => 'numeric',
-            'files' => 'mimes:doc,docx'
         ]);
 
         $post = Post::create([
@@ -209,7 +235,7 @@ class WawancaraController extends Controller
                 ));
             }
         
-}
+    }
     return redirect()->back();
     }
 

@@ -11,6 +11,7 @@ use App\Category;
 use App\Question;
 use App\Answer;
 use App\Comment;
+use App\File;
 
 class LaporanController extends Controller
 {
@@ -70,6 +71,17 @@ class LaporanController extends Controller
 
         $posting = Post::with('narasumber')->where('condition', '1')->get();
 
-        return view('tampiladmin', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting'));
+        $postfile = File::where('post_id', $pid)->get();
+
+        return view('tampiladmin', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'postfile'));
+  }
+
+  public function download($id)
+  {
+    $posts = Post::find($id);
+    $pid = $posts->id;
+    $postfile = File::where('post_id', $pid)->first();
+    $path = 'storage/'.$postfile->filename;
+    return response()->download($path);
   }
 }

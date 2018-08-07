@@ -69,6 +69,15 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <label class="col-sm-2">File</label>
+                <div class="col-sm-10">
+                  @foreach($postfile as $file)
+                  <a type="text" class="form-control" id="file" name="file" href="{{ route('download', $posts) }}">File</a>
+                  @endforeach
+                </div>
+            </div>
+
           </form>
         </div>
         <!-- /.box-body -->
@@ -104,7 +113,7 @@
           {{ method_field('PATCH') }}
                 <button type="submit" class="btn btn-primary">Selesai</a>
                 </form>
-                <button type="submit" class="btn btn-danger" disabled>Download as PDF</button>
+                <button type="submit" class="btn btn-danger" disabled>Download</button>
               </div>
             <!-- </form> -->
       </div>
