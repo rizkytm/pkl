@@ -32,6 +32,8 @@ class ProfileController extends Controller
     		$user->update([
     		'name' => request('name'),
     		'email' => request('email'),
+    		'NIP' => request('NIP'),
+    		'jabatan' => request('jabatan'),
     		'no_hp' => request('no_hp'),
     		'alamat' => request('alamat'),
     		'avatar' => $avatar
@@ -42,6 +44,8 @@ class ProfileController extends Controller
     		$user->update([
     		'name' => request('name'),
     		'email' => request('email'),
+    		'NIP' => request('NIP'),
+    		'jabatan' => request('jabatan'),
     		'no_hp' => request('no_hp'),
     		'alamat' => request('alamat'),
     	]);

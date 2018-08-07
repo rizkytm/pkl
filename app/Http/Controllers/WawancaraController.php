@@ -113,7 +113,7 @@ class WawancaraController extends Controller
             'topic' => request('topic'),
             'category_id' => request('kategori_id')
         ]);
-        
+
         $files = $request->file('files');
 
         if (is_array($files) || is_object($files))
@@ -126,7 +126,7 @@ class WawancaraController extends Controller
                 ]);
             }
         }
-        
+
         $narasumber = Narasumber::create([
             'post_id' => $post->id,
             //'narasumber' => request('narasumber'),
@@ -163,7 +163,7 @@ class WawancaraController extends Controller
     {
         //$posts = Post::paginate(10);
         $posts = Post::with('narasumber')->where('condition', '1')->paginate(10);
-        
+
         return view('selesai', compact('posts', 'narasumbers'));
     }
 
@@ -173,8 +173,8 @@ class WawancaraController extends Controller
         foreach($request->input('answer') as $key => $value) {
             $rules["answer.{$key}"] = 'required';
             Questions::create(['answer'=>$value]);
-        }        
-        
+        }
+
         return redirect()->back();
     }
 
@@ -233,12 +233,11 @@ class WawancaraController extends Controller
                     'post_id' => $input['post_id'],
                     'question_id' => $input['qid'][$key],
                 ));
-            }
-        
+            }        
+        }
+        return redirect()->back();
     }
-    return redirect()->back();
-    }
-
+    
     public function new()
     {
         return view('newjawabpertanyaan');
