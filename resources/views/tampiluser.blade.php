@@ -101,6 +101,11 @@
                 <form class="form-horizontal" action="{{ route('update.wawancara', $posts) }}" method="post" enctype="multipart/form-data">
                   {{ csrf_field() }}
           {{ method_field('PATCH') }}
+                <button type="submit" class="btn btn-primary">Edit</button>
+                </form>
+                <form class="form-horizontal" action="{{ route('kirim.laporan.lagi', $posts) }}" method="post" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+          {{ method_field('PATCH') }}
                 <button type="submit" class="btn btn-primary">Kirim lagi</button>
                 </form>
                 

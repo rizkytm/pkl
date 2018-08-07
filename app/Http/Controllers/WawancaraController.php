@@ -98,6 +98,15 @@ class WawancaraController extends Controller
         return redirect()->route('revisi');
     }
 
+    public function kirimlagi($id)
+    {
+        $post = Post::find($id);
+        $post->condition = 4;
+        $post->save();
+
+        return redirect()->route('revisi');
+    }
+
 
     public function storeWawancara(Request $request)
     {
@@ -162,7 +171,7 @@ class WawancaraController extends Controller
     public function selesai()
     {
         //$posts = Post::paginate(10);
-        $posts = Post::with('narasumber')->where('condition', '1')->paginate(10);
+        $posts = Post::with('narasumber')->where('condition', '3')->paginate(10);
 
         return view('selesai', compact('posts', 'narasumbers'));
     }

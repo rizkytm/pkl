@@ -24,7 +24,7 @@ class LaporanController extends Controller
 
   public function laprevisi()
   {
-      $posts = Post::with('narasumber')->where('condition', '2')->get();
+      $posts = Post::with('narasumber')->where('condition', '4')->get();
 
       return view('lap_revisi', compact('posts'));
   }

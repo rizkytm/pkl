@@ -60,6 +60,8 @@ Route::middleware('auth')->group( function(){
 
   Route::patch('/tampiluser/{id}/kirimlagi', 'WawancaraController@tampiluserupdate')->name('update.wawancara');
 
+  Route::patch('/wawancara/{id}/update', 'WawancaraController@kirimlagi')->name('kirim.laporan.lagi');
+
 });
 
 Route::middleware('is_admin')->group( function(){
