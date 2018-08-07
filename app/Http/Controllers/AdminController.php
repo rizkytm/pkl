@@ -19,5 +19,11 @@ class AdminController extends Controller
         return view('beranda2', compact('user'));
     }
 
+    public function beranda2()
+    {
+
+        return view('beranda2');
+    }
+
 
 }

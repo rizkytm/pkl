@@ -13,7 +13,7 @@
     <li class="active">Wawancara</li>
   </ol>
 </section>
-  
+
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
@@ -23,35 +23,10 @@
             {{ csrf_field() }}
             {{ method_field('POST') }}
             <div class="form-group">
-              <label class="col-sm-2">Penulis</label>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ $posts->penulis1 }}" disabled>
+              <label class="col-sm-2">Nama Narasumber</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="narasumber" value="{{ $posts->narasumber }}" disabled>
                 </div>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ $posts->penulis2 }}" disabled>
-                </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-2">Lembaga</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="lembaga" name="lembaga" value="{{ $posts->lembaga }}" disabled>
-              </div>
-              <label class="col-sm-2">Narasumber</label>
-              <div class="col-sm-5">
-                  <label>Nama</label>
-              </div>
-              <div class="col-sm-5">
-                  <label>Nomor Telpon</label>
-              </div>
-                @foreach($posts->narasumber as $nara)
-                <div class="col-sm-2"></div>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" name="narasumber" value="{{ $nara->nama }}" disabled>
-                </div>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" name="narasumber" value="{{ $nara->kontak }}" disabled>
-                </div>
-                @endforeach
             </div>
 
             <div class="form-group">
@@ -64,8 +39,9 @@
             <div class="form-group">
               <label class="col-sm-2">Kategori</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="kategori_id" name="kategori_id" value="{{ $categories->name }}" disabled>
-
+                <select name="kategori_id" disabled>
+                  <option>{{ $categories->name }}</option>
+                </select>
               </div>
             </div>
 
@@ -93,22 +69,11 @@
                   <input name="answers[]" type="text" class="form-control" id="name" placeholder="Jawaban" value="{{ $answer->answer }}" disabled>
                 </div>
                 @endforeach
-                @endforeach           
+                @endforeach
               </div>
-              <div class="box-footer">                
-                      @if($posts->condition === null)
-                      <form class="form-horizontal" action="{{ route('kirim.laporan', $posts) }}" method="post" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                      {{ method_field('PATCH') }} 
-                      <button type="submit" class="btn btn-danger"> kirim </button>
-                    </form>
-                    @elseif($posts->condition === 1)
-                    <button type="submit" class="btn btn-primary"> Terkirim </button>
-                    @elseif($posts->condition === 2)
-                    <button type="submit" class="btn btn-primary"> Revisi </button>
-                    @else
-                    <button type="submit" class="btn btn-success"> Selesai </button>
-                    @endif
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" disabled>Submit</button>
+                <button type="submit" class="btn btn-danger" disabled>Download as PDF</button>
               </div>
             </form>
       </div>
