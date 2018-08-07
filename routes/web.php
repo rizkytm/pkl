@@ -35,19 +35,7 @@ Route::group(['middleware' => ['web','auth']], function(){
 Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');
 
-<<<<<<< HEAD
-Route::get('/profile', 'ProfileController@index')->name('profile')->middleware('is_admin');
-Route::get('/profile/{user}/edit', 'ProfileController@editpage')->name('profile.editpage');
-Route::get('/wawancara', 'WawancaraController@index')->name('wawancara');
-Route::post('/wawancara', 'WawancaraController@storeWawancara')->name('store.wawancara');
-||||||| merged common ancestors
-Route::get('/profile', 'ProfileController@index')->name('profile');
-Route::get('/profile/{user}/edit', 'ProfileController@editpage')->name('profile.editpage');
-Route::get('/wawancara', 'WawancaraController@index')->name('wawancara');
-Route::post('/wawancara', 'WawancaraController@storeWawancara')->name('store.wawancara');
-=======
 Route::middleware('auth')->group( function(){
->>>>>>> origin/master
 
   Route::get('/beranda', 'HomeController@beranda')->name('beranda');
   Route::get('/wawancara', 'WawancaraController@index')->name('wawancara');
@@ -70,6 +58,8 @@ Route::middleware('auth')->group( function(){
 
   Route::get('/tampiluser/{id}/edit', 'WawancaraController@tampiluseredit')->name('tampil.user.edit');
 
+  Route::patch('/tampiluser/{id}/kirimlagi', 'WawancaraController@tampiluserupdate')->name('update.wawancara');
+
 });
 
 Route::middleware('is_admin')->group( function(){
@@ -88,32 +78,13 @@ Route::middleware('is_admin')->group( function(){
 
   Route::get('/tampiladmin/{id}/update', 'LaporanController@show')->name('show.tampil.admin');
   Route::patch('/tampiladmin/{id}/updat', 'LaporanController@revisi')->name('revisi.laporan');
-
-<<<<<<< HEAD
-Route::get('/tampiladmin/{id}/update', 'LaporanController@show')->name('show.tampil.admin');
-Route::get('/tampiladmin/{id}/update/download', 'LaporanController@download')->name('download');
-Route::patch('/tampiladmin/{id}/updat', 'LaporanController@revisi')->name('revisi.laporan');
-||||||| merged common ancestors
-Route::get('/tampiladmin/{id}/update', 'LaporanController@show')->name('show.tampil.admin');
-Route::patch('/tampiladmin/{id}/updat', 'LaporanController@revisi')->name('revisi.laporan');
-=======
+  Route::get('/tampiladmin/{id}/update/download', 'LaporanController@download')->name('download');
   Route::patch('/tampiladmin/{id}/update', 'LaporanController@selesai')->name('selesai.laporan');
 
-
 });
->>>>>>> origin/master
 
-<<<<<<< HEAD
-Route::get('/tampiluser/{id}/edit', 'WawancaraController@tampiluseredit')->name('tampil.user.edit');
-Route::patch('/tampiladmin/{id}/update', 'LaporanController@selesai')->name('selesai.laporan');
-Route::patch('/tampiluser/{id}/kirimlagi', 'WawancaraController@tampiluserupdate')->name('update.wawancara');
-||||||| merged common ancestors
-Route::get('/tampiluser/{id}/edit', 'WawancaraController@tampiluseredit')->name('tampil.user.edit');
-Route::patch('/tampiladmin/{id}/update', 'LaporanController@selesai')->name('selesai.laporan');
-=======
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/profile/{user}/edit', 'ProfileController@editpage')->name('profile.editpage');
 
 Route::patch('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
 Route::delete('profil/{user}/edit', 'ProfileController@destroy')->name('avatar.delete');
->>>>>>> origin/master
