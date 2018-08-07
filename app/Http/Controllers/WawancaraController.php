@@ -80,7 +80,7 @@ class WawancaraController extends Controller
         // ]);
 
 
-        
+
 
         $input = $request->all();
         foreach($request->input('answers') as $key => $value) {
@@ -92,7 +92,7 @@ class WawancaraController extends Controller
                     'question_id' => $input['qid'][$key],
                 ]);
             // }
-                $jawaban->save();       
+                $jawaban->save();
         }
 
         return redirect()->route('revisi');
@@ -242,11 +242,11 @@ class WawancaraController extends Controller
                     'post_id' => $input['post_id'],
                     'question_id' => $input['qid'][$key],
                 ));
-            }        
+            }
         }
         return redirect()->back();
     }
-    
+
     public function new()
     {
         return view('newjawabpertanyaan');

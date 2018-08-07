@@ -38,7 +38,7 @@
               <tbody>
                 <?php $counter=1; ?>
                 @foreach ($posts as $post)
-                  <tr>                
+                  <tr>
                     <td><?php echo $counter++; ?></td>
                     <td>
                     @foreach($post->narasumber as $nara)
@@ -48,7 +48,7 @@
                     <td>{{ $post->category->name }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
-                      <a class="btn btn-warning" href="{{ route('show.tampil.admin', $post) }}">Selesai</a>
+                      <a class="btn btn-success" href="#" disabled>Selesai</a>
                     </td>
                   </tr>
                 @endforeach

@@ -6,14 +6,11 @@
 <div class="content-wrapper">
 <section class="content-header">
   <h1>
-    Wawancara
+    Preview Revisi Wawancara
   </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Wawancara</li>
-  </ol>
+
 </section>
-  
+
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
@@ -26,7 +23,7 @@
               <label class="col-sm-2">Nama Narasumber</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" name="narasumber"
-                  @foreach($posting as $post)                   
+                  @foreach($posting as $post)
                       value="@foreach($post->narasumber as $nara){{ $nara->nama }}, @endforeach"
                   @endforeach>
                 </div>
@@ -66,7 +63,7 @@
               <label class="col-sm-2">Komentar</label>
               @foreach($comments as $comment)
                 <div class="col-sm-12">
-                  <input type="text" class="form-control" id="komentar" name="komentar" value="{{ $comment->message }}"><br>
+                  <input type="text" class="form-control" id="komentar" name="komentar" value="{{ $comment->message }}" disabled><br>
                 </div>
                 @endforeach
             </div>
@@ -95,7 +92,7 @@
                   <input name="answers[]" type="text" class="form-control" id="name" placeholder="Jawaban" value="{{ $answer->answer }}">
                 </div>
                 @endforeach
-                @endforeach           
+                @endforeach
               </div>
               <div class="box-footer">
                 <form class="form-horizontal" action="{{ route('update.wawancara', $posts) }}" method="post" enctype="multipart/form-data">
@@ -108,7 +105,7 @@
           {{ method_field('PATCH') }}
                 <button type="submit" class="btn btn-primary">Kirim lagi</button>
                 </form>
-                
+
               </div>
             <!-- </form> -->
       </div>

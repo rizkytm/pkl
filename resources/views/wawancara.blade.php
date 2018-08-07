@@ -15,14 +15,14 @@
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
-      
+
       <div class="box">
         <div class="box-header">
           <h3 class="box-title">Tambah Wawancara</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <form class="form-horizontal" action="{{ route('store.wawancara') }}" method="post" enctype="multipart/form-data"> 
+          <form class="form-horizontal" action="{{ route('store.wawancara') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             {{ method_field('POST') }}
             <div class="form-group">
@@ -34,7 +34,7 @@
                   <input type="text" class="form-control" id="penulis2" name="penulis2" placeholder="2.">
                 </div>
             </div>
-            
+
               <div class="form-group has-feedback {{ $errors->has('lembaga') ? ' has-error' : '' }}">
                 <label class="col-sm-2">Lembaga</label>
                   <div class="col-sm-10">
@@ -68,7 +68,7 @@
                       </span>
                     @endif
                 </div>
-              
+
             </div>
 
             <div class="form-group">
@@ -112,7 +112,7 @@
       </div>
       <!-- /.box -->
 
-     
+
     </div>
     <!-- /.col -->
   </div>
@@ -125,7 +125,7 @@
           <div class="box-header">
             <h3 class="box-title">Wawancara Anda</h3>
           </div>
-          <!-- /.box-header -->           
+          <!-- /.box-header -->
           <div class="box-body">
             <table id="example1" class="table table-bordered table-striped no-footer">
               <thead>
@@ -141,7 +141,7 @@
               <tbody>
                 <?php $counter=1; ?>
                 @foreach ($posts as $post)
-                  <tr>                
+                  <tr>
                     <td><?php echo $counter++; ?>.</td>
                     <td>
                     <?php $count=1; ?>
@@ -157,7 +157,7 @@
                       @if($post->condition === null)
                       <form class="form-horizontal" action="{{ route('kirim.laporan', $post) }}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
-          {{ method_field('PATCH') }} 
+          {{ method_field('PATCH') }}
                       <button type="submit" class="btn btn-danger"> kirim </button>
                     </form>
                     @elseif($post->condition === 1)
@@ -165,7 +165,7 @@
                     @else
                     <button type="submit" class="btn btn-success"> Selesai </button>
                     @endif
-                                 
+
                     </td>
                   </tr>
                 @endforeach

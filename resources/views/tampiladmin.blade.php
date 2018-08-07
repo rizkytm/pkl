@@ -1,19 +1,16 @@
-@include('partials.header')
+@include('partials2.header2')
 
-@include('partials.sidebar')
+@include('partials2.sidebar2')
 
 <!-- Content Header (Page header) -->
 <div class="content-wrapper">
 <section class="content-header">
   <h1>
-    Wawancara
+    Preview Wawancara
   </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Wawancara</li>
-  </ol>
+
 </section>
-  
+
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
@@ -68,12 +65,12 @@
 
               </div>
             </div>
-  
+
             <div class="form-group">
-              <label class="col-sm-2">File</label>
+              <label class="col-sm-2">Download File</label>
                 <div class="col-sm-10">
                   @foreach($postfile as $file)
-                  <a type="text" class="form-control" id="file" name="file" href="{{ route('download', $posts) }}">File</a>
+                  <a type="text" class="form-control" id="file" name="file" href="{{ route('download', $posts) }}">Download File Untuk Direvisi</a>
                   @endforeach
                 </div>
             </div>
@@ -102,16 +99,16 @@
                   <input name="answers[]" type="text" class="form-control" id="name" placeholder="Jawaban" value="{{ $answer->answer }}" disabled>
                 </div>
                 @endforeach
-                @endforeach           
+                @endforeach
               </div>
               <div class="box-footer">
-                
+
                 <a type="submit" class="btn btn-primary" data-toggle="modal" data-target="#komentar">Revisi</a>
-                
+
                 <form class="form-horizontal" action="{{ route('selesai.laporan', $posts) }}" method="post" enctype="multipart/form-data">
                   {{ csrf_field() }}
           {{ method_field('PATCH') }}
-                <button type="submit" class="btn btn-primary">Selesai</a>
+                <button type="submit" class="btn btn-success">Selesai</a>
                 </form>
                 <button type="submit" class="btn btn-danger" disabled>Download</button>
               </div>
@@ -128,6 +125,6 @@
 
 
 
-@include('partials.footer')
+@include('partials2.footer2')
 
-@include('partials.controlsidebar')
+@include('partials2.controlsidebar2')

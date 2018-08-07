@@ -38,7 +38,7 @@
               <tbody>
                 <?php $counter=1; ?>
                 @foreach ($posts as $post)
-                  <tr>                
+                  <tr>
                     <td><?php echo $counter++; ?></td>
                     <td>
                     <?php $count=1; ?>
@@ -50,7 +50,7 @@
                     <td>{{ $post->topic }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
-                      <button class="btn btn-warning"> selesai </button>
+                      <button class="btn btn-success" disabled> selesai </button>
                     </td>
                   </tr>
                 @endforeach
