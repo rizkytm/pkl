@@ -108,9 +108,11 @@
                 <form class="form-horizontal" action="{{ route('selesai.laporan', $posts) }}" method="post" enctype="multipart/form-data">
                   {{ csrf_field() }}
           {{ method_field('PATCH') }}
-                <button type="submit" class="btn btn-success">Selesai</a>
+                <button type="submit" class="btn btn-success">Selesai</button>
                 </form>
-                <button type="submit" class="btn btn-danger" disabled>Download</button>
+                <div>
+                <a class="btn btn-danger" href="{{route('download.word')}}">Download</a>
+              </div>
               </div>
             <!-- </form> -->
       </div>
