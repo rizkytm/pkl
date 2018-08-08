@@ -61,3 +61,6 @@ Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/profile/{user}/edit', 'ProfileController@editpage')->name('profile.editpage');
 Route::patch('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
 Route::delete('profil/{user}/edit', 'ProfileController@destroy')->name('avatar.delete');
+
+
+Route::get('/d', 'WORDController@createWordDocx');
