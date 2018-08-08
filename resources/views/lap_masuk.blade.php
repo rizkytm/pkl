@@ -27,6 +27,8 @@
               <thead>
                 <tr>
                   <th>No</th>
+                  <th>Penulis 1</th>
+                  <th>Penulis 2</th>
                   <th>Nama Narasumber</th>
                   <th>Topik</th>
                   <th>Kategori</th>
@@ -37,11 +39,13 @@
               <tbody>
                 <?php $counter=1; ?>
                 @foreach ($posts as $post)
-                  <tr>                
+                  <tr>
                     <td><?php echo $counter++; ?></td>
+                    <td>{{ $post->penulis1 }}</td>
+                    <td>{{ $post->penulis2 }}</td>
                     <td>
                     @foreach($post->narasumber as $nara)
-                    {{ $nara->nama }},
+                    {{ $nara->nama }}
                     @endforeach</td>
                     <td>{{ $post->topic }}</td>
                     <td>{{ $post->category->name }}</td>

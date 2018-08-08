@@ -1,6 +1,6 @@
-@include('partials.header')
+@include('partials2.header2')
 
-@include('partials.sidebar')
+@include('partials2.sidebar2')
 
 <!-- Content Header (Page header) -->
 <div class="content-wrapper">
@@ -32,18 +32,18 @@
               <div class="box-body">
               <div class="form-group">
                 <label>Kategori</label>
-                
+
                 <select name="category_id" class="form-control select2" style="width: 100%;">
                   @foreach($categories as $category)
-                  <option value="{{ $category->id }}">{{ $category->name }}</option>    
-                  @endforeach              
+                  <option value="{{ $category->id }}">{{ $category->name }}</option>
+                  @endforeach
                 </select>
-                
-              </div>                
+
+              </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Nama Pertanyaan</label>
                   <input name="name" type="text" class="form-control" id="name" placeholder="Nama Pertanyaan">
-                </div>                 
+                </div>
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -60,6 +60,6 @@
 </div>
 
 
-@include('partials.footer')
+@include('partials2.footer2')
 
-@include('partials.controlsidebar')
+@include('partials2.controlsidebar2')
