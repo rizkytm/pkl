@@ -16,18 +16,18 @@ use App\Comment;
 
 class WORDController extends Controller
 {
-    public function createWordDocx()
+    public function createWordDocx($id)
     {
     	$wordTest = new \PhpOffice\PhpWord\PhpWord();
     	$newSection = $wordTest->addSection(array('paperSize' => 'A4', 'marginLeft' => 1500, 'marginRight' => 1500, 'marginTop' => 1500, 'marginBottom' => 1500));
 
 
-    	$posts = Post::first();
+    	$posts = Post::find($id);
         $cid = $posts->category_id;
         $pid = $posts->id;
         $categories = Category::where("id", $cid)->first();
         $posting = Post::with('narasumber')->get();
-    	$answers = Answer::with('question')->where('post_id', '1')->get();
+    	$answers = Answer::with('question')->where('post_id', $pid)->get();
         $narasumber = $posts->narasumber()->get();
     	
 

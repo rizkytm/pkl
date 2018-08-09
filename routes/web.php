@@ -63,4 +63,4 @@ Route::patch('/profile/{user}/edit', 'ProfileController@edit')->name('profile.ed
 Route::delete('profil/{user}/edit', 'ProfileController@destroy')->name('avatar.delete');
 
 
-Route::get('/d', 'WORDController@createWordDocx')->name('download.word');
+Route::patch('/tampiladmin/{id}/word', 'WORDController@createWordDocx')->name('download.word');

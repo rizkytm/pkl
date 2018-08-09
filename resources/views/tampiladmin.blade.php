@@ -132,7 +132,11 @@
                 <button type="submit" class="btn btn-success">Selesai</button>
                 </form>
                 <div>
-                <a class="btn btn-danger" href="{{route('download.word')}}">Download</a>
+                  <form class="form-horizontal" action="{{ route('download.word', $posts) }}" method="post" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+          {{ method_field('PATCH') }}
+                <button type="submit" class="btn btn-danger">Download</button>
+              </form>
               </div>
               </div>
             <!-- </form> -->
