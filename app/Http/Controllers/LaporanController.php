@@ -73,7 +73,9 @@ class LaporanController extends Controller
 
         $postfile = File::where('post_id', $pid)->get();
 
-        return view('tampiladmin', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'postfile'));
+        $comments = Comment::where("post_id", $pid)->get();
+
+        return view('tampiladmin', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'postfile', 'comments'));
   }
 
   public function download($id)

@@ -101,10 +101,31 @@
                 @endforeach
                 @endforeach
               </div>
-              <div class="box-footer">
+            <!-- </form> -->
+      </div>
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <form class="form-horizontal" action="{{ route('revisi.laporan', $posts) }}" method="post" enctype="multipart/form-data">
+            {{ method_field('PATCH') }}
+            {{csrf_field()}}
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-primary">
+              <div class="box-body">
 
-                <a type="submit" class="btn btn-primary" data-toggle="modal" data-target="#komentar">Revisi</a>
-
+                <div class="form-group">
+                  <label for="komentar">Komentar</label>
+                  @foreach($comments as $comment)
+                  <p>{{ $comment->message }}</p>
+                  @endforeach
+                  <textarea id="myText" name="komentar" class="form-control" rows="3"></textarea>
+                  <span id="wordCount">0</span> Karakter | <span id="kataCount">0</span> Kata
+                </div>
+              </div>
+              <div class="box-footer">                
+                <button type="submit" class="btn btn-primary">Revisi</button>
+                </form>
                 <form class="form-horizontal" action="{{ route('selesai.laporan', $posts) }}" method="post" enctype="multipart/form-data">
                   {{ csrf_field() }}
           {{ method_field('PATCH') }}
@@ -125,7 +146,22 @@
 </div>
 <!-- /.content-wrapper -->
 
+<script type="text/javascript">
+  var myText = document.getElementById("myText");
+  var wordCount = document.getElementById("wordCount");
+  var kataCount = document.getElementById("kataCount");
 
+
+  myText.addEventListener("keyup",function(){
+    var characters = myText.value.split('');
+    wordCount.innerText = characters.length;
+  });
+
+  myText.addEventListener("keyup",function(){
+    var characters = myText.value.split(' ');
+    kataCount.innerText = characters.length;
+  });
+</script>
 
 @include('partials2.footer2')
 
