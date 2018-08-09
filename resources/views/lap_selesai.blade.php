@@ -32,6 +32,7 @@
                   <th>Lembaga</th>
                   <th>Topik</th>
                   <th>Tanggal Pembuatan</th>
+                  <th>Aksi</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -47,6 +48,9 @@
                     <td>{{ $post->topic }}</td>
                     <td>{{ $post->category->name }}</td>
                     <td>{{ $post->created_at }}</td>
+                    <td>
+                      <a class="btn btn-danger" href="{{route('download.word')}}">Download</a>
+                    </td>
                     <td>
                       <a class="btn btn-success" href="#" disabled>Selesai</a>
                     </td>

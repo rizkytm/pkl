@@ -1,6 +1,6 @@
-@include('partials.header')
+@include('partials2.header2')
 
-@include('partials.sidebar')
+@include('partials2.sidebar2')
 
 <!-- Content Header (Page header) -->
 <div class="content-wrapper">
@@ -33,7 +33,7 @@
                 <div class="form-group">
                   <label for="exampleInputEmail1">Nama Kategori</label>
                   <input name="name" type="text" class="form-control" id="name" placeholder="Nama Kategori">
-                </div>                
+                </div>
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -50,6 +50,6 @@
 </div>
 
 
-@include('partials.footer')
+@include('partials2.footer2')
 
-@include('partials.controlsidebar')
+@include('partials2.controlsidebar2')

@@ -30,16 +30,16 @@
               {{ csrf_field() }}
               {{ method_field('POST') }}
               <div class="box-body">
-                
+
                 <input name="post_id" type="hidden" class="form-control" id="name" value="{{ $posts->id }}">
-                
+
                 @foreach($questions as $question)
                 <div class="form-group">
                   <label for="exampleInputEmail1">{{ $question->question }}</label>
                   <input name="qid[]" type="hidden" class="form-control" id="name" value="{{ $question->id }}">
                   <input name="answers[]" type="text" class="form-control" id="name" placeholder="Jawaban">
                 </div>
-                @endforeach                 
+                @endforeach
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>

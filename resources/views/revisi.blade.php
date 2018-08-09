@@ -24,12 +24,13 @@
           <div class="box-header">
             <h3 class="box-title">Daftar Revisi</h3>
           </div>
-          <!-- /.box-header -->           
+          <!-- /.box-header -->
           <div class="box-body">
             <table id="example1" class="table table-bordered table-striped no-footer">
               <thead>
                 <tr>
                   <th>No</th>
+                  <th>Penulis</th>
                   <th>Narasumber</th>
                   <th>Lembaga</th>
                   <th>Topik</th>
@@ -40,8 +41,9 @@
               <tbody>
                 <?php $counter=1; ?>
                 @foreach ($posts as $post)
-                  <tr>                
+                  <tr>
                     <td><?php echo $counter++; ?></td>
+                    <td>{{ $post->penulis1 }}</td>
                     <td>
                     @foreach($post->narasumber as $nara)
                     {{ $nara->nama }},
@@ -67,5 +69,3 @@
 @include('partials.footer')
 
 @include('partials.controlsidebar')
-
-
