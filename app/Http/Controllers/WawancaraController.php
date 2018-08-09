@@ -32,7 +32,7 @@ class WawancaraController extends Controller
 
     public function index()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::where("user_id", "=", Auth::user()->id)->paginate(10);
         $categories = Category::paginate(10);
         $categories->links();
 
