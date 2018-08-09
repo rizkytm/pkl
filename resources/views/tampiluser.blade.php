@@ -80,24 +80,27 @@
   <div class="row">
     <div class="col-md-12">
       <div class="box box-primary">
+        <form action="{{ route('update.wawancara', $posts) }}" method="post" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+          {{ method_field('PATCH') }}
             <!-- <form action="{{ route('store.jawaban') }}" method="post">
               {{ csrf_field() }}
               {{ method_field('POST') }} -->
               <div class="box-body">
-                <input name="post_id" type="hidden" class="form-control" id="name" value="1">
+                <input name="post_id" type="hidden" class="form-control" id="name" value="{{ $posts->id }}">
                 @foreach($answers as $answer)
-                @foreach($answer->question()->get() as $questions)
-                <div class="form-group">
+                @foreach($answer->question()->get() as $questions)                
+                <div class="form-group">                                    
                   <label for="exampleInputEmail1">{{ $questions->question }}</label>
-                  <input name="answers[]" type="text" class="form-control" id="name" placeholder="Jawaban" value="{{ $answer->answer }}">
+                  <input name="qid[]" type="hidden" class="form-control" id="name" value="{{ $questions->id }}">
+                  <input name="aid[]" type="hidden" class="form-control" id="name" value="{{ $answer->id }}">
+                  <input name="answers[]" type="text" class="form-control" id="name" value="{{ $answer->answer }}">
                 </div>
                 @endforeach
                 @endforeach
               </div>
               <div class="box-footer">
-                <form class="form-horizontal" action="{{ route('update.wawancara', $posts) }}" method="post" enctype="multipart/form-data">
-                  {{ csrf_field() }}
-          {{ method_field('PATCH') }}
+                
                 <button type="submit" class="btn btn-primary">Edit</button>
                 </form>
                 <form class="form-horizontal" action="{{ route('kirim.laporan.lagi', $posts) }}" method="post" enctype="multipart/form-data">

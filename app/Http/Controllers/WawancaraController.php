@@ -73,26 +73,32 @@ class WawancaraController extends Controller
 
     public function tampiluserupdate($id, Request $request)
     {
-        // $post = Post::find($id);
+        $post = Post::find($id);
+        $pid = $post->id;
 
         // $post->update([
         //     'topic' => request('topik'),
         // ]);
+        // $input = $request->all();
+        // foreach($request->input('answers') as $key => $value) {
+            
+        //     $aid = $request->input('aid');
+            
+        //     //     $tanya = Answer::where('question_id', $request->input('qid'))->get();
+        //         $jawaban = Answer::where('id', $pid)->update(array(
+        //             'answer' => $value[$key],
+        //         ));
+        //         // $jawaban->save();
+        // }
 
-
-
-
-        $input = $request->all();
-        foreach($request->input('answers') as $key => $value) {
-            // if($request->has('answers'))
-            // {
-                $jawaban = Answer::updateOrCreate([
-                    'answer' => $value,
-                    'post_id' => $input['post_id'],
-                    'question_id' => $input['qid'][$key],
-                ]);
-            // }
-                $jawaban->save();
+        $answers = $request->input('answers');
+        $qids = $request->input('qid');
+        foreach($answers as $key => $value)
+        {
+            $answer = Answer::where('question_id', $request->input('qid.'.$key))->update(array(
+                'answer' => $request->input('answers.'.$key)
+            ));
+            // $answer->answer = $request->input('answers.'.$key);
         }
 
         return redirect()->route('revisi');
