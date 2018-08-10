@@ -81,9 +81,9 @@ class WawancaraController extends Controller
         // ]);
         // $input = $request->all();
         // foreach($request->input('answers') as $key => $value) {
-            
+
         //     $aid = $request->input('aid');
-            
+
         //     //     $tanya = Answer::where('question_id', $request->input('qid'))->get();
         //         $jawaban = Answer::where('id', $pid)->update(array(
         //             'answer' => $value[$key],
@@ -106,7 +106,7 @@ class WawancaraController extends Controller
 
     public function kirimlagi($id)
     {
-        $post = Post::find($id);
+        $post = Post::where("user_id", "=", Auth::user()->id);
         $post->condition = 4;
         $post->save();
 
@@ -169,7 +169,7 @@ class WawancaraController extends Controller
     public function showTable()
  	  {
  	 	// $posts = Post::paginate(10);
- 	 	$posts = Post::with('narasumber')->where('condition', '2')->paginate(10);
+ 	 	$posts = Post::with('narasumber')->where('condition', '2')->where("user_id", "=", Auth::user()->id)->paginate(10);
 
  		return view('revisi', compact('posts'));
  	  }
@@ -177,7 +177,7 @@ class WawancaraController extends Controller
     public function selesai()
     {
         //$posts = Post::paginate(10);
-        $posts = Post::with('narasumber')->where('condition', '3')->paginate(10);
+        $posts = Post::with('narasumber')->where('condition', '3')->where("user_id", "=", Auth::user()->id)->paginate(10);
 
         return view('selesai', compact('posts', 'narasumbers'));
     }
