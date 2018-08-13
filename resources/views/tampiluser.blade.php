@@ -16,35 +16,67 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-body">
-          <form class="form-horizontal" action="#">
+          <form class="form-horizontal" action="{{ route('get.tampil') }}">
             {{ csrf_field() }}
             {{ method_field('POST') }}
             <div class="form-group">
-              <label class="col-sm-2">Nama Narasumber</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="narasumber"
-                  @foreach($posting as $post)
-                      value="@foreach($post->narasumber as $nara){{ $nara->nama }}, @endforeach"
-                  @endforeach>
+              <label class="col-sm-2">Penulis</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ $posts->penulis1 }}" >
                 </div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ $posts->penulis2 }}" >
+                </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2">Lembaga</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="lembaga" name="lembaga" value="{{ $posts->lembaga }}" >
+              </div>
+              <label class="col-sm-2">Narasumber</label>
+              <div class="col-sm-5">
+                  <label>Nama</label>
+              </div>
+              <div class="col-sm-5">
+                  <label>Nomor Telpon</label>
+              </div>
+                @foreach($posts->narasumber as $nara)
+                <div class="col-sm-2"></div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="narasumber" value="{{ $nara->nama }}" >
+                </div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="narasumber" value="{{ $nara->kontak }}" >
+                </div>
+                @endforeach
             </div>
 
             <div class="form-group">
               <label class="col-sm-2">Topik</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="topic" name="topic" value="{{ $posts->topic }}">
+                  <input type="text" class="form-control" id="topic" name="topic" value="{{ $posts->topic }}" >
                 </div>
             </div>
 
             <div class="form-group">
               <label class="col-sm-2">Kategori</label>
               <div class="col-sm-10">
-                <select name="kategori_id">
-                  <option>{{ $categories->name }}</option>
-                </select>
+                <input type="text" class="form-control" id="kategori_id" name="kategori_id" value="{{ $categories->name }}" >
+
               </div>
             </div>
 
+            <!-- @if ($errors->has('file'))
+            <div class="form-group">
+              <label class="col-sm-2">Download File</label>
+                <div class="col-sm-10">
+                  @foreach($postfile as $file)
+                  <a type="text" class="form-control" id="file" name="file" href="{{ route('download', $posts) }}">Download File Untuk Direvisi</a>
+                  @endforeach
+                </div>
+            </div>
+            @endif
+ -->
           </form>
         </div>
         <!-- /.box-body -->
