@@ -10,6 +10,7 @@
       <h1>
       Laporan Masuk
       </h1>
+        @include('partials._alerts')
       <ol class="breadcrumb">
         <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Laporan Masuk</li>
@@ -42,7 +43,7 @@
                   <tr>
                     <td><?php echo $counter++; ?></td>
                     <td>{{ $post->penulis1 }}</td>
-                    <td>{{ $post->penulis2 }}</td>
+                    <td>{{ $post->penulis2 }} </td>
                     <td>
                     @foreach($post->narasumber as $nara)
                     {{ $nara->nama }}

@@ -131,6 +131,8 @@
               <thead>
                 <tr>
                   <th>No</th>
+                  <th>Penulis 1</th>
+                  <th>Penulis 2</th>
                   <th>Narasumber</th>
                   <th>Lembaga</th>
                   <th>Topik</th>
@@ -143,10 +145,12 @@
                 @foreach ($posts as $post)
                   <tr>
                     <td><?php echo $counter++; ?>.</td>
+                    <td>{{ $post->penulis1 }}</td>
+                    <td>{{ $post->penulis2 }} </td>
                     <td>
                     <?php $count=1; ?>
                     @foreach ($post->narasumber as $nara)
-                      <div><?php echo $count++; ?>. {{ $nara->nama }}</div>
+                      <div> {{ $nara->nama }}</div>
                     @endforeach
                     </td>
                     <td>{{ $post->lembaga }}</td>

@@ -151,7 +151,7 @@ class WawancaraController extends Controller
 
         if($request->hasFile('files'))
         {
-            return redirect()->route('wawancara')->with('success', 'Wawancara Ditambahkan');
+            return redirect()->route('wawancara')->with('success', 'Wawancara Berhasil Ditambahkan');
         }
         else
         {
@@ -203,7 +203,7 @@ class WawancaraController extends Controller
         Category::create([
             'name' => request('name')
         ]);
-        return redirect()->back();
+        return redirect()->route('tambah.kategori')->with('success', 'Kategori Berhasil Ditambahkan');
     }
 
     public function tambahpertanyaan()
@@ -220,7 +220,7 @@ class WawancaraController extends Controller
             'nomor' => (Question::where('category_id', request('category_id'))->count() + 1),
             'question' => request('name')
         ]);
-        return redirect()->back();
+        return redirect()->route('tambah.pertanyaan')->with('success', 'Pertanyaan Berhasil Ditambahkan');
     }
 
     public function jawabpertanyaan()
@@ -250,7 +250,9 @@ class WawancaraController extends Controller
                 ));
             }
         }
-        return redirect()->back();
+
+      return redirect()->route('wawancara')->with('success', 'Wawancara Berhasil Ditambahkan');
+
     }
 
     public function new()
@@ -264,6 +266,7 @@ class WawancaraController extends Controller
         $post->condition = 1;
         $post->save();
 
-        return redirect()->back();
+        return redirect()->route('wawancara')->with('info', 'Wawancara Telah Dikirim');
+
     }
 }

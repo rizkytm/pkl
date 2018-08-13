@@ -47,7 +47,7 @@ class LaporanController extends Controller
         $post->condition = 2;
         $post->save();
 
-        return redirect()->route('masuk');
+        return redirect()->route('masuk')->with('info', "Revisi telah dikirim");
     }
 
     public function selesai($id)
@@ -56,7 +56,7 @@ class LaporanController extends Controller
         $post->condition = 3;
         $post->save();
 
-        return redirect()->route('masuk');
+        return redirect()->route('masuk')->with("success", "Laporan Sudah Selesai");
     }
 
   public function show($id)
