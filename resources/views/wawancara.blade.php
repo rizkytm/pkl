@@ -5,7 +5,7 @@
 <!-- Content Header (Page header) -->
 <div class="content-wrapper">
 <section class="content-header">
-  @include('partials._alerts')
+
   <h1>
     Wawancara
   </h1>
@@ -104,6 +104,7 @@
             <div class="col-sm-2"></div>
             <div class="form-group">
               <input type="submit" name="" class="btn btn-primary" value="Save">
+              <a class="btn btn-warning" href="{{ route('rangkuman') }}">Lanjut Untuk Membuat Laporan Rangkuman</a>
             </div>
 
           </form>
@@ -112,11 +113,12 @@
       </div>
       <!-- /.box -->
 
-
     </div>
     <!-- /.col -->
+
   </div>
   <!-- /.row -->
+
 </section>
 <!-- /.content -->
 
@@ -124,6 +126,7 @@
         <div class="box">
           <div class="box-header">
             <h3 class="box-title">Wawancara Anda</h3>
+            @include('partials._alerts')
           </div>
           <!-- /.box-header -->
           <div class="box-body">

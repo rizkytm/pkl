@@ -198,6 +198,11 @@ class WawancaraController extends Controller
         return view('tambahkategori');
     }
 
+    public function rangkuman()
+    {
+        return view('rangkuman');
+    }
+
     public function storekategori(Request $request)
     {
         Category::create([
