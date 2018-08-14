@@ -25,5 +25,12 @@ class AdminController extends Controller
         return view('beranda2');
     }
 
+    public function usersdestroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect()->back()->with('danger', 'User Berhasil Dihapus');
+    }
 
 }

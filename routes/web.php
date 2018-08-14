@@ -77,3 +77,5 @@ Route::patch('/adminprofile/{user}/edit', 'AdminProfileController@edit')->name('
 Route::delete('adminprofil/{user}/edit', 'AdminProfileController@destroy')->name('admin.avatar.delete');
 
 Route::patch('/tampiladmin/{id}/word', 'WORDController@createWordDocx')->name('download.word');
+
+Route::delete('/admin/delete/{user}', 'AdminController@usersdestroy')->name('usersadmin.destroy');

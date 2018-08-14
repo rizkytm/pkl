@@ -8,7 +8,6 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        @include('partials._alerts')
       <h1>
       Beranda ADMIN
       </h1>
@@ -75,6 +74,7 @@
     <a class="btn btn-success" href="{{ route('tambah.pertanyaan') }}">Tambah Pertanyaan</a>
   </div>
   <div class="row"><br></div>
+  @include('partials._alerts')
       <div class="box">
       <div class="box-header">
         <h3 class="box-title"><b>Pengguna Sistem Informasi Wawancara :</b></h3>
@@ -90,18 +90,21 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($users as $key => $value)
+          <?php $counter=1; ?>
+          @foreach ($users as $user)
           <tr>
-            <td> {{$key+1}} </td>
-            <td> {{$value -> name}} </td>
-            <td> {{$value -> email}} </td>
+            <td> <?php echo $counter++; ?> </td>
+            <td> {{$user -> name}} </td>
+            <td> {{$user -> email}} </td>
             <td>
-              <a class="btn btn-warning" href="#" > Hapus User </a>
+              <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteuser" > Hapus User </button>
             </td>
           </tr>
+          @include('modal')
           @endforeach
         </tbody>
     </table>
+    
     </div>
   </section>
 </div>
