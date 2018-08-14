@@ -15,6 +15,11 @@ use App\File;
 
 class LaporanController extends Controller
 {
+  public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
   public function masuk()
   {
       $posts = Post::with('narasumber')->where('condition', '1')->get();
