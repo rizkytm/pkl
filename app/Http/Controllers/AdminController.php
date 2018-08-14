@@ -10,13 +10,13 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:admin');
     }
 
-    public function admin(User $user)
+    public function index(User $user)
     {
-    	$user = User::where("id", "=", Auth::user()->id)->get();
-        return view('beranda2', compact('user'));
+    	$users = User::all();
+        return view('beranda2', compact('users'));
     }
 
     public function beranda2()

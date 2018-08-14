@@ -6,27 +6,28 @@ use Illuminate\Http\Request;
 use App\User;
 use Storage;
 use Auth;
+use App\Admin;
 
-class ProfileController extends Controller
+class AdminProfileController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:admin');
     }
     
-    public function index(User $user)
+    public function index(Admin $user)
     {
-    	$user = User::where("id", "=", Auth::user()->id)->get();
-    	return view('profile', compact('user'));
+    	$user = Admin::where("id", "=", Auth::user()->id)->get();
+    	return view('adminprofile', compact('user'));
     }
 
-    public function editpage(User $user)
+    public function editpage(Admin $user)
     {
-        $user = User::where("id", "=", Auth::user()->id)->get();
-        return view('profileedit', compact('user'));
+        $user = Admin::where("id", "=", Auth::user()->id)->get();
+        return view('adminprofileedit', compact('user'));
     }
 
-    public function edit(User $user, Request $request)
+    public function edit(Admin $user, Request $request)
     {
     	$this->validate(request(), [
     		'avatar' => 'nullable'
@@ -68,7 +69,7 @@ class ProfileController extends Controller
     	return redirect()->back();
     }
 
-    public function destroy(User $user, Request $request)
+    public function destroy(Admin $user, Request $request)
     {
     	if($request->user()->avatar)
     	{

@@ -133,13 +133,13 @@
 
                 </div>
                 <div class="pull-right">
-                  <a href="{{ route('logout') }}"
+                  <button
                       onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();"
-                      class="btn btn-default btn-flat">Sign out</a>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      class="btn btn-default btn-flat">Sign out</button>
+                  <form id="logout-form" action="{{ route('user.logout') }}" method="GET" style="display: none;">
                     @csrf
-                  </form>
+                  </form>                  
                 </div>
               </li>
             </ul>

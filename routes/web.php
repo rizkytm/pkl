@@ -13,19 +13,28 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::group(['middleware' => ['web','auth']], function(){
-  Route::get('/home', function() {
-    if (Auth::user()->admin == 0){
-      return view('beranda');
-    } else{
-      $users['users'] = \App\User::all();
-      return view('beranda2', $users);
-    }
-  })->name('home');
-});
+// Route::group(['middleware' => ['web','auth']], function(){
+//   Route::get('/home', function() {
+//     if (Auth::user()->admin == 0){
+//       return view('beranda');
+//     } else{
+//       $users['users'] = \App\User::all();
+//       return view('beranda2', $users);
+//     }
+//   })->name('home');
+// });
+
+
+
 Auth::routes();
-//Route::get('/home', 'HomeController@index')->name('home');
-Route::middleware('auth')->group( function(){
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
+Route::get('/admin/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+Route::post('/admin/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+Route::get('/admin/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
+
+// Route::middleware('auth')->group( function(){
   Route::get('/beranda', 'HomeController@beranda')->name('beranda');
   Route::get('/wawancara', 'WawancaraController@index')->name('wawancara');
   Route::post('/wawancara', 'WawancaraController@storeWawancara')->name('store.wawancara');
@@ -42,10 +51,9 @@ Route::middleware('auth')->group( function(){
   Route::get('/tampiluser/{id}/edit', 'WawancaraController@tampiluseredit')->name('tampil.user.edit');
   Route::patch('/tampiluser/{id}/kirimlagi', 'WawancaraController@tampiluserupdate')->name('update.wawancara');
   Route::patch('/wawancara/{id}/updat', 'WawancaraController@kirimlagi')->name('kirim.laporan.lagi');
-  Route::get('/rangkuman', 'WawancaraController@rangkuman')->name('rangkuman');
-});
-Route::middleware('is_admin')->group( function(){
-  Route::get('/beranda2', 'HomeController@beranda2')->name('beranda2');
+// });
+// Route::middleware('is_admin')->group( function(){
+  // Route::get('/beranda2', 'HomeController@beranda2')->name('beranda2');
   Route::get('/tambahkategori', 'WawancaraController@tambahkategori')->name('tambah.kategori');
   Route::post('/tambahkategori', 'WawancaraController@storekategori')->name('store.kategori');
   Route::get('/tambahpertanyaan', 'WawancaraController@tambahpertanyaan')->name('tambah.pertanyaan');
@@ -57,11 +65,15 @@ Route::middleware('is_admin')->group( function(){
   Route::patch('/tampiladmin/{id}/updat', 'LaporanController@revisi')->name('revisi.laporan');
   Route::get('/tampiladmin/{id}/update/download', 'LaporanController@download')->name('download');
   Route::patch('/tampiladmin/{id}/update', 'LaporanController@selesai')->name('selesai.laporan');
-});
+// });
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/profile/{user}/edit', 'ProfileController@editpage')->name('profile.editpage');
 Route::patch('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
 Route::delete('profil/{user}/edit', 'ProfileController@destroy')->name('avatar.delete');
 
+Route::get('/adminprofile', 'AdminProfileController@index')->name('admin.profile');
+Route::get('/adminprofile/{user}/edit', 'AdminProfileController@editpage')->name('admin.profile.editpage');
+Route::patch('/adminprofile/{user}/edit', 'AdminProfileController@edit')->name('admin.profile.edit');
+Route::delete('adminprofil/{user}/edit', 'AdminProfileController@destroy')->name('admin.avatar.delete');
 
 Route::patch('/tampiladmin/{id}/word', 'WORDController@createWordDocx')->name('download.word');
