@@ -51,6 +51,7 @@ Route::get('/admin/logout', 'Auth\AdminLoginController@logout')->name('admin.log
   Route::get('/tampiluser/{id}/edit', 'WawancaraController@tampiluseredit')->name('tampil.user.edit');
   Route::patch('/tampiluser/{id}/kirimlagi', 'WawancaraController@tampiluserupdate')->name('update.wawancara');
   Route::patch('/wawancara/{id}/updat', 'WawancaraController@kirimlagi')->name('kirim.laporan.lagi');
+  Route::get('/rangkuman', 'WawancaraController@rangkuman')->name('rangkuman');
 // });
 // Route::middleware('is_admin')->group( function(){
   // Route::get('/beranda2', 'HomeController@beranda2')->name('beranda2');
