@@ -5,7 +5,7 @@
 <!-- Content Header (Page header) -->
 <div class="content-wrapper">
 <section class="content-header">
-  @include('partials._alerts')
+
   <h1>
     Wawancara
   </h1>
@@ -104,6 +104,7 @@
             <div class="col-sm-2"></div>
             <div class="form-group">
               <input type="submit" name="" class="btn btn-primary" value="Save">
+              <a class="btn btn-warning" href="{{ route('rangkuman') }}">Lanjut Untuk Membuat Laporan Rangkuman</a>
             </div>
 
           </form>
@@ -112,11 +113,12 @@
       </div>
       <!-- /.box -->
 
-
     </div>
     <!-- /.col -->
+
   </div>
   <!-- /.row -->
+
 </section>
 <!-- /.content -->
 
@@ -124,6 +126,7 @@
         <div class="box">
           <div class="box-header">
             <h3 class="box-title">Wawancara Anda</h3>
+            @include('partials._alerts')
           </div>
           <!-- /.box-header -->
           <div class="box-body">
@@ -131,6 +134,8 @@
               <thead>
                 <tr>
                   <th>No</th>
+                  <th>Penulis 1</th>
+                  <th>Penulis 2</th>
                   <th>Narasumber</th>
                   <th>Lembaga</th>
                   <th>Topik</th>
@@ -143,10 +148,12 @@
                 @foreach ($posts as $post)
                   <tr>
                     <td><?php echo $counter++; ?>.</td>
+                    <td>{{ $post->penulis1 }}</td>
+                    <td>{{ $post->penulis2 }} </td>
                     <td>
                     <?php $count=1; ?>
                     @foreach ($post->narasumber as $nara)
-                      <div><?php echo $count++; ?>. {{ $nara->nama }}</div>
+                      <div> {{ $nara->nama }}</div>
                     @endforeach
                     </td>
                     <td>{{ $post->lembaga }}</td>

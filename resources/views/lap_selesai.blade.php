@@ -53,7 +53,7 @@
                     <td>{{ $post->category->name }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
-                      <a class="btn btn-danger" href="{{route('download.word')}}">Download</a>
+                      <a class="btn btn-danger" href="{{ route('download.word', 'posts')}}">Download</a>
                     </td>
                     <td>
                       <a class="btn btn-success" href="#" disabled>Selesai</a>

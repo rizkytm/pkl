@@ -119,11 +119,11 @@
                   @foreach($comments as $comment)
                   <p>{{ $comment->message }}</p>
                   @endforeach
-                  <textarea id="myText" name="komentar" class="form-control" rows="3"></textarea>
+                  <textarea id="myText" name="komentar" class="form-control" rows="5"></textarea>
                   <span id="wordCount">0</span> Karakter | <span id="kataCount">0</span> Kata
                 </div>
               </div>
-              <div class="box-footer">                
+              <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Revisi</button>
                 </form>
                 <form class="form-horizontal" action="{{ route('selesai.laporan', $posts) }}" method="post" enctype="multipart/form-data">

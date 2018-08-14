@@ -8,6 +8,7 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
+        @include('partials._alerts')
       <h1>
       Beranda ADMIN
       </h1>
