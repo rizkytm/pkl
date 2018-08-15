@@ -100,9 +100,10 @@ class WawancaraController extends Controller
                 'answer' => $request->input('answers.'.$key)
             ));
             // $answer->answer = $request->input('answers.'.$key);
+            
         }
 
-        return redirect()->route('revisi');
+        return redirect()->back();
     }
 
     public function kirimlagi($id)
