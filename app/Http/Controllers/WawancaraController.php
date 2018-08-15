@@ -35,8 +35,9 @@ class WawancaraController extends Controller
         $posts = Post::where("user_id", "=", Auth::user()->id)->paginate(10);
         $categories = Category::paginate(10);
         $categories->links();
+        $users = User::where("id", "=", Auth::user()->id)->get();
 
-        return view('wawancara', compact('categories', 'posts'));
+        return view('wawancara', compact('categories', 'posts', 'users'));
     }
 
     public function show($id)

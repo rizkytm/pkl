@@ -21,7 +21,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3>{{ $countwawancara }}</h3>
 
               <p>Wawancara Yang Belum Dikirim</p>
             </div>
@@ -36,7 +36,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3>{{ $countrevisi }}</h3>
 
               <p>Revisi Wawancara</p>
             </div>
@@ -51,7 +51,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>65</h3>
+              <h3>{{ $countselesai }}</h3>
 
               <p>Wawancara Selesai</p>
             </div>

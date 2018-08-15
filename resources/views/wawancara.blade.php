@@ -28,7 +28,7 @@
             <div class="form-group">
               <label class="col-sm-2">Penulis</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" id="penulis1" name="penulis1" placeholder="1. ">
+                  <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ Auth::user()->name }}">
                 </div>
                 <div class="col-sm-5">
                   <input type="text" class="form-control" id="penulis2" name="penulis2" placeholder="2.">
