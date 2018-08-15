@@ -51,6 +51,70 @@
               </div>
             </form>
           </div>
+
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Daftar Pertanyaan</h3>
+            </div>
+            <div class="box-body">
+              <table class="table table-bordered">
+                <?php $counter = 1; ?>
+                <tr>
+                  <th style="width: 30px">No</th>
+                  <th>Nama Kategori</th>
+                  <th>Nama Pertanyaan</th>
+                  <th>Aksi</th>
+                </tr>
+                @foreach($questions as $question)
+                @foreach($question->category()->get() as $category)
+                <tr>
+                  <td><?php echo $counter++; ?></td>
+                  <td>{{ $category->name }}</td>
+                  <td>{{ $question->question }}</td>
+                  <td>
+                    <button type="submit" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editpertanyaan{{$question->id}}">Edit Pertanyaan</button>
+                    @include('modalpertanyaan')
+                    <button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deletepertanyaan{{$question->id}}">Hapus Pertanyaan</button>
+                  </td>                                    
+                </tr>
+                @endforeach                                
+                @endforeach                
+              </table>
+            </div>            
+          </div>
+          <!-- /.box -->
+          @foreach($categories as $category)
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Daftar Pertanyaan | Kategori {{ $category->name }}</h3>
+            </div>
+            <div class="box-body">
+              <table class="table table-bordered">
+                <?php $counter = 1; ?>
+                <tr>
+                  <th style="width: 30px">No</th>
+                  <th>Nama Pertanyaan</th>
+                  <th>Aksi</th>
+                </tr>
+                @foreach($questions as $question)
+                @if($category->id == $question->category_id)
+                <tr>
+                  <td><?php echo $counter++; ?></td>
+                  <td>{{ $question->question }}</td>
+                  <td>
+                    <button type="submit" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editpertanyaan{{$question->id}}">Edit Pertanyaan</button>
+                    @include('modalpertanyaan')
+                    <button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deletepertanyaan{{$question->id}}">Hapus Pertanyaan</button>
+                  </td>                                    
+                </tr>
+                @endif                               
+                @endforeach                
+              </table>
+            </div>            
+          </div>
+          @endforeach
+
+
         </div>
               <!-- /.box-body -->
 

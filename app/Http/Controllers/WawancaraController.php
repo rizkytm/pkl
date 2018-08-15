@@ -195,7 +195,25 @@ class WawancaraController extends Controller
 
     public function tambahkategori()
     {
-        return view('tambahkategori');
+        $categories = Category::all();
+        return view('tambahkategori', compact('categories'));
+    }
+
+    public function updatekategori($id, Request $request)
+    {
+        $categories = Category::find($id);
+        $categories->name = $request->input('kategori');
+        $categories->save();
+
+        return redirect()->route('tambah.kategori')->with('success', 'Kategori Berhasil Diedit');
+    }
+
+    public function categorydestroy($id)
+    {
+        $categories = Category::find($id);
+        $categories->delete();
+
+        return redirect()->route('tambah.kategori')->with('danger', 'Kategori Berhasil Dihapus');
     }
 
     public function rangkuman()
@@ -215,7 +233,25 @@ class WawancaraController extends Controller
     {
         $categories = Category::all();
         $countquestion = Question::where("id", "=", 1)->count() + 1;
-        return view('tambahpertanyaan', compact('categories', 'countquestion'));
+        $questions = Question::with('category')->orderBy('category_id', 'asc')->get();
+        return view('tambahpertanyaan', compact('categories', 'countquestion', 'questions'));
+    }
+
+    public function updatepertanyaan($id, Request $request)
+    {
+        $questions = Question::find($id);
+        $questions->question = $request->input('pertanyaan');
+        $questions->save();
+
+        return redirect()->route('tambah.pertanyaan')->with('success', 'Pertanyaan Berhasil Diedit');
+    }
+
+    public function pertanyaandestroy($id)
+    {
+        $questions = Question::find($id);
+        $questions->delete();
+
+        return redirect()->route('tambah.pertanyaan')->with('danger', 'Pertanyaan Berhasil Dihapus');
     }
 
     public function storepertanyaan(Request $request)
