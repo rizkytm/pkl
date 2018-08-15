@@ -146,7 +146,6 @@
   </div>
 </section>
 <!-- /.content -->
-@include('modal')
 </div>
 <!-- /.content-wrapper -->
 

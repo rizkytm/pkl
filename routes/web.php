@@ -42,6 +42,7 @@ Route::get('/admin/logout', 'Auth\AdminLoginController@logout')->name('admin.log
   Route::post('/tambahwawancara', 'WawancaraController@store')->name('wawancara.store');
   Route::get('/revisi', 'WawancaraController@showTable')->name('revisi');
   Route::get('/selesai', 'WawancaraController@selesai')->name('selesai');
+  Route::delete('/selesai/{id}/delete', 'WawancaraController@postdestroy')->name('post.destroy');
   Route::get('/jawabpertanyaan', 'WawancaraController@jawabpertanyaan')->name('jawab.pertanyaan');
   Route::post('/jawabpertanyaan', 'WawancaraController@storejawaban')->name('store.jawaban');
   Route::get('/tampil', 'WawancaraController@tampil')->name('get.tampil');

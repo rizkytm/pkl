@@ -107,7 +107,7 @@ class WawancaraController extends Controller
 
     public function kirimlagi($id)
     {
-        $post = Post::where("user_id", "=", Auth::user()->id);
+        $post = Post::find($id);
         $post->condition = 4;
         $post->save();
 
@@ -123,7 +123,7 @@ class WawancaraController extends Controller
 
         $post = Post::create([
             'user_id' => auth()->id(),
-            'penulis1' => request('penulis1'),
+            'penulis1' => Auth::user()->name,
             'penulis2' => request('penulis2'),
             'lembaga' => request('lembaga'),
             'topic' => request('topic'),
@@ -215,6 +215,14 @@ class WawancaraController extends Controller
         $categories->delete();
 
         return redirect()->route('tambah.kategori')->with('danger', 'Kategori Berhasil Dihapus');
+    }
+
+    public function postdestroy($id)
+    {
+        $posts = Post::find($id);
+        $posts->delete();
+
+        return redirect()->route('selesai')->with('danger', 'Kategori Berhasil Dihapus');
     }
 
     public function rangkuman()
