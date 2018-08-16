@@ -19,7 +19,7 @@
     <section class="content">
       <div class="row">
         <!-- left column -->
-        <div class="col-md-12">
+        <div class="col-md-6">
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
@@ -41,7 +41,41 @@
               </div>
             </form>
           </div>
+          </div>
+        
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Daftar Kategori</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table class="table table-bordered">
+                <?php $counter = 1; ?>
+                <tr>
+                  <th style="width: 30px">No</th>
+                  <th>Nama Kategori</th>
+                  <th>Aksi</th>
+                </tr>
+                @foreach($categories as $category)
+                <tr>
+                  <td><?php echo $counter++; ?></td>
+                  <td>{{ $category->name }}</td>
+                  <td>
+                    <button type="submit" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editcategory{{$category->id}}" >Edit Kategori</button>
+                    @include('modalcategory')
+                    <button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deletecategory{{$category->id}}" >Hapus Kategori</button>
+                  </td>                                    
+                </tr>                                
+                @endforeach                
+              </table>
+            </div>
+            <!-- /.box-body -->
+            
+          </div>
         </div>
+
+        
               <!-- /.box-body -->
 
 </div>

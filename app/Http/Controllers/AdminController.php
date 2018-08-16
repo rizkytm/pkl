@@ -19,12 +19,6 @@ class AdminController extends Controller
         return view('beranda2', compact('users'));
     }
 
-    public function beranda2()
-    {
-
-        return view('beranda2');
-    }
-
     public function usersdestroy($id)
     {
         $user = User::find($id);

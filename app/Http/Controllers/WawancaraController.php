@@ -32,7 +32,7 @@ class WawancaraController extends Controller
 
     public function index()
     {
-        $posts = Post::where("user_id", "=", Auth::user()->id)->paginate(10);
+        $posts = Post::where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
         $categories = Category::paginate(10);
         $categories->links();
         $users = User::where("id", "=", Auth::user()->id)->get();
@@ -42,6 +42,18 @@ class WawancaraController extends Controller
 
     public function show($id)
     {
+        // $posts = Post::find($id);
+        // $cid = $posts->category_id;
+        // $pid = $posts->id;
+        // $categories = Category::where("id", $cid)->first();
+
+        // $questions = Question::where("category_id", $cid)->get();
+        // $answers = Answer::where("post_id", $pid)->get();
+
+        // $posting = Post::with('narasumber')->get();
+
+        // return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting'));
+        // 
         $posts = Post::find($id);
         $cid = $posts->category_id;
         $pid = $posts->id;
@@ -50,9 +62,13 @@ class WawancaraController extends Controller
         $questions = Question::where("category_id", $cid)->get();
         $answers = Answer::where("post_id", $pid)->get();
 
-        $posting = Post::with('narasumber')->get();
+        $posting = Post::with('narasumber')->where('condition', '1')->get();
 
-        return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting'));
+        $postfile = File::where('post_id', $pid)->get();
+
+        $comments = Comment::where("post_id", $pid)->get();
+
+        return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'postfile', 'comments'));
     }
 
     public function tampiluseredit($id)
@@ -61,15 +77,18 @@ class WawancaraController extends Controller
         $cid = $posts->category_id;
         $pid = $posts->id;
         $categories = Category::where("id", $cid)->first();
+        $allcategory = Category::all();
 
         $questions = Question::where("category_id", $cid)->get();
         $answers = Answer::where("post_id", $pid)->get();
 
         $posting = Post::with('narasumber')->get();
 
+        $postfile = File::where('post_id', $pid)->get();
+
         $comments = Comment::where("post_id", $pid)->get();
 
-        return view('tampiluser', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'comments'));
+        return view('tampiluser', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'comments', 'postfile', 'allcategory'));
     }
 
     public function tampiluserupdate($id, Request $request)
@@ -92,6 +111,17 @@ class WawancaraController extends Controller
         //         // $jawaban->save();
         // }
 
+        $request->validate([
+            'kontak' => 'numeric',
+        ]);
+
+        $post->penulis2 = $request->input('penulis2');
+        $post->lembaga = $request->input('lembaga');
+        $post->category_id = $request->input('kategori_id');
+        $post->topic = $request->input('topic');
+
+        $post->save();
+
         $answers = $request->input('answers');
         $qids = $request->input('qid');
         foreach($answers as $key => $value)
@@ -100,15 +130,16 @@ class WawancaraController extends Controller
                 'answer' => $request->input('answers.'.$key)
             ));
             // $answer->answer = $request->input('answers.'.$key);
+            
         }
 
-        return redirect()->route('revisi');
+        return redirect()->back();
     }
 
     public function kirimlagi($id)
     {
-        $post = Post::where("user_id", "=", Auth::user()->id);
-        $post->condition = 4;
+        $post = Post::find($id);
+        $post->condition = 3;
         $post->save();
 
         return redirect()->route('revisi');
@@ -123,7 +154,7 @@ class WawancaraController extends Controller
 
         $post = Post::create([
             'user_id' => auth()->id(),
-            'penulis1' => request('penulis1'),
+            'penulis1' => Auth::user()->name,
             'penulis2' => request('penulis2'),
             'lembaga' => request('lembaga'),
             'topic' => request('topic'),
@@ -135,10 +166,12 @@ class WawancaraController extends Controller
         if (is_array($files) || is_object($files))
         {
             foreach ($files as $file) {
-                $filename = $file->store('files');
+                $filename = $file->getClientOriginalName();
+                $file = $file->storeAs('videos', $filename);
+                // $filename = $file->store('files');
                 File::create([
                     'post_id' => $post->id,
-                    'filename' => $filename
+                    'filename' => $file
                 ]);
             }
         }
@@ -202,7 +235,7 @@ class WawancaraController extends Controller
     public function showTable()
  	  {
  	 	// $posts = Post::paginate(10);
- 	 	$posts = Post::with('narasumber')->where('condition', '2')->where("user_id", "=", Auth::user()->id)->paginate(10);
+ 	 	$posts = Post::with('narasumber')->where('condition', '2')->where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
 
  		return view('revisi', compact('posts'));
  	  }
@@ -210,7 +243,7 @@ class WawancaraController extends Controller
     public function selesai()
     {
         //$posts = Post::paginate(10);
-        $posts = Post::with('narasumber')->where('condition', '3')->where("user_id", "=", Auth::user()->id)->paginate(10);
+        $posts = Post::with('narasumber')->where('condition', '4')->where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('selesai', compact('posts', 'narasumbers'));
     }
@@ -228,7 +261,25 @@ class WawancaraController extends Controller
 
     public function tambahkategori()
     {
-        return view('tambahkategori');
+        $categories = Category::all();
+        return view('tambahkategori', compact('categories'));
+    }
+
+    public function updatekategori($id, Request $request)
+    {
+        $categories = Category::find($id);
+        $categories->name = $request->input('kategori');
+        $categories->save();
+
+        return redirect()->route('tambah.kategori')->with('success', 'Kategori Berhasil Diedit');
+    }
+
+    public function categorydestroy($id)
+    {
+        $categories = Category::find($id);
+        $categories->delete();
+
+        return redirect()->route('tambah.kategori')->with('danger', 'Kategori Berhasil Dihapus');
     }
 
     public function rangkuman()
@@ -248,7 +299,25 @@ class WawancaraController extends Controller
     {
         $categories = Category::all();
         $countquestion = Question::where("id", "=", 1)->count() + 1;
-        return view('tambahpertanyaan', compact('categories', 'countquestion'));
+        $questions = Question::with('category')->orderBy('category_id', 'asc')->get();
+        return view('tambahpertanyaan', compact('categories', 'countquestion', 'questions'));
+    }
+
+    public function updatepertanyaan($id, Request $request)
+    {
+        $questions = Question::find($id);
+        $questions->question = $request->input('pertanyaan');
+        $questions->save();
+
+        return redirect()->route('tambah.pertanyaan')->with('success', 'Pertanyaan Berhasil Diedit');
+    }
+
+    public function pertanyaandestroy($id)
+    {
+        $questions = Question::find($id);
+        $questions->delete();
+
+        return redirect()->route('tambah.pertanyaan')->with('danger', 'Pertanyaan Berhasil Dihapus');
     }
 
     public function storepertanyaan(Request $request)
@@ -306,5 +375,20 @@ class WawancaraController extends Controller
 
         return redirect()->route('wawancara')->with('info', 'Wawancara Telah Dikirim');
 
+    }
+
+    public function manageuser()
+    {
+        $users = User::all();
+
+        return view('manageuser', compact('users'));
+    }
+
+    public function manageuserdestroy($id)
+    {
+        $users = User::find($id);
+        $users->delete();
+
+        return redirect()->route('manage.user')->with('danger', 'User Berhasil Dihapus');
     }
 }

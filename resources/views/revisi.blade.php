@@ -30,7 +30,8 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Penulis</th>
+                  <th>Penulis 1</th>
+                  <th>Penulis 2</th>
                   <th>Narasumber</th>
                   <th>Lembaga</th>
                   <th>Topik</th>
@@ -44,12 +45,13 @@
                   <tr>
                     <td><?php echo $counter++; ?></td>
                     <td>{{ $post->penulis1 }}</td>
+                    <td>{{ $post->penulis2 }}</td>
                     <td>
                     @foreach($post->narasumber as $nara)
                     {{ $nara->nama }},
                     @endforeach</td>
+                    <td>{{ $post->lembaga }}</td>
                     <td>{{ $post->topic }}</td>
-                    <td>{{ $post->category->name }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
                       <a class="btn btn-warning" href="{{ route('tampil.user.edit', $post) }}">Edit</a>

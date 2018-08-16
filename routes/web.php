@@ -64,8 +64,14 @@ Route::get('/admin/logout', 'Auth\AdminLoginController@logout')->name('admin.log
   //Route::get('/beranda2', 'HomeController@beranda2')->name('beranda2');
   Route::get('/tambahkategori', 'WawancaraController@tambahkategori')->name('tambah.kategori');
   Route::post('/tambahkategori', 'WawancaraController@storekategori')->name('store.kategori');
+  Route::patch('/tambahkategori/{id}/update', 'WawancaraController@updatekategori')->name('update.kategori');
+  Route::delete('/tambahkategori/{id}/delete', 'WawancaraController@categorydestroy')->name('category.destroy');
   Route::get('/tambahpertanyaan', 'WawancaraController@tambahpertanyaan')->name('tambah.pertanyaan');
   Route::post('/tambahpertanyaan', 'WawancaraController@storepertanyaan')->name('store.pertanyaan');
+  Route::patch('/tambahpertanyaan/{id}/update', 'WawancaraController@updatepertanyaan')->name('update.pertanyaan');
+  Route::delete('/tambahpertanyaan/{id}/delete', 'WawancaraController@pertanyaandestroy')->name('pertanyaan.destroy');
+  Route::get('/manageuser', 'WawancaraController@manageuser')->name('manage.user');
+  Route::delete('/manageuser/{id}/delete', 'WawancaraController@manageuserdestroy')->name('manage.user.destroy');
   Route::get('/lapmasuk', 'LaporanController@masuk')->name('masuk');
   Route::get('/laprevisi', 'LaporanController@laprevisi')->name('laprevisi');
   Route::get('/lapselesai', 'LaporanController@lapselesai')->name('lapselesai');
