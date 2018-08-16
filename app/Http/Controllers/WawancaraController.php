@@ -42,6 +42,18 @@ class WawancaraController extends Controller
 
     public function show($id)
     {
+        // $posts = Post::find($id);
+        // $cid = $posts->category_id;
+        // $pid = $posts->id;
+        // $categories = Category::where("id", $cid)->first();
+
+        // $questions = Question::where("category_id", $cid)->get();
+        // $answers = Answer::where("post_id", $pid)->get();
+
+        // $posting = Post::with('narasumber')->get();
+
+        // return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting'));
+        // 
         $posts = Post::find($id);
         $cid = $posts->category_id;
         $pid = $posts->id;
@@ -50,9 +62,13 @@ class WawancaraController extends Controller
         $questions = Question::where("category_id", $cid)->get();
         $answers = Answer::where("post_id", $pid)->get();
 
-        $posting = Post::with('narasumber')->get();
+        $posting = Post::with('narasumber')->where('condition', '1')->get();
 
-        return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting'));
+        $postfile = File::where('post_id', $pid)->get();
+
+        $comments = Comment::where("post_id", $pid)->get();
+
+        return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'postfile', 'comments'));
     }
 
     public function tampiluseredit($id)
