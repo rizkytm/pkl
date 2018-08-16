@@ -72,40 +72,10 @@
   <div class="row">
     <a class="btn btn-primary" href="{{ route('tambah.kategori') }}">Tambah Kategori</a>
     <a class="btn btn-success" href="{{ route('tambah.pertanyaan') }}">Tambah Pertanyaan</a>
+    <a class="btn btn-danger" href="{{ route('manage.user') }}">Manage User</a>
   </div>
   <div class="row"><br></div>
-  @include('partials._alerts')
-      <div class="box">
-      <div class="box-header">
-        <h3 class="box-title"><b>Pengguna Sistem Informasi Wawancara :</b></h3>
-      </div>
-    <div class="box-body">
-    <table class="table table-bordered table-striped no-footer">
-        <thead>
-          <tr>
-            <th width="5"> No. </th>
-            <th> Nama </th>
-            <th> email </th>
-            <th> Aksi </th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php $counter=1; ?>
-          @foreach ($users as $user)
-          <tr>
-            <td> <?php echo $counter++; ?> </td>
-            <td> {{$user -> name}} </td>
-            <td> {{$user -> email}} </td>
-            <td>
-              <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteuser" > Hapus User </button>
-            </td>
-          </tr>
-          @include('modal')
-          @endforeach
-        </tbody>
-    </table>
-    
-    </div>
+      
   </section>
 </div>
 
