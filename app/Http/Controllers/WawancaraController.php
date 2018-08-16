@@ -150,14 +150,46 @@ class WawancaraController extends Controller
             'kontak' => request('kontak')
         ]);
 
-        if($request->hasFile('files'))
+        return redirect()->route('jawab.pertanyaan');
+        
+    }
+
+    public function storeRangkuman(Request $request)
+    {
+        $request->validate([
+            'kontak' => 'numeric',
+        ]);
+
+        $post = Post::create([
+            'user_id' => auth()->id(),
+            'penulis1' => request('penulis1'),
+            'penulis2' => request('penulis2'),
+            'lembaga' => request('lembaga'),
+            'topic' => request('topic'),
+            'category_id' => request('kategori_id')
+        ]);
+
+        $files = $request->file('files');
+
+        if (is_array($files) || is_object($files))
         {
-            return redirect()->route('wawancara')->with('success', 'Wawancara Berhasil Ditambahkan');
+            foreach ($files as $file) {
+                $filename = $file->store('files');
+                File::create([
+                    'post_id' => $post->id,
+                    'filename' => $filename
+                ]);
+            }
         }
-        else
-        {
-            return redirect()->route('jawab.pertanyaan');
-        }
+
+        $narasumber = Narasumber::create([
+            'post_id' => $post->id,
+            //'narasumber' => request('narasumber'),
+            'nama' => request('nama'),
+            'kontak' => request('kontak')
+        ]);
+
+        return redirect()->route('rangkuman');
     }
 
     public function create()

@@ -28,6 +28,11 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home', 'HomeController@index')->name('home.store');
+Route::get('/agenda', 'HomeController@edit')->name('home.edit');
+//Route::resource('/home', 'HomeController')->name('home');
+
+
 Route::get('/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
 Route::get('/admin/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
@@ -35,9 +40,11 @@ Route::post('/admin/login', 'Auth\AdminLoginController@login')->name('admin.logi
 Route::get('/admin/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
 
 // Route::middleware('auth')->group( function(){
-  Route::get('/beranda', 'HomeController@beranda')->name('beranda');
+  //Route::get('/beranda', 'HomeController@beranda')->name('beranda');
   Route::get('/wawancara', 'WawancaraController@index')->name('wawancara');
-  Route::post('/wawancara', 'WawancaraController@storeWawancara')->name('store.wawancara');
+  Route::post('/wawancara/wawancara', 'WawancaraController@storeWawancara')->name('store.wawancara');
+  Route::post('/wawancara/rangkuman', 'WawancaraController@storeRangkuman')->name('store.rangkuman');
+
   Route::get('/tambahwawancara', 'WawancaraController@create')->name('tambah.wawancara');
   Route::post('/tambahwawancara', 'WawancaraController@store')->name('wawancara.store');
   Route::get('/revisi', 'WawancaraController@showTable')->name('revisi');
@@ -54,7 +61,7 @@ Route::get('/admin/logout', 'Auth\AdminLoginController@logout')->name('admin.log
   Route::get('/rangkuman', 'WawancaraController@rangkuman')->name('rangkuman');
 // });
 // Route::middleware('is_admin')->group( function(){
-  // Route::get('/beranda2', 'HomeController@beranda2')->name('beranda2');
+  //Route::get('/beranda2', 'HomeController@beranda2')->name('beranda2');
   Route::get('/tambahkategori', 'WawancaraController@tambahkategori')->name('tambah.kategori');
   Route::post('/tambahkategori', 'WawancaraController@storekategori')->name('store.kategori');
   Route::get('/tambahpertanyaan', 'WawancaraController@tambahpertanyaan')->name('tambah.pertanyaan');
@@ -80,3 +87,5 @@ Route::delete('adminprofil/{user}/edit', 'AdminProfileController@destroy')->name
 Route::patch('/tampiladmin/{id}/word', 'WORDController@createWordDocx')->name('download.word');
 
 Route::delete('/admin/delete/{user}', 'AdminController@usersdestroy')->name('usersadmin.destroy');
+
+Route::resource('/tasks', 'TasksController');

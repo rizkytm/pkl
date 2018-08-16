@@ -16,100 +16,211 @@
   <div class="row">
     <div class="col-xs-12">
 
-      <div class="box">
-        <div class="box-header">
-          <h3 class="box-title">Tambah Wawancara</h3>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-          <form class="form-horizontal" action="{{ route('store.wawancara') }}" method="post" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            {{ method_field('POST') }}
-            <div class="form-group">
-              <label class="col-sm-2">Penulis</label>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ Auth::user()->name }}" disabled>
-                </div>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" id="penulis2" name="penulis2" placeholder="2.">
-                </div>
-            </div>
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#wawancara" data-toggle="tab">Wawancara</a></li>
+          <li><a href="#rangkuman" data-toggle="tab">Rangkuman</a></li>
+        </ul>
+        <div class="tab-content">
 
-              <div class="form-group has-feedback {{ $errors->has('lembaga') ? ' has-error' : '' }}">
-                <label class="col-sm-2">Lembaga</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="lembaga" name="lembaga" placeholder="nama lembaga" value="{{ old('lembaga') }}">
-                    @if ($errors->has('title'))
+          <div class="active tab-pane" id="wawancara">
+            <div class="box-body">
+              <form class="form-horizontal" action="{{ route('store.wawancara') }}" method="post" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                {{ method_field('POST') }}
+                <div class="form-group">
+                  <label class="col-sm-2">Penulis</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ Auth::user()->name }}">
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="penulis2" name="penulis2" placeholder="penulis lain... (jika ada)">
+                    </div>
+                </div>
+
+                  <div class="form-group has-feedback {{ $errors->has('lembaga') ? ' has-error' : '' }}">
+                    <label class="col-sm-2">Lembaga</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="lembaga" name="lembaga" placeholder="nama lembaga" value="{{ old('lembaga') }}">
+                        @if ($errors->has('title'))
+                          <span class="help-block">
+                            <p>{{ $errors->first('title') }}</p>
+                          </span>
+                        @endif
+                      </div>
+                  </div>
+
+                <div class="form-group has-feedback {{ $errors->has('kontak') ? ' has-error' : '' }}">
+                  <label class="col-sm-2">Narasumber :</label>
+                  <div class="col-sm-5">
+                      <label>Nama</label>
+                  </div>
+                  <div class="col-sm-5">
+                      <label>Nomor Telpon</label>
+                  </div>
+
+                  <div class="col-sm-2"></div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="nama" name="nama" placeholder="1. ">
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="kontak" name="kontak" placeholder="1. " value="{{ old('kontak') }}">
+                      @if ($errors->has('title'))
+                          <span class="help-block">
+                            <p>{{ $errors->first('title') }}</p>
+                          </span>
+                        @endif
+                    </div>
+
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="nama" name="nama" placeholder="2. ">
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="kontak" name="kontak" placeholder="2. " value="{{ old('kontak') }}">
+                      @if ($errors->has('title'))
+                          <span class="help-block">
+                            <p>{{ $errors->first('title') }}</p>
+                          </span>
+                        @endif
+                    </div>
+
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="nama" name="nama" placeholder="3. ">
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="kontak" name="kontak" placeholder="3. " value="{{ old('kontak') }}">
+                      @if ($errors->has('title'))
+                          <span class="help-block">
+                            <p>{{ $errors->first('title') }}</p>
+                          </span>
+                        @endif
+                    </div>
+
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="nama" name="nama" placeholder="4. ">
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="kontak" name="kontak" placeholder="4. " value="{{ old('kontak') }}">
+                      @if ($errors->has('title'))
+                          <span class="help-block">
+                            <p>{{ $errors->first('title') }}</p>
+                          </span>
+                        @endif
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2">Topik</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="topic" name="topic" placeholder="topik wawancara">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2">Kategori</label>
+                  <div class="col-sm-3">
+                    <select class="form-control" name="kategori_id">
+                    @foreach($categories as $category)
+                      <option value="{{ $category->id }}">{{$category->name}}</option>
+                    @endforeach
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2">Upload File</label>
+                  <div class="col-sm-3">
+                    <input class="form-control" type="file" name="files[]" multiple />
+                    @if ($errors->has('files'))
                       <span class="help-block">
-                        <p>{{ $errors->first('title') }}</p>
+                        <p>{{ $errors->first('files') }}</p>
                       </span>
                     @endif
                   </div>
-              </div>
-
-            <div class="form-group has-feedback {{ $errors->has('kontak') ? ' has-error' : '' }}">
-              <label class="col-sm-2">Narasumber :</label>
-              <div class="col-sm-5">
-                  <label>Nama</label>
-              </div>
-              <div class="col-sm-5">
-                  <label>Nomor Telpon</label>
-              </div>
-
-              <div class="col-sm-2"></div>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" id="nama" name="nama" placeholder="1. ">
                 </div>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" id="kontak" name="kontak" placeholder="1. " value="{{ old('kontak') }}">
-                  @if ($errors->has('title'))
+
+                <div class="col-sm-2"></div>
+                <div class="form-group">
+                  <input type="submit" name="" class="btn btn-primary" value="Next">
+                </div>
+
+              </form>
+            </div>
+          </div>
+          <!-- /.tab-1 -->
+          <div class="tab-pane" id="rangkuman">
+
+            <div class="box-body">
+                <form class="form-horizontal" action="{{ route('store.rangkuman') }}" method="post" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                {{ method_field('POST') }}
+                <div class="form-group">
+                  <label class="col-sm-2">Penulis</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ Auth::user()->name }}">
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="penulis2" name="penulis2" placeholder="penulis lain... (jika ada)">
+                    </div>
+                </div>
+
+                  <div class="form-group has-feedback {{ $errors->has('lembaga') ? ' has-error' : '' }}">
+                    <label class="col-sm-2">Lembaga</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="lembaga" name="lembaga" placeholder="nama lembaga" value="{{ old('lembaga') }}">
+                        @if ($errors->has('title'))
+                          <span class="help-block">
+                            <p>{{ $errors->first('title') }}</p>
+                          </span>
+                        @endif
+                      </div>
+                  </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2">Topik</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="topic" name="topic" placeholder="topik wawancara">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2">Kategori</label>
+                  <div class="col-sm-3">
+                    <select class="form-control" name="kategori_id">
+                    @foreach($categories as $category)
+                      <option value="{{ $category->id }}">{{$category->name}}</option>
+                    @endforeach
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2">Upload Dokumentasi</label>
+                  <div class="col-sm-3">
+                    <input class="form-control" type="file" name="files[]" multiple />
+                    @if ($errors->has('files'))
                       <span class="help-block">
-                        <p>{{ $errors->first('title') }}</p>
+                        <p>{{ $errors->first('files') }}</p>
                       </span>
                     @endif
+                  </div>
                 </div>
 
-            </div>
-
-            <div class="form-group">
-              <label class="col-sm-2">Topik</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="topic" name="topic" placeholder="topik wawancara">
+                <div class="col-sm-2"></div>
+                <div class="form-group">
+                  <input type="submit" name="" class="btn btn-primary" value="Next to rangkuman">
                 </div>
-            </div>
 
-            <div class="form-group">
-              <label class="col-sm-2">Kategori</label>
-              <div class="col-sm-3">
-                <select class="form-control" name="kategori_id">
-                @foreach($categories as $category)
-                  <option value="{{ $category->id }}">{{$category->name}}</option>
-                @endforeach
-                </select>
-              </div>
+              </form>
             </div>
-
-            <div class="form-group">
-              <label class="col-sm-2">Upload File</label>
-              <div class="col-sm-3">
-                <input class="form-control" type="file" name="files[]" multiple />
-                @if ($errors->has('files'))
-                  <span class="help-block">
-                    <p>{{ $errors->first('files') }}</p>
-                  </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="col-sm-2"></div>
-            <div class="form-group">
-              <input type="submit" name="" class="btn btn-primary" value="Save">
-              <a class="btn btn-warning" href="{{ route('rangkuman') }}">Lanjut Untuk Membuat Laporan Rangkuman</a>
-            </div>
-
-          </form>
+          </div>
+          <!-- /.tab-2 -->
         </div>
-        <!-- /.box-body -->
+            <!-- /.tab-content -->
       </div>
       <!-- /.box -->
 
