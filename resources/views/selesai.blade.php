@@ -52,8 +52,6 @@
                     <td>{{ $post->created_at }}</td>
                     <td>
                       <button class="btn btn-success" disabled>Selesai</button>
-                      @include('modalpost')
-                      <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deletepost{{$post->id}}">Hapus Post</button>
                     </td>
                   </tr>
                 @endforeach

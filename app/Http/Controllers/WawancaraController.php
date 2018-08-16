@@ -32,7 +32,7 @@ class WawancaraController extends Controller
 
     public function index()
     {
-        $posts = Post::where("user_id", "=", Auth::user()->id)->paginate(10);
+        $posts = Post::where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
         $categories = Category::paginate(10);
         $categories->links();
         $users = User::where("id", "=", Auth::user()->id)->get();
@@ -109,7 +109,7 @@ class WawancaraController extends Controller
     public function kirimlagi($id)
     {
         $post = Post::find($id);
-        $post->condition = 4;
+        $post->condition = 3;
         $post->save();
 
         return redirect()->route('revisi');
@@ -136,10 +136,12 @@ class WawancaraController extends Controller
         if (is_array($files) || is_object($files))
         {
             foreach ($files as $file) {
-                $filename = $file->store('files');
+                $filename = $file->getClientOriginalName();
+                $file = $file->storeAs('videos', $filename);
+                // $filename = $file->store('files');
                 File::create([
                     'post_id' => $post->id,
-                    'filename' => $filename
+                    'filename' => $file
                 ]);
             }
         }
@@ -171,7 +173,7 @@ class WawancaraController extends Controller
     public function showTable()
  	  {
  	 	// $posts = Post::paginate(10);
- 	 	$posts = Post::with('narasumber')->where('condition', '2')->where("user_id", "=", Auth::user()->id)->paginate(10);
+ 	 	$posts = Post::with('narasumber')->where('condition', '2')->where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
 
  		return view('revisi', compact('posts'));
  	  }
@@ -179,7 +181,7 @@ class WawancaraController extends Controller
     public function selesai()
     {
         //$posts = Post::paginate(10);
-        $posts = Post::with('narasumber')->where('condition', '3')->where("user_id", "=", Auth::user()->id)->paginate(10);
+        $posts = Post::with('narasumber')->where('condition', '4')->where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('selesai', compact('posts', 'narasumbers'));
     }
@@ -216,14 +218,6 @@ class WawancaraController extends Controller
         $categories->delete();
 
         return redirect()->route('tambah.kategori')->with('danger', 'Kategori Berhasil Dihapus');
-    }
-
-    public function postdestroy($id)
-    {
-        $posts = Post::find($id);
-        $posts->delete();
-
-        return redirect()->route('selesai')->with('danger', 'Kategori Berhasil Dihapus');
     }
 
     public function rangkuman()
@@ -319,5 +313,20 @@ class WawancaraController extends Controller
 
         return redirect()->route('wawancara')->with('info', 'Wawancara Telah Dikirim');
 
+    }
+
+    public function manageuser()
+    {
+        $users = User::all();
+
+        return view('manageuser', compact('users'));
+    }
+
+    public function manageuserdestroy($id)
+    {
+        $users = User::find($id);
+        $users->delete();
+
+        return redirect()->route('manage.user')->with('danger', 'User Berhasil Dihapus');
     }
 }

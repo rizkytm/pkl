@@ -42,7 +42,6 @@ Route::get('/admin/logout', 'Auth\AdminLoginController@logout')->name('admin.log
   Route::post('/tambahwawancara', 'WawancaraController@store')->name('wawancara.store');
   Route::get('/revisi', 'WawancaraController@showTable')->name('revisi');
   Route::get('/selesai', 'WawancaraController@selesai')->name('selesai');
-  Route::delete('/selesai/{id}/delete', 'WawancaraController@postdestroy')->name('post.destroy');
   Route::get('/jawabpertanyaan', 'WawancaraController@jawabpertanyaan')->name('jawab.pertanyaan');
   Route::post('/jawabpertanyaan', 'WawancaraController@storejawaban')->name('store.jawaban');
   Route::get('/tampil', 'WawancaraController@tampil')->name('get.tampil');
@@ -64,6 +63,8 @@ Route::get('/admin/logout', 'Auth\AdminLoginController@logout')->name('admin.log
   Route::post('/tambahpertanyaan', 'WawancaraController@storepertanyaan')->name('store.pertanyaan');
   Route::patch('/tambahpertanyaan/{id}/update', 'WawancaraController@updatepertanyaan')->name('update.pertanyaan');
   Route::delete('/tambahpertanyaan/{id}/delete', 'WawancaraController@pertanyaandestroy')->name('pertanyaan.destroy');
+  Route::get('/manageuser', 'WawancaraController@manageuser')->name('manage.user');
+  Route::delete('/manageuser/{id}/delete', 'WawancaraController@manageuserdestroy')->name('manage.user.destroy');
   Route::get('/lapmasuk', 'LaporanController@masuk')->name('masuk');
   Route::get('/laprevisi', 'LaporanController@laprevisi')->name('laprevisi');
   Route::get('/lapselesai', 'LaporanController@lapselesai')->name('lapselesai');

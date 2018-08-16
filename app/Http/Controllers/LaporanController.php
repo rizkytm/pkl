@@ -22,21 +22,21 @@ class LaporanController extends Controller
     
   public function masuk()
   {
-      $posts = Post::with('narasumber')->where('condition', '1')->get();
+      $posts = Post::with('narasumber')->where('condition', '1')->orderBy('created_at', 'desc')->get();
 
       return view('lap_masuk', compact('posts'));
   }
 
   public function laprevisi()
   {
-      $posts = Post::with('narasumber')->where('condition', '4')->get();
+      $posts = Post::with('narasumber')->where('condition', '3')->orderBy('created_at', 'desc')->get();
 
       return view('lap_revisi', compact('posts'));
   }
 
   public function lapselesai()
   {
-    $posts = Post::with('narasumber')->where('condition', '3')->get();
+    $posts = Post::with('narasumber')->where('condition', '4')->orderBy('created_at', 'desc')->get();
 
       return view('lap_selesai', compact('posts'));
   }
@@ -58,7 +58,7 @@ class LaporanController extends Controller
     public function selesai($id)
     {
         $post = Post::find($id);
-        $post->condition = 3;
+        $post->condition = 4;
         $post->save();
 
         return redirect()->route('masuk')->with("success", "Laporan Sudah Selesai");
