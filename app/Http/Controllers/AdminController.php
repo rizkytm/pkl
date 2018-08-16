@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use App\Post;
 
 class AdminController extends Controller
 {
@@ -16,7 +17,10 @@ class AdminController extends Controller
     public function index(User $user)
     {
     	$users = User::all();
-        return view('beranda2', compact('users'));
+      $countmasuk = Post::where("condition", 1)->count();
+      $countrev = Post::where("condition", 3)->count();
+      $countsel = Post::where("condition", 4)->count();
+        return view('beranda2', compact('users', 'countmasuk', 'countrev', 'countsel'));
     }
 
     public function usersdestroy($id)

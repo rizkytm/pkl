@@ -20,13 +20,14 @@
       <div class="row">
         <!-- left column -->
         <div class="col-md-12">
-          <!-- general form elements -->          
+          <!-- general form elements -->
 
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Manage user</h3>
+              <a class="btn btn-warning" href="{{ route('admin.dashboard') }}">Kembali</a>
             </div>
             <div class="box-body">
+
               <table class="table table-bordered">
                 <?php $counter = 1; ?>
                 <tr>
@@ -35,19 +36,19 @@
                   <th>Email User</th>
                   <th>Aksi</th>
                 </tr>
-                @foreach($users as $user)                
+                @foreach($users as $user)
                 <tr>
                   <td><?php echo $counter++; ?></td>
                   <td>{{ $user->name }}</td>
                   <td>{{ $user->email }}</td>
-                  <td>                    
+                  <td>
                     @include('modalmanageuser')
                     <button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deleteuser{{$user->id}}">Hapus User</button>
-                  </td>                                    
+                  </td>
                 </tr>
-                @endforeach               
+                @endforeach
               </table>
-            </div>            
+            </div>
           </div>
           <!-- /.box -->
         </div>

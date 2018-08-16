@@ -26,8 +26,8 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li {!! Route::is('home') ? 'class="active"' : '' !!}>
-          <a href="{{ route('home') }}">
+        <li {!! Route::is('admin.dashboard') ? 'class="active"' : '' !!}>
+          <a href="{{ route('admin.dashboard') }}">
             <i class="fa fa-dashboard"></i> <span>Beranda</span>
 
           </a>

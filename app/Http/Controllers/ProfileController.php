@@ -13,7 +13,7 @@ class ProfileController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index(User $user)
     {
     	$user = User::where("id", "=", Auth::user()->id)->get();
@@ -46,7 +46,7 @@ class ProfileController extends Controller
     	{
     		$user->update([
     		'name' => request('name'),
-    		'email' => request('email'),
+    		'email' => Auth::user()->email,
     		'no_hp' => request('no_hp'),
     		'alamat' => request('alamat'),
     	]);
@@ -65,7 +65,7 @@ class ProfileController extends Controller
 
     	// ]);
 
-    	return redirect()->back();
+    	return redirect()->route('profile')->with('success', 'Profil Berhasil Diperbarui');
     }
 
     public function destroy(User $user, Request $request)

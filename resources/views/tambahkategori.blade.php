@@ -10,7 +10,7 @@
   </h1>
     @include('partials._alerts')
   <ol class="breadcrumb">
-    <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
     <li class="active">Wawancara Selesai</li>
   </ol>
 </section>
@@ -37,12 +37,13 @@
                 </div>
               </div>
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Tambah</button>
+                <a class="btn btn-warning" href="{{ route('admin.dashboard') }}">Kembali</a>
               </div>
             </form>
           </div>
           </div>
-        
+
         <div class="col-md-6">
           <div class="box box-primary">
             <div class="box-header with-border">
@@ -65,17 +66,17 @@
                     <button type="submit" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editcategory{{$category->id}}" >Edit Kategori</button>
                     @include('modalcategory')
                     <button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deletecategory{{$category->id}}" >Hapus Kategori</button>
-                  </td>                                    
-                </tr>                                
-                @endforeach                
+                  </td>
+                </tr>
+                @endforeach
               </table>
             </div>
             <!-- /.box-body -->
-            
+
           </div>
         </div>
 
-        
+
               <!-- /.box-body -->
 
 </div>

@@ -23,7 +23,7 @@
           <h3 class="box-title">Wawancara</h3>
         </div>
         <!-- /.box-header -->
-        <div class="box-body">        	
+        <div class="box-body">
 			<form class="" action="{{ route('wawancara.store') }}" method="post" enctype="multipart/form-data">
 			{{ csrf_field() }}
 			@foreach($questions as $question)

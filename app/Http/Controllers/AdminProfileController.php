@@ -14,7 +14,7 @@ class AdminProfileController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    
+
     public function index(Admin $user)
     {
     	$user = Admin::where("id", "=", Auth::user()->id)->get();
@@ -47,7 +47,7 @@ class AdminProfileController extends Controller
     	{
     		$user->update([
     		'name' => request('name'),
-    		'email' => request('email'),
+    		'email' => Auth::user()->email,
     		'no_hp' => request('no_hp'),
     		'alamat' => request('alamat'),
     	]);
@@ -66,7 +66,7 @@ class AdminProfileController extends Controller
 
     	// ]);
 
-    	return redirect()->back();
+      return redirect()->route('admin.profile')->with('success', 'Profil Berhasil Diperbarui');
     }
 
     public function destroy(Admin $user, Request $request)

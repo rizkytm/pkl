@@ -25,7 +25,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3>{{$countmasuk}}</h3>
 
               <p>Laporan Masuk</p>
             </div>
@@ -40,7 +40,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3>{{$countrev}}</sup></h3>
 
               <p>Laporan Revisi</p>
             </div>
@@ -55,7 +55,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>65</h3>
+              <h3>{{$countsel}}</h3>
 
               <p>Laporan Selesai</p>
             </div>
@@ -75,7 +75,7 @@
     <a class="btn btn-danger" href="{{ route('manage.user') }}">Manage User</a>
   </div>
   <div class="row"><br></div>
-      
+
   </section>
 </div>
 

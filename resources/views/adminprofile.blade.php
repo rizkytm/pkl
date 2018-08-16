@@ -7,12 +7,15 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        User Profile
+        Admin Profile
       </h1>
+        @include('partials._alerts')
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">User profile</li>
+
       </ol>
+
     </section>
 
     <!-- Main content -->
@@ -34,8 +37,8 @@
               <p class="text-muted text-center">Staff</p>
               @endif
 
-            
-            
+
+
             <!-- /.box-body -->
             </div>
             <!-- /.box-body -->
@@ -49,7 +52,7 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
               <!-- <li><a href="#activity" data-toggle="tab">Activity</a></li>
-              <li><a href="#timeline" data-toggle="tab">Timeline</a></li> -->              
+              <li><a href="#timeline" data-toggle="tab">Timeline</a></li> -->
             </ul>
             <div class="tab-content">
               <div class="tab-pane" id="activity">
@@ -262,7 +265,7 @@
                 </ul>
               </div>
               <!-- /.tab-pane -->
-			
+
               <div class="active tab-pane" id="settings">
               	@foreach($user as $users)
                 <form class="form-horizontal" action="{{ route('admin.profile.editpage', $users) }}" method="post" enctype="multipart/form-data">
@@ -275,15 +278,8 @@
                       <input type="text" class="form-control" id="disabledInput" name="name" placeholder="Name" value="{{ Auth::user()->name }}" disabled>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="disabledInput" name="email" placeholder="Email" value="{{ Auth::user()->email }}" disabled>
-                    </div>
-                  </div>
-                  
-				          
+
                   <div class="form-group">
                     <label for="inputNo_HP" class="col-sm-2 control-label">No HP</label>
 
@@ -302,7 +298,7 @@
                     <label for="avatar" class="col-sm-2 control-label">Foto Profile</label>
 
 					<div class="col-sm-6">
-                    <input id="avatar" type="file" class="form-control{{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar" disabled>
+                    <input id="avatar" type="file" class="form-control{{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar">
 
                    			 	@if ($errors->has('avatar'))
                                     <span class="invalid-feedback" role="alert">
@@ -310,24 +306,33 @@
                                     </span>
                                 @endif
                     </div>
-                    <div class="col-sm-4">                    			              
-                                
+                    <div class="col-sm-4">
+                    			@if(auth()->user()->avatar != null)
+
+                            	<a href="{{ route('avatar.delete', $users) }}"
+                            	class="btn btn-danger"
+                            	onclick="event.preventDefault();
+                            	document.getElementById('remove-avatar').submit();"
+                            	>Hapus Avatar</a>
+
+                            	@endif
+
                    </div>
-                   </div>                  
+                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                       <button type="submit" class="btn btn-primary">Edit</button>
                     </div>
                   </div>
                 </form>
-                
+
                 <form action="{{ route('admin.avatar.delete', $users) }}" id="remove-avatar" method="POST">
                     	{{ csrf_field() }}
                     	{{ method_field('DELETE') }}
                     </form>
                     @endforeach
               </div>
-              
+
               <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->

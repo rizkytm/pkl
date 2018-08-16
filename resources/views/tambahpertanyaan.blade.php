@@ -47,7 +47,9 @@
                 </div>
               </div>
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Tambah</button>
+                <a class="btn btn-warning" href="{{ route('admin.dashboard') }}">Kembali</a>
+
               </div>
             </form>
           </div>
@@ -75,12 +77,12 @@
                     <button type="submit" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editpertanyaan{{$question->id}}">Edit Pertanyaan</button>
                     @include('modalpertanyaan')
                     <button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deletepertanyaan{{$question->id}}">Hapus Pertanyaan</button>
-                  </td>                                    
+                  </td>
                 </tr>
-                @endforeach                                
-                @endforeach                
+                @endforeach
+                @endforeach
               </table>
-            </div>            
+            </div>
           </div>
           <!-- /.box -->
           @foreach($categories as $category)
@@ -105,12 +107,12 @@
                     <button type="submit" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editpertanyaan{{$question->id}}">Edit Pertanyaan</button>
                     @include('modalpertanyaan')
                     <button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deletepertanyaan{{$question->id}}">Hapus Pertanyaan</button>
-                  </td>                                    
+                  </td>
                 </tr>
-                @endif                               
-                @endforeach                
+                @endif
+                @endforeach
               </table>
-            </div>            
+            </div>
           </div>
           @endforeach
 

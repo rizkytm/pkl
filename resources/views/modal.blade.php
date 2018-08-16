@@ -8,7 +8,7 @@
         </button>
         <h4 class="modal-title text-center" id="myModalLabel">Berikan Komentar</h4>
 
-        
+
       </div>
       <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
             {{ method_field('PATCH') }}
@@ -17,8 +17,8 @@
                 <textarea name="komentar" class="form-control" placeholder="Komentar"></textarea>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success" data-dismiss="modal">No, Cancel</button>
-            <button type="submit" class="btn btn-warning">Yes, Revisi</button>
+            <button type="submit" class="btn btn-warning">Ya, Revisi</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal">Tidak, kembali</button>
           </div>
       </form>
     </div>
@@ -32,7 +32,7 @@
       <div class="modal-header">
         <h4 class="modal-title text-center" id="myModalLabel">Delete User Confirmation</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        
+
       </div>
       <form action="{{route('usersadmin.destroy', $user)}}" method="post">
             {{method_field('delete')}}

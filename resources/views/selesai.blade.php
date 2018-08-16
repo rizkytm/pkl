@@ -21,7 +21,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title"><b>Tugas Selesai</b></h3>
+          <h3 class="box-title">Tugas Selesai</h3>
         </div>
         <!-- /.box-header -->
           <div class="box-body">
@@ -29,6 +29,8 @@
               <thead>
                 <tr>
                   <th>No</th>
+                  <th>Penulis 1</th>
+                  <th>Penulis 2</th>
                   <th>Narasumber</th>
                   <th>Lembaga</th>
                   <th>Topik</th>
@@ -41,6 +43,8 @@
                 @foreach ($posts as $post)
                   <tr>
                     <td><?php echo $counter++; ?></td>
+                    <td>{{ $post->penulis1 }}</td>
+                    <td>{{ $post->penulis2 }}</td>
                     <td>
                     <?php $count=1; ?>
                     @foreach ($post->narasumber as $nara)
