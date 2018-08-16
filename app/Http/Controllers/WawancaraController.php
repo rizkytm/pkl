@@ -77,15 +77,18 @@ class WawancaraController extends Controller
         $cid = $posts->category_id;
         $pid = $posts->id;
         $categories = Category::where("id", $cid)->first();
+        $allcategory = Category::all();
 
         $questions = Question::where("category_id", $cid)->get();
         $answers = Answer::where("post_id", $pid)->get();
 
         $posting = Post::with('narasumber')->get();
 
+        $postfile = File::where('post_id', $pid)->get();
+
         $comments = Comment::where("post_id", $pid)->get();
 
-        return view('tampiluser', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'comments'));
+        return view('tampiluser', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'comments', 'postfile', 'allcategory'));
     }
 
     public function tampiluserupdate($id, Request $request)
@@ -107,6 +110,17 @@ class WawancaraController extends Controller
         //         ));
         //         // $jawaban->save();
         // }
+
+        $request->validate([
+            'kontak' => 'numeric',
+        ]);
+
+        $post->penulis2 = $request->input('penulis2');
+        $post->lembaga = $request->input('lembaga');
+        $post->category_id = $request->input('kategori_id');
+        $post->topic = $request->input('topic');
+
+        $post->save();
 
         $answers = $request->input('answers');
         $qids = $request->input('qid');

@@ -117,7 +117,7 @@
 
                 <p>
                   {{ Auth::user()->name }}
-                  @if (Auth::user()->name === "admin")
+                  @if (Auth::getProvider()->getModel() === "admin")
                   <small>Staff</small>
                   @else
                   <small>Admin</small>
