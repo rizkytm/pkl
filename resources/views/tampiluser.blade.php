@@ -43,10 +43,10 @@
                 @foreach($posts->narasumber as $nara)
                 <div class="col-sm-2"></div>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="narasumber" value="{{ $nara->nama }}">
+                  <input type="text" class="form-control" name="namanara[]" value="{{ $nara->nama }}">
                 </div>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="narasumber" value="{{ $nara->kontak }}">
+                  <input type="text" class="form-control" name="kontaknara[]" value="{{ $nara->kontak }}">
                 </div>
                 @endforeach
             </div>
@@ -74,12 +74,17 @@
 
             <div class="form-group">
               <label class="col-sm-2">Download File</label>
-                <div class="col-sm-10">
+                <div class="col-sm-5">
                   @foreach($postfile as $file)
                   <a type="text" class="form-control" id="file" name="file" href="{{ route('download', $posts) }}">Download File Untuk Direvisi</a>
                   @endforeach
+                  
                 </div>
-            </div>
+                <div class="col-sm-5">
+                  <input class="form-control" type="file" name="files">
+                  </div>
+                </div>
+            
 
          
         </div>

@@ -61,55 +61,36 @@
 
                   <div class="col-sm-2"></div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="nama" name="nama" placeholder="1. ">
-                    </div>
-                    <div class="col-sm-5">
-                      <input type="text" class="form-control" id="kontak" name="kontak" placeholder="1. " value="{{ old('kontak') }}">
-                      @if ($errors->has('title'))
+                      <input type="text" class="form-control" id="nama" name="nama1" placeholder="1. " required>
+                      @if ($errors->has('nama1'))
                           <span class="help-block">
-                            <p>{{ $errors->first('title') }}</p>
+                            <p>{{ $errors->first('nama1') }}</p>
                           </span>
                         @endif
                     </div>
-
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="kontak" name="kontak1" placeholder="1. " value="{{ old('kontak1') }}" required>
+                      @if ($errors->has('kontak1'))
+                          <span class="help-block">
+                            <p>{{ $errors->first('kontak1') }}</p>
+                          </span>
+                        @endif
+                    </div>
+                                        
+                    @for($i = 2; $i < 5; $i++)
                     <div class="col-sm-2"></div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="nama" name="nama" placeholder="2. ">
+                      <input type="text" class="form-control" id="nama" name="namas[]" placeholder="{{$i}}. ">
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="kontak" name="kontak" placeholder="2. " value="{{ old('kontak') }}">
+                      <input type="text" class="form-control" id="kontak" name="kontaks[]" placeholder="{{$i}}. " value="{{ old('kontak') }}">
                       @if ($errors->has('title'))
                           <span class="help-block">
                             <p>{{ $errors->first('title') }}</p>
                           </span>
                         @endif
                     </div>
-
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-5">
-                      <input type="text" class="form-control" id="nama" name="nama" placeholder="3. ">
-                    </div>
-                    <div class="col-sm-5">
-                      <input type="text" class="form-control" id="kontak" name="kontak" placeholder="3. " value="{{ old('kontak') }}">
-                      @if ($errors->has('title'))
-                          <span class="help-block">
-                            <p>{{ $errors->first('title') }}</p>
-                          </span>
-                        @endif
-                    </div>
-
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-5">
-                      <input type="text" class="form-control" id="nama" name="nama" placeholder="4. ">
-                    </div>
-                    <div class="col-sm-5">
-                      <input type="text" class="form-control" id="kontak" name="kontak" placeholder="4. " value="{{ old('kontak') }}">
-                      @if ($errors->has('title'))
-                          <span class="help-block">
-                            <p>{{ $errors->first('title') }}</p>
-                          </span>
-                        @endif
-                    </div>
+                    @endfor                    
 
                 </div>
 

@@ -122,8 +122,22 @@ class WawancaraController extends Controller
 
         $post->save();
 
+        $files = $request->file('files');
+        if (is_array($files) || is_object($files))
+        {
+        $filename = $files->getClientOriginalName();
+        $files = $files->storeAs('files', $filename);
+
+        
+                $updatefile = File::where('post_id', $pid)->first();
+                $updatefile->filename = $files;
+                $updatefile->save();
+        }
+        
+
         $answers = $request->input('answers');
         $qids = $request->input('qid');
+        if (is_array($answers) || is_object($answers)){
         foreach($answers as $key => $value)
         {
             $answer = Answer::where('question_id', $request->input('qid.'.$key))->update(array(
@@ -131,7 +145,29 @@ class WawancaraController extends Controller
             ));
             // $answer->answer = $request->input('answers.'.$key);
             
-        }
+        }}
+
+        $namas = $request->input('namanara');
+        $kontaks = $request->input('kontaknara');
+        if (is_array($namas) || is_object($namas)){
+        $narsum = Narasumber::where('post_id', $pid)->get();
+        foreach($namas as $key => $value)
+        {
+            // $narsum = Narasumber::where('post_id', $pid)->update(array(
+            //     'nama' => $request->input('namanara.'.$key),
+            //     'kontak' => $request->input('kontaknara.'.$key)
+            // ));
+
+            
+            $narsum[$key]->nama = $request->input('namanara.'.$key);
+            $narsum[$key]->kontak = $request->input('kontaknara.'.$key);
+            $narsum[$key]->save();
+            
+            // $narsum = Narasumber::where('post_id', $pid)->get();
+            // $narsum->nama$key = $request->input('namanara.'.$key);
+            // $narsum->kontak$key = $request->input('kontaknara.'.$key);
+            
+        }}
 
         return redirect()->back();
     }
@@ -167,7 +203,7 @@ class WawancaraController extends Controller
         {
             foreach ($files as $file) {
                 $filename = $file->getClientOriginalName();
-                $file = $file->storeAs('videos', $filename);
+                $file = $file->storeAs('files', $filename);
                 // $filename = $file->store('files');
                 File::create([
                     'post_id' => $post->id,
@@ -179,9 +215,34 @@ class WawancaraController extends Controller
         $narasumber = Narasumber::create([
             'post_id' => $post->id,
             //'narasumber' => request('narasumber'),
-            'nama' => request('nama'),
-            'kontak' => request('kontak')
+            'nama' => request('nama1'),
+            'kontak' => request('kontak1')
         ]);
+
+        $namas = $request->input('namas');
+        $kontaks = $request->input('kontaks');
+        if (is_array($namas) || is_object($namas))
+        {
+            foreach ($namas as $nama) {
+                Narasumber::create([
+                    'post_id' => $post->id,
+                    'nama' => request('namas'),
+                    'kontak' => request('kontaks')
+                ]);
+            }
+        }
+
+        $input = $request->all();
+        foreach($request->input('namas') as $key => $value) {
+            if($request->has('namas'))
+            {
+                Narasumber::Create(array(
+                    'post_id' => $post->id,
+                    'nama' => $value,
+                    'kontak' => $input['kontaks'][$key],
+                ));
+            }
+        }
 
         return redirect()->route('jawab.pertanyaan');
         
