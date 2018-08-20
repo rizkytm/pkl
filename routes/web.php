@@ -39,6 +39,9 @@ Route::get('/admin/login', 'Auth\AdminLoginController@showLoginForm')->name('adm
 Route::post('/admin/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
 Route::get('/admin/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
 
+Route::get('query', 'WawancaraController@search')->name('query');
+Route::get('admin/query', 'LaporanController@search')->name('admin.query');
+
 // Route::middleware('auth')->group( function(){
   //Route::get('/beranda', 'HomeController@beranda')->name('beranda');
   Route::get('/wawancara', 'WawancaraController@index')->name('wawancara');

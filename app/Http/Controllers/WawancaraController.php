@@ -452,4 +452,12 @@ class WawancaraController extends Controller
 
         return redirect()->route('manage.user')->with('danger', 'User Berhasil Dihapus');
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->get('search');
+        $hasil = Post::where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->where('topic', 'LIKE', '%' . $query . '%')->get();
+
+        return view('search', compact('hasil', 'query'));
+    }
 }

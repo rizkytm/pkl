@@ -91,4 +91,12 @@ class LaporanController extends Controller
     $path = 'storage/'.$postfile->filename;
     return response()->download($path);
   }
+
+  public function search(Request $request)
+    {
+        $query = $request->get('search');
+        $hasil = Post::where('topic', 'LIKE', '%' . $query . '%')->orderBy('created_at', 'desc')->get();
+
+        return view('adminsearch', compact('hasil', 'query'));
+    }
 }
