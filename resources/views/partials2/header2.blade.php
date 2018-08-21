@@ -62,47 +62,43 @@
         <ul class="nav navbar-nav">
 
           <!-- Notifications: style can be found in dropdown.less -->
+          @if(Auth::check())
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              @if(auth()->user()->unreadNotifications->count())
               <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
+              <span class="label label-warning">{{ auth()->user()->unreadNotifications->count() }}</span>
+              @else
+              <i class="fa fa-bell-o"></i>
+              @endif
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
               <li>
                 <!-- inner menu: contains the actual data -->
-                <ul class="menu">
+                <ul class="menu">  
+                @if(auth()->user()->unreadNotifications->count())  
+                @foreach(auth()->user()->unreadNotifications as $notification)              
+                  <li>
+                    <a href="{{ route('show.tampil.admin', $notification->data['laporan']['id']) }}">
+                      {{ $notification->data['laporan']['topic'] }}
+                    </a>
+                    {{ $notification->markAsRead() }}
+                  </li>
+                  @endforeach
+                  @else
                   <li>
                     <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                      Tidak ada pemberitahuan
                     </a>
                   </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
+                  @endif
+
                 </ul>
               </li>
-              <li class="footer"><a href="#">View all</a></li>
+              <!-- <li class="footer"><a href="#">View all</a></li> -->
             </ul>
           </li>
+          @endif
 
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">

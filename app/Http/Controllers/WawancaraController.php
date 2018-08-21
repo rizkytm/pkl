@@ -13,6 +13,10 @@ use Validator;
 use App\File;
 use App\Narasumber;
 use App\Comment;
+use App\Admin;
+
+use App\Notifications\LapMasukNotification;
+use Illuminate\Support\Facades\Notification;
 
 class WawancaraController extends Controller
 {
@@ -433,6 +437,10 @@ class WawancaraController extends Controller
         $post = Post::find($id);
         $post->condition = 1;
         $post->save();
+
+        $admin = Admin::all();
+
+        Notification::send($admin, new LapMasukNotification($post));
 
         return redirect()->route('wawancara')->with('info', 'Wawancara Telah Dikirim');
 
