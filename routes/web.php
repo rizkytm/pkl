@@ -75,6 +75,7 @@ Route::get('admin/query', 'LaporanController@search')->name('admin.query');
   Route::delete('/tambahpertanyaan/{id}/delete', 'WawancaraController@pertanyaandestroy')->name('pertanyaan.destroy');
   Route::get('/manageuser', 'WawancaraController@manageuser')->name('manage.user');
   Route::delete('/manageuser/{id}/delete', 'WawancaraController@manageuserdestroy')->name('manage.user.destroy');
+  Route::delete('/lapselesai/{id}/delete', 'LaporanController@postdestroy')->name('post.destroy');
   Route::get('/lapmasuk', 'LaporanController@masuk')->name('masuk');
   Route::get('/laprevisi', 'LaporanController@laprevisi')->name('laprevisi');
   Route::get('/lapselesai', 'LaporanController@lapselesai')->name('lapselesai');

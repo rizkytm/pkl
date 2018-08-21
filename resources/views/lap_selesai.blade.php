@@ -8,6 +8,7 @@
   <h1>
     Laporan Selesai
   </h1>
+  @include('partials._alerts')
   <ol class="breadcrumb">
     <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
     <li class="active">Laporan Selesai</li>
@@ -54,6 +55,8 @@
                     <td>{{ $post->created_at }}</td>
                     <td>
                       <a class="btn btn-danger" href="{{ route('download.word', 'posts')}}">Download</a>
+                      @include('modalpost')
+                      <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deletepost{{$post->id}}" >Hapus Post</button>
                     </td>
                     <td>
                       <a class="btn btn-success" href="#" disabled>Selesai</a>

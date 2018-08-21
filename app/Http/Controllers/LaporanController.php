@@ -99,4 +99,12 @@ class LaporanController extends Controller
 
         return view('adminsearch', compact('hasil', 'query'));
     }
+
+  public function postdestroy($id)
+    {
+        $posts = Post::find($id);
+        $posts->delete();
+
+        return redirect()->route('lapselesai')->with('danger', 'Post Berhasil Dihapus');
+    }
 }

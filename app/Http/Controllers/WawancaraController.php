@@ -219,24 +219,24 @@ class WawancaraController extends Controller
             'kontak' => request('kontak1')
         ]);
 
-        $namas = $request->input('namas');
-        $kontaks = $request->input('kontaks');
-        if (is_array($namas) || is_object($namas))
-        {
-            foreach ($namas as $nama) {
-                Narasumber::create([
-                    'post_id' => $post->id,
-                    'nama' => request('namas'),
-                    'kontak' => request('kontaks')
-                ]);
-            }
-        }
+        // $namas = $request->input('namas');
+        // $kontaks = $request->input('kontaks');
+        // if (is_array($namas) || is_object($namas))
+        // {
+        //     foreach ($namas as $nama) {
+        //         Narasumber::create([
+        //             'post_id' => $post->id,
+        //             'nama' => request('namas'),
+        //             'kontak' => request('kontaks')
+        //         ]);
+        //     }
+        // }
 
         $input = $request->all();
         foreach($request->input('namas') as $key => $value) {
             if($request->has('namas'))
             {
-                Narasumber::Create(array(
+                Narasumber::create(array(
                     'post_id' => $post->id,
                     'nama' => $value,
                     'kontak' => $input['kontaks'][$key],
