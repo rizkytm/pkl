@@ -14,6 +14,7 @@ use App\Comment;
 use App\File;
 
 use App\Notifications\RevisiNotification;
+use App\Notifications\SelesaiNotification;
 use Illuminate\Support\Facades\Notification;
 
 class LaporanController extends Controller
@@ -69,11 +70,17 @@ class LaporanController extends Controller
         $post->condition = 4;
         $post->save();
 
+        $user = User::where('id', $post->user_id)->first();
+
+        Notification::send($user, new SelesaiNotification($post));
+
         return redirect()->route('masuk')->with("success", "Laporan Sudah Selesai");
     }
 
   public function show($id)
   {
+        Auth::user()->unreadNotifications()->update(['read_at' => now()]);
+
         $posts = Post::find($id);
         $cid = $posts->category_id;
         $pid = $posts->id;

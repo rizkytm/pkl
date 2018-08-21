@@ -78,6 +78,7 @@ class WawancaraController extends Controller
 
     public function tampiluseredit($id)
     {
+        Auth::user()->unreadNotifications()->update(['read_at' => now()]);
         $posts = Post::find($id);
         $cid = $posts->category_id;
         $pid = $posts->id;

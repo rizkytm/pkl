@@ -77,13 +77,21 @@
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">  
                 @if(auth()->user()->unreadNotifications->count())  
-                @foreach(auth()->user()->unreadNotifications as $notification)              
+                @foreach(auth()->user()->unreadNotifications as $notification)  
+                @if(!empty($notification->data['revisi']['topic']))            
                   <li>
                     <a href="{{ route('tampil.user.edit', $notification->data['revisi']['id']) }}">
-                      {{ $notification->data['revisi']['topic'] }}
+                      Revisi - {{ $notification->data['revisi']['topic'] }}
                     </a>
-                    {{ $notification->markAsRead() }}
                   </li>
+                @endif
+                @if(!empty($notification->data['selesai']['topic']))            
+                  <li>
+                    <a href="{{ route('tampil.user.edit', $notification->data['selesai']['id']) }}">
+                      Selesai - {{ $notification->data['selesai']['topic'] }}
+                    </a>
+                  </li>
+                @endif
                   @endforeach
                   @else
                   <li>

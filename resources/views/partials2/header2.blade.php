@@ -80,7 +80,7 @@
                 @foreach(auth()->user()->unreadNotifications as $notification)
                 @if(!empty($notification->data['laporan']['topic']))              
                   <li>
-                    <a href="{{ route('show.tampil.admin', $notification->data['laporan']['id']) }} {{ $notification->markAsRead() }}">
+                    <a href="{{ route('show.tampil.admin', $notification->data['laporan']['id']) }}">
                       Laporan - {{ $notification->data['laporan']['topic'] }}
                       
                     </a>
@@ -88,7 +88,7 @@
                 @endif
                 @if(!empty($notification->data['revisidone']['topic']))              
                   <li>
-                    <a href="{{ route('show.tampil.admin', $notification->data['revisidone']['id']) }}{{ $notification->markAsRead() }}">
+                    <a href="{{ route('show.tampil.admin', $notification->data['revisidone']['id']) }}">
                       Revisi - {{ $notification->data['revisidone']['topic'] }}
 
                     </a>
