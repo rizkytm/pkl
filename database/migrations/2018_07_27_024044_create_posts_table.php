@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration
             $table->string('topic');
             $table->integer('category_id')->unsigned();
             $table->integer('condition')->unsigned()->nullable()->default(null);
+            $table->longText('isi')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');

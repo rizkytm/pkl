@@ -62,6 +62,7 @@ Route::get('admin/query', 'LaporanController@search')->name('admin.query');
   Route::patch('/tampiluser/{id}/kirimlagi', 'WawancaraController@tampiluserupdate')->name('update.wawancara');
   Route::patch('/wawancara/{id}/updat', 'WawancaraController@kirimlagi')->name('kirim.laporan.lagi');
   Route::get('/rangkuman', 'WawancaraController@rangkuman')->name('rangkuman');
+  Route::patch('/rangkuman', 'WawancaraController@kirimrangkuman')->name('kirim.rangkuman');
 // });
 // Route::middleware('is_admin')->group( function(){
   //Route::get('/beranda2', 'HomeController@beranda2')->name('beranda2');

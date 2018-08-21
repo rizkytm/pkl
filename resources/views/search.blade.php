@@ -16,7 +16,7 @@
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
-      
+
       <div class="box">
         <div class="box-header">
           <h3 class="box-title">Tugas Selesai</h3>
@@ -30,8 +30,8 @@
                   <th>Penulis 1</th>
                   <th>Penulis 2</th>
                   <th>Narasumber</th>
-                  <th>Lembaga</th>
                   <th>Topik</th>
+                  <th>Lembaga</th>
                   <th>Tanggal Pembuatan</th>
                   <th>Status</th>
                 </tr>
@@ -49,8 +49,8 @@
                       <div><?php echo $count++; ?>. {{ $nara->nama }}</div>
                     @endforeach
                     </td>
-                    <td>{{ $post->lembaga }}</td>
                     <td>{{ $post->topic }}</td>
+                    <td>{{ $post->lembaga }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
                       <button class="btn btn-success" disabled>Selesai</button>
@@ -64,7 +64,7 @@
       </div>
       <!-- /.box -->
       @else
-      
+
       <section class="content-header">
         <h1>
           Hasil Pencarian : {{ $query }} Tidak Ditemukan

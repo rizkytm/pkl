@@ -58,7 +58,7 @@ class WawancaraController extends Controller
         // $posting = Post::with('narasumber')->get();
 
         // return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting'));
-        // 
+        //
         $posts = Post::find($id);
         $cid = $posts->category_id;
         $pid = $posts->id;
@@ -125,6 +125,7 @@ class WawancaraController extends Controller
         $post->lembaga = $request->input('lembaga');
         $post->category_id = $request->input('kategori_id');
         $post->topic = $request->input('topic');
+        $post->isi = $request->input('isi');
 
         $post->save();
 
@@ -134,12 +135,12 @@ class WawancaraController extends Controller
         $filename = $files->getClientOriginalName();
         $files = $files->storeAs('files', $filename);
 
-        
+
                 $updatefile = File::where('post_id', $pid)->first();
                 $updatefile->filename = $files;
                 $updatefile->save();
         }
-        
+
 
         $answers = $request->input('answers');
         $qids = $request->input('qid');
@@ -150,7 +151,7 @@ class WawancaraController extends Controller
                 'answer' => $request->input('answers.'.$key)
             ));
             // $answer->answer = $request->input('answers.'.$key);
-            
+
         }}
 
         $namas = $request->input('namanara');
@@ -164,15 +165,15 @@ class WawancaraController extends Controller
             //     'kontak' => $request->input('kontaknara.'.$key)
             // ));
 
-            
+
             $narsum[$key]->nama = $request->input('namanara.'.$key);
             $narsum[$key]->kontak = $request->input('kontaknara.'.$key);
             $narsum[$key]->save();
-            
+
             // $narsum = Narasumber::where('post_id', $pid)->get();
             // $narsum->nama$key = $request->input('namanara.'.$key);
             // $narsum->kontak$key = $request->input('kontaknara.'.$key);
-            
+
         }}
 
         return redirect()->back();
@@ -255,8 +256,19 @@ class WawancaraController extends Controller
         }
 
         return redirect()->route('jawab.pertanyaan');
-        
+
     }
+
+    public function kirimrangkuman(Request $request)
+    {
+      $post = Post::orderBy('created_at', 'desc')->first();
+
+      $post->isi = $request->input('isi');
+
+      $post->save();
+      return redirect()->route('wawancara')->with('success', 'Rangkuman Berhasil Ditambahkan');
+    }
+
 
     public function storeRangkuman(Request $request)
     {
@@ -266,11 +278,12 @@ class WawancaraController extends Controller
 
         $post = Post::create([
             'user_id' => auth()->id(),
-            'penulis1' => request('penulis1'),
+            'penulis1' => Auth::user()->name,
             'penulis2' => request('penulis2'),
             'lembaga' => request('lembaga'),
             'topic' => request('topic'),
-            'category_id' => request('kategori_id')
+            'category_id' => request('kategori_id'),
+
         ]);
 
         $files = $request->file('files');
@@ -295,6 +308,7 @@ class WawancaraController extends Controller
 
         return redirect()->route('rangkuman');
     }
+
 
     public function create()
     {

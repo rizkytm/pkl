@@ -28,8 +28,8 @@
                   <th>Penulis 1</th>
                   <th>Penulis 2</th>
                   <th>Narasumber</th>
-                  <th>Lembaga</th>
                   <th>Topik</th>
+                  <th>Kategori</th>
                   <th>Tanggal Pembuatan</th>
                   <th>Aksi</th>
                   <th>Status</th>
@@ -43,9 +43,10 @@
                     <td>{{ $post->penulis1 }} </td>
                     <td>{{ $post->penulis2 }} </td>
                     <td>
-                    @foreach($post->narasumber as $nara)
-                    {{ $nara->nama }}
-                    @endforeach</td>
+                      <?php $count=1; ?>
+                      @foreach ($post->narasumber as $nara)
+                        <div><?php echo $count++; ?>. {{ $nara->nama }}</div>
+                      @endforeach</td>
                     <td>{{ $post->topic }}</td>
                     <td>{{ $post->category->name }}</td>
                     <td>{{ $post->created_at }}</td>

@@ -18,12 +18,18 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body pad">
-            <form>
-              <textarea id="rangkuman" class="textarea" placeholder="Place some text here"
-                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+            <form class="form-horizontal" action="{{ route('kirim.rangkuman') }}" method="post" enctype="multipart/form-data">
+              {{ csrf_field() }}
+      {{ method_field('PATCH') }}
+              <textarea name="isi" id="rangkum" class="textarea" placeholder="Silakan ketikkan hasil laporan anda..."
+                    style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                     <span id="wordCount">0</span> Karakter | <span id="kataCount">0</span> Kata
+                    <div class="box-footer">
+                      <button type="submit" class="btn btn-primary">Tambah</button>
+
+                    </div>
             </form>
-            <a class="btn btn-primary" href="{{ route('wawancara') }}">Tambah Laporan Rangkuman</a>
+
           </div>
         </div>
       </div>
@@ -34,19 +40,19 @@
   <!-- /.content -->
   </div>
 
-  <script type="text/javascript">
-    var rangkuman = document.getElementById("rangkuman");
+  <script>
+    var rangkum = document.getElementById("rangkum");
     var wordCount = document.getElementById("wordCount");
     var kataCount = document.getElementById("kataCount");
 
 
-    rangkuman.addEventListener("keyup",function(){
-      var characters = rangkuman.value.split('');
+    rangkum.addEventListener("keyup",function(){
+      var characters = rangkum.value.split('');
       wordCount.innerText = characters.length;
     });
 
-    rangkuman.addEventListener("keyup",function(){
-      var characters = rangkuman.value.split(' ');
+    rangkum.addEventListener("keyup",function(){
+      var characters = rangkum.value.split(' ');
       kataCount.innerText = characters.length;
     });
   </script>

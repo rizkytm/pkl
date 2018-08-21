@@ -15,7 +15,7 @@
       <!-- search form -->
       <form action="{{ route('query') }}" method="GET" class="sidebar-form">
         <div class="input-group">
-          <input type="text" name="search" class="form-control" placeholder="Search...">
+          <input type="text" name="search" class="form-control" placeholder="Cari Topik...">
           <span class="input-group-btn">
                 <button type="submit" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>

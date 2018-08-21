@@ -9,6 +9,7 @@
   <h1>
     Wawancara
   </h1>
+  @include('partials._alerts')
 </section>
 
 <!-- Main content -->
@@ -31,7 +32,7 @@
                 <div class="form-group">
                   <label class="col-sm-2">Penulis</label>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ Auth::user()->name }}">
+                      <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ Auth::user()->name }}" disabled>
                     </div>
                     <div class="col-sm-5">
                       <input type="text" class="form-control" id="penulis2" name="penulis2" placeholder="penulis lain... (jika ada)">
@@ -76,7 +77,7 @@
                           </span>
                         @endif
                     </div>
-                                        
+
                     @for($i = 2; $i < 5; $i++)
                     <div class="col-sm-2"></div>
                     <div class="col-sm-5">
@@ -90,7 +91,7 @@
                           </span>
                         @endif
                     </div>
-                    @endfor                    
+                    @endfor
 
                 </div>
 
@@ -142,7 +143,7 @@
                 <div class="form-group">
                   <label class="col-sm-2">Penulis</label>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ Auth::user()->name }}">
+                      <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ Auth::user()->name }}" disabled>
                     </div>
                     <div class="col-sm-5">
                       <input type="text" class="form-control" id="penulis2" name="penulis2" placeholder="penulis lain... (jika ada)">
@@ -218,7 +219,7 @@
         <div class="box">
           <div class="box-header">
             <h3 class="box-title">Wawancara Anda</h3>
-            @include('partials._alerts')
+
           </div>
           <!-- /.box-header -->
           <div class="box-body">
