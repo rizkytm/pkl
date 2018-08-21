@@ -8,7 +8,6 @@
   <h1>
     Preview Wawancara
   </h1>
-
 </section>
 
 <section class="content">

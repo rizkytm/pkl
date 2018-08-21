@@ -9,10 +9,6 @@
     Laporan Selesai
   </h1>
   @include('partials._alerts')
-  <ol class="breadcrumb">
-    <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Laporan Selesai</li>
-  </ol>
 </section>
 
 <!-- Main content -->

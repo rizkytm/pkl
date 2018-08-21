@@ -49,6 +49,7 @@ class LaporanController extends Controller
           'user_id' => auth()->id(),
           'message' => request('komentar'),
         ]);
+        
         $post->condition = 2;
         $post->save();
 
