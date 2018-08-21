@@ -16,6 +16,7 @@ use App\Comment;
 use App\Admin;
 
 use App\Notifications\LapMasukNotification;
+use App\Notifications\RevisiDoneNotification;
 use Illuminate\Support\Facades\Notification;
 
 class WawancaraController extends Controller
@@ -181,6 +182,10 @@ class WawancaraController extends Controller
         $post = Post::find($id);
         $post->condition = 3;
         $post->save();
+
+        $admin = Admin::all();
+
+        Notification::send($admin, new RevisiDoneNotification($post));
 
         return redirect()->route('revisi');
     }

@@ -77,14 +77,24 @@
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">  
                 @if(auth()->user()->unreadNotifications->count())  
-                @foreach(auth()->user()->unreadNotifications as $notification)              
+                @foreach(auth()->user()->unreadNotifications as $notification)
+                @if(!empty($notification->data['laporan']['topic']))              
                   <li>
-                    <a href="{{ route('show.tampil.admin', $notification->data['laporan']['id']) }}">
-                      {{ $notification->data['laporan']['topic'] }}
+                    <a href="{{ route('show.tampil.admin', $notification->data['laporan']['id']) }} {{ $notification->markAsRead() }}">
+                      Laporan - {{ $notification->data['laporan']['topic'] }}
+                      
                     </a>
-                    {{ $notification->markAsRead() }}
                   </li>
-                  @endforeach
+                @endif
+                @if(!empty($notification->data['revisidone']['topic']))              
+                  <li>
+                    <a href="{{ route('show.tampil.admin', $notification->data['revisidone']['id']) }}{{ $notification->markAsRead() }}">
+                      Revisi - {{ $notification->data['revisidone']['topic'] }}
+
+                    </a>
+                  </li>
+                @endif
+                @endforeach
                   @else
                   <li>
                     <a href="#">

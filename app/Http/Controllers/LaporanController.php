@@ -13,6 +13,9 @@ use App\Answer;
 use App\Comment;
 use App\File;
 
+use App\Notifications\RevisiNotification;
+use Illuminate\Support\Facades\Notification;
+
 class LaporanController extends Controller
 {
   public function __construct()
@@ -49,9 +52,13 @@ class LaporanController extends Controller
           'user_id' => auth()->id(),
           'message' => request('komentar'),
         ]);
-        
+
         $post->condition = 2;
         $post->save();
+
+        $user = User::where('id', $post->user_id)->first();
+
+        Notification::send($user, new RevisiNotification($post));
 
         return redirect()->route('masuk')->with('info', "Revisi telah dikirim");
     }
