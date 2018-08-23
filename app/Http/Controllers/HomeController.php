@@ -29,7 +29,7 @@ class HomeController extends Controller
         $user = User::where("id", "=", Auth::user()->id)->get();
         $countwawancara = Post::where("condition", NULL)->count();
         $countrevisi = Post::where("condition", 2)->count();
-        $countselesai = Post::where("condition", 3)->count();
+        $countselesai = Post::where("condition", 4)->count();
 
         return view('beranda', compact('user', 'countwawancara', 'countselesai', 'countrevisi'));
     }
