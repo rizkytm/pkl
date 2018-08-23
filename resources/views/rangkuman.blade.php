@@ -21,7 +21,7 @@
             <form class="form-horizontal" action="{{ route('kirim.rangkuman') }}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
       {{ method_field('PATCH') }}
-              <textarea name="isi" id="rangkum" class="textarea" placeholder="Silakan ketikkan hasil laporan anda..."
+              <textarea name="isi" id="rangkum" class="form-control" placeholder="Silakan ketikkan hasil laporan anda..."
                     style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                     <span id="wordCount">0</span> Karakter | <span id="kataCount">0</span> Kata
                     <div class="box-footer">
