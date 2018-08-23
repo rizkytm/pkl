@@ -42,10 +42,10 @@
                   <div class="form-group has-feedback {{ $errors->has('lembaga') ? ' has-error' : '' }}">
                     <label class="col-sm-2">Lembaga</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="lembaga" name="lembaga" placeholder="nama lembaga" value="{{ old('lembaga') }}">
-                        @if ($errors->has('title'))
+                        <input type="text" class="form-control" id="lembaga" name="lembaga" placeholder="nama lembaga" value="{{ old('lembaga') }}" required>
+                        @if ($errors->has('lembaga'))
                           <span class="help-block">
-                            <p>{{ $errors->first('title') }}</p>
+                            <p>{{ $errors->first('lembaga') }}</p>
                           </span>
                         @endif
                       </div>
@@ -84,21 +84,21 @@
                       <input type="text" class="form-control" id="nama" name="namas[]" placeholder="{{$i}}. ">
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="kontak" name="kontaks[]" placeholder="{{$i}}. " value="{{ old('kontak') }}">
-                      @if ($errors->has('title'))
-                          <span class="help-block">
-                            <p>{{ $errors->first('title') }}</p>
-                          </span>
-                        @endif
+                      <input type="text" class="form-control" id="kontak" name="kontaks[]" placeholder="{{$i}}. ">         
                     </div>
                     @endfor
 
                 </div>
 
-                <div class="form-group">
+                <div class="form-group has-feedback {{ $errors->has('topic') ? ' has-error' : '' }}">
                   <label class="col-sm-2">Topik</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="topic" name="topic" placeholder="topik wawancara">
+                      <input type="text" class="form-control" id="topic" name="topic" placeholder="topik wawancara" value="{{ old('topic') }}" required>
+                      @if ($errors->has('topic'))
+                          <span class="help-block">
+                            <p>{{ $errors->first('topic') }}</p>
+                          </span>
+                        @endif
                     </div>
                 </div>
 
@@ -113,7 +113,7 @@
                   </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group has-feedback {{ $errors->has('files') ? ' has-error' : '' }}">
                   <label class="col-sm-2">Upload File</label>
                   <div class="col-sm-3">
                     <input class="form-control" type="file" name="files[]" multiple />

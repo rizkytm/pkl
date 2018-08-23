@@ -34,10 +34,18 @@
                 <input name="post_id" type="hidden" class="form-control" id="name" value="{{ $posts->id }}">
 
                 @foreach($questions as $question)
-                <div class="form-group">
+                <div class="form-group has-feedback {{ $errors->has('answers[]') ? ' has-error' : '' }}">
                   <label for="exampleInputEmail1">{{ $question->question }}</label>
                   <input name="qid[]" type="hidden" class="form-control" id="name" value="{{ $question->id }}">
-                  <input name="answers[]" type="text" class="form-control" id="name" placeholder="Jawaban">
+                  <input name="answers[]" type="text" class="form-control" id="name" placeholder="Jawaban" value="{{ old('answers[]') }}">
+                  @if ($errors->any())
+                  <span class="label label-danger">                      
+                            @foreach ($errors->all() as $error)
+                                {{ $error }}
+                            @endforeach
+                        
+                    </span>
+                @endif
                 </div>
                 @endforeach
               </div>

@@ -54,7 +54,7 @@
             </form>
           </div>
 
-          <div class="box box-primary">
+          <!-- <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Daftar Pertanyaan</h3>
             </div>
@@ -70,7 +70,7 @@
                 @foreach($questions as $question)
                 @foreach($question->category()->get() as $category)
                 <tr>
-                  <td><?php echo $counter++; ?></td>
+                  <td><?php $counter++; ?></td>
                   <td>{{ $category->name }}</td>
                   <td>{{ $question->question }}</td>
                   <td>
@@ -83,7 +83,7 @@
                 @endforeach
               </table>
             </div>
-          </div>
+          </div> -->
           <!-- /.box -->
           @foreach($categories as $category)
           <div class="box box-primary">

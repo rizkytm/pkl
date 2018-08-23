@@ -199,6 +199,20 @@ class WawancaraController extends Controller
             'kontak' => 'numeric',
         ]);
 
+        $this->validate(request(), [
+            // 'title' => 'required',
+            // 'content' => 'required|min:10',
+            // 'video' => 'mimes:mp4,mkv,avi',
+            // 'pdf' => 'mimes:pdf'
+
+            'lembaga' => 'required',
+            'kontak' => 'numeric|max:13',
+            'topic' => 'required',
+            'filename' => 'mimes:zip,rar'
+
+
+        ]);
+
         $post = Post::create([
             'user_id' => auth()->id(),
             'penulis1' => Auth::user()->name,
@@ -344,76 +358,12 @@ class WawancaraController extends Controller
         return redirect()->back();
     }
 
-    public function tambahkategori()
-    {
-        $categories = Category::all();
-        return view('tambahkategori', compact('categories'));
-    }
-
-    public function updatekategori($id, Request $request)
-    {
-        $categories = Category::find($id);
-        $categories->name = $request->input('kategori');
-        $categories->save();
-
-        return redirect()->route('tambah.kategori')->with('success', 'Kategori Berhasil Diedit');
-    }
-
-    public function categorydestroy($id)
-    {
-        $categories = Category::find($id);
-        $categories->delete();
-
-        return redirect()->route('tambah.kategori')->with('danger', 'Kategori Berhasil Dihapus');
-    }
-
     public function rangkuman()
     {
         return view('rangkuman');
     }
 
-    public function storekategori(Request $request)
-    {
-        Category::create([
-            'name' => request('name')
-        ]);
-        return redirect()->route('tambah.kategori')->with('success', 'Kategori Berhasil Ditambahkan');
-    }
-
-    public function tambahpertanyaan()
-    {
-        $categories = Category::all();
-        $countquestion = Question::where("id", "=", 1)->count() + 1;
-        $questions = Question::with('category')->orderBy('category_id', 'asc')->get();
-        return view('tambahpertanyaan', compact('categories', 'countquestion', 'questions'));
-    }
-
-    public function updatepertanyaan($id, Request $request)
-    {
-        $questions = Question::find($id);
-        $questions->question = $request->input('pertanyaan');
-        $questions->save();
-
-        return redirect()->route('tambah.pertanyaan')->with('success', 'Pertanyaan Berhasil Diedit');
-    }
-
-    public function pertanyaandestroy($id)
-    {
-        $questions = Question::find($id);
-        $questions->delete();
-
-        return redirect()->route('tambah.pertanyaan')->with('danger', 'Pertanyaan Berhasil Dihapus');
-    }
-
-    public function storepertanyaan(Request $request)
-    {
-        Question::create([
-            'category_id' => request('category_id'),
-            'nomor' => (Question::where('category_id', request('category_id'))->count() + 1),
-            'question' => request('name')
-        ]);
-        return redirect()->route('tambah.pertanyaan')->with('success', 'Pertanyaan Berhasil Ditambahkan');
-    }
+    
 
     public function jawabpertanyaan()
     {
@@ -425,13 +375,34 @@ class WawancaraController extends Controller
 
     public function storejawaban(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-            'answers' => 'nullable',
-        ]);
+        // $messages = [
+        //     'min' => 'minimal 10 karakter',
+        // ];
+        // $validator = Validator::make($request->all(), [
+        //     'answers[]' => 'min:10',
+        // ]);
 
-        $errors = $validator->errors();
-
+        
+        // $request->validate([
+        //     'answer' => 'min:10',
+        // ]);
         $input = $request->all();
+        $rules = [];
+
+        foreach($input['answers'] as $key => $val)
+        {
+            $rules['answers.'.$key] = 'nullable|min:10';
+        }
+            
+        $validator = Validator::make($input, $rules);
+
+        if ($validator->fails()) {
+            return redirect('jawabpertanyaan')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else{
+        
         foreach($request->input('answers') as $key => $value) {
             if($request->has('answers'))
             {
@@ -444,6 +415,11 @@ class WawancaraController extends Controller
         }
 
       return redirect()->route('wawancara')->with('success', 'Wawancara Berhasil Ditambahkan');
+  }
+        
+        
+
+        
 
     }
 
@@ -464,21 +440,6 @@ class WawancaraController extends Controller
 
         return redirect()->route('wawancara')->with('info', 'Wawancara Telah Dikirim');
 
-    }
-
-    public function manageuser()
-    {
-        $users = User::all();
-
-        return view('manageuser', compact('users'));
-    }
-
-    public function manageuserdestroy($id)
-    {
-        $users = User::find($id);
-        $users->delete();
-
-        return redirect()->route('manage.user')->with('danger', 'User Berhasil Dihapus');
     }
 
     public function search(Request $request)
