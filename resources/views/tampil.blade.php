@@ -108,16 +108,16 @@
                   <textarea name="isi" id="rangkum" class="form-control"
                         style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" disabled> {{$posts->isi}} </textarea>
                 </div>
-                <p>jumlah karakter : {{strlen($posts->isi)}}</p>
+                <p>( Jumlah Karakter : <b>{{strlen($posts->isi)}}</b> )</p>
                 @endif
               </div>
             <!-- </form> -->
-                
+
               </div>
-              
+
           </div>
         </div>
-     
+
     <!-- /.box-body -->
 
 

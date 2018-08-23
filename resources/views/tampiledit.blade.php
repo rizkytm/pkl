@@ -13,7 +13,7 @@
     <li class="active">Wawancara</li>
   </ol>
 </section>
-  
+
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
@@ -70,7 +70,7 @@
                   <input name="answers[]" type="text" class="form-control" id="name" placeholder="Jawaban" value="{{ $answer->answer }}" >
                 </div>
                 @endforeach
-                @endforeach           
+                @endforeach
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>

@@ -86,10 +86,9 @@
   <div class="row">
     <div class="col-md-12">
       <div class="box box-primary">
-            <!-- <form action="{{ route('store.jawaban') }}" method="post">
-              {{ csrf_field() }}
-              {{ method_field('POST') }} -->
+
               <div class="box-body">
+                <h4>Hasil Wawancara</h4>
                 <input name="post_id" type="hidden" class="form-control" id="name" value="1">
                 @foreach($answers as $answer)
                 @foreach($answer->question()->get() as $questions)
@@ -99,12 +98,22 @@
                 </div>
                 @endforeach
                 @endforeach
+                @if(!empty($posts->isi))
+                <label class="col-sm-2">Laporan Ringkasan</label>
+                <div class="col-sm-12">
+                  <textarea name="isi" id="rangkum" class="form-control"
+                        style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" disabled> {{$posts->isi}} </textarea>
+                </div>
+                <p>( Jumlah Karakter : <b>{{strlen($posts->isi)}}</b> )</p>
+                @endif
               </div>
             <!-- </form> -->
-      </div>
-    </div>
-    <!-- /.box-body -->
-  </div>
+
+              </div>
+
+          </div>
+        </div>
+
   <form class="form-horizontal" action="{{ route('revisi.laporan', $posts) }}" method="post" enctype="multipart/form-data">
             {{ method_field('PATCH') }}
             {{csrf_field()}}
@@ -112,16 +121,15 @@
     <div class="col-md-12">
       <div class="box box-primary">
               <div class="box-body">
-                <div class="col-md-10">
+
                 <div class="form-group">
                   <label for="komentar">Komentar</label>
                   @foreach($comments as $comment)
-                  <p>{{ $comment->message }}</p>
+                  <p>{{ $comment>message }}</p>
                   @endforeach
                   <textarea id="myText" name="komentar" class="form-control" rows="5"></textarea>
                   <span id="wordCount">0</span> Karakter | <span id="kataCount">0</span> Kata
                 </div>
-              </div>
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Revisi</button>

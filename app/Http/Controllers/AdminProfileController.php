@@ -37,7 +37,7 @@ class AdminProfileController extends Controller
     		$avatar = $request->file('avatar')->store('avatars');
     		$user->update([
     		'name' => request('name'),
-    		'email' => request('email'),
+    		'email' => Auth::user()->email,
     		'no_hp' => request('no_hp'),
     		'alamat' => request('alamat'),
     		'avatar' => $avatar
