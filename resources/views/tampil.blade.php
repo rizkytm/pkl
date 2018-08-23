@@ -92,7 +92,7 @@
       <div class="box box-primary">
 
               <div class="box-body">
-                <h4>Pertanyaan dan Jawaban Wawancara</h4>
+                <h4>Hasil Wawancara</h4>
                 <input name="post_id" type="hidden" class="form-control" id="name" value="1">
                 @foreach($answers as $answer)
                 @foreach($answer->question()->get() as $questions)
@@ -102,25 +102,22 @@
                 </div>
                 @endforeach
                 @endforeach
-              </div>
-            <!-- </form> -->
-            <div class="row">
-              <div class="col-md-12">
-                <div class="box box-primary">
-                  <div class="box-body">
-              <label class="col-sm-2">Laporan Ringkasan</label>
-                <div class="col-sm-10">
+                @if(!empty($posts->isi))
+                <label class="col-sm-2">Laporan Ringkasan</label>
+                <div class="col-sm-12">
                   <textarea name="isi" id="rangkum" class="form-control"
                         style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" disabled> {{$posts->isi}} </textarea>
                 </div>
+                @endif
               </div>
-            </div>
+            <!-- </form> -->
+                
+              </div>
+              
           </div>
         </div>
-      </div>
-    </div>
+     
     <!-- /.box-body -->
-  </div>
 
 
   <!-- /.row -->
