@@ -88,11 +88,11 @@ class WORDController extends Controller
 
     	$objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($wordTest, 'Word2007');
     	try{
-    		$objectWriter->save(storage_path('Test.docx'));
+    		$objectWriter->save(storage_path($posts->topic.'.docx'));
     	} catch(Exception $e) {
 
     	}
-    	return response()->download(storage_path('Test.docx'));
+    	return response()->download(storage_path($posts->topic.'.docx'));
 
     	
     }
