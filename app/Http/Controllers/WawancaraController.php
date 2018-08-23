@@ -47,6 +47,24 @@ class WawancaraController extends Controller
 
     public function show($id)
     {
+        Auth::user()->unreadNotifications()->update(['read_at' => now()]);
+        $posts = Post::find($id);
+        $cid = $posts->category_id;
+        $pid = $posts->id;
+        $categories = Category::where("id", $cid)->first();
+        $allcategory = Category::all();
+
+        $questions = Question::where("category_id", $cid)->get();
+        $answers = Answer::where("post_id", $pid)->get();
+
+        $posting = Post::with('narasumber')->get();
+
+        $postfile = File::where('post_id', $pid)->get();
+
+        $comments = Comment::where("post_id", $pid)->get();
+
+        return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'comments', 'postfile', 'allcategory'));
+
         // $posts = Post::find($id);
         // $cid = $posts->category_id;
         // $pid = $posts->id;
@@ -55,25 +73,13 @@ class WawancaraController extends Controller
         // $questions = Question::where("category_id", $cid)->get();
         // $answers = Answer::where("post_id", $pid)->get();
 
-        // $posting = Post::with('narasumber')->get();
+        // $posting = Post::with('narasumber')->where('condition', '1')->get();
 
-        // return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting'));
-        //
-        $posts = Post::find($id);
-        $cid = $posts->category_id;
-        $pid = $posts->id;
-        $categories = Category::where("id", $cid)->first();
+        // $postfile = File::where('post_id', $pid)->get();
 
-        $questions = Question::where("category_id", $cid)->get();
-        $answers = Answer::where("post_id", $pid)->get();
+        // $comments = Comment::where("post_id", $pid)->get();
 
-        $posting = Post::with('narasumber')->where('condition', '1')->get();
-
-        $postfile = File::where('post_id', $pid)->get();
-
-        $comments = Comment::where("post_id", $pid)->get();
-
-        return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'postfile', 'comments'));
+        // return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'postfile', 'comments'));
     }
 
     public function tampiluseredit($id)
