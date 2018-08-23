@@ -112,7 +112,7 @@
     <div class="col-md-12">
       <div class="box box-primary">
               <div class="box-body">
-
+                <div class="col-md-10">
                 <div class="form-group">
                   <label for="komentar">Komentar</label>
                   @foreach($comments as $comment)
@@ -121,6 +121,7 @@
                   <textarea id="myText" name="komentar" class="form-control" rows="5"></textarea>
                   <span id="wordCount">0</span> Karakter | <span id="kataCount">0</span> Kata
                 </div>
+              </div>
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Revisi</button>

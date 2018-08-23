@@ -87,7 +87,7 @@
                 @endif
                 @if(!empty($notification->data['selesai']['topic']))            
                   <li>
-                    <a href="{{ route('tampil.user.edit', $notification->data['selesai']['id']) }}">
+                    <a href="{{ route('selesai', $notification->data['selesai']['id']) }}">
                       Selesai - {{ $notification->data['selesai']['topic'] }}
                     </a>
                   </li>

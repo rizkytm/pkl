@@ -8,7 +8,7 @@
   <h1>
     Preview Revisi Wawancara
   </h1>
-
+@include('partials._alerts')
 </section>
 
 <section class="content">

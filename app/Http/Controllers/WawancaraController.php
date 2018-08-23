@@ -182,7 +182,7 @@ class WawancaraController extends Controller
 
         }}
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Laporan Berhasil Diedit');
     }
 
     public function kirimlagi($id)
@@ -195,7 +195,7 @@ class WawancaraController extends Controller
 
         Notification::send($admin, new RevisiDoneNotification($post));
 
-        return redirect()->route('revisi');
+        return redirect()->route('revisi')->with('info', 'Laporan Berhasil Dikirim');
     }
 
 
@@ -348,6 +348,7 @@ class WawancaraController extends Controller
     public function selesai()
     {
         //$posts = Post::paginate(10);
+        Auth::user()->unreadNotifications()->update(['read_at' => now()]);
         $posts = Post::with('narasumber')->where('condition', '4')->where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('selesai', compact('posts', 'narasumbers'));
