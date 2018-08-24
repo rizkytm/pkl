@@ -51,7 +51,7 @@
                     <td>{{ $post->category->name }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
-                      <a class="btn btn-danger" href="{{ route('download.word', 'posts')}}">Download</a>
+                      <a class="btn btn-warning" href="{{ route('show.tampil.selesai', $post) }}">Preview</a>
                       @include('modalpost')
                       <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deletepost{{$post->id}}" >Hapus Post</button>
                     </td>
