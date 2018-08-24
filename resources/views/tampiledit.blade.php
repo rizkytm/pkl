@@ -71,6 +71,14 @@
                 </div>
                 @endforeach
                 @endforeach
+                @if(!empty($posts->isi))
+                <label class="col-sm-2">Laporan Ringkasan</label>
+                <div class="col-sm-12">
+                  <textarea name="isi" id="rangkum" class="form-control"
+                        style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"> {{$posts->isi}} </textarea>
+                </div>
+                <p>( Jumlah Karakter : <b>{{strlen($posts->isi)}}</b> )</p>
+                @endif
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>

@@ -78,15 +78,15 @@
                   @foreach($postfile as $file)
                   <a type="text" class="form-control" id="file" name="file" href="{{ route('download', $posts) }}">Download File Untuk Direvisi</a>
                   @endforeach
-                  
+
                 </div>
                 <div class="col-sm-5">
                   <input class="form-control" type="file" name="files">
                   </div>
                 </div>
-            
 
-         
+
+
         </div>
         <!-- /.box-body -->
       </div>
@@ -110,7 +110,7 @@
             </div>
             @endif
 
-          
+
         </div>
         <!-- /.box-body -->
       </div>
@@ -120,7 +120,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-primary">            
+      <div class="box box-primary">
               <div class="box-body">
                 <input name="post_id" type="hidden" class="form-control" id="name" value="{{ $posts->id }}">
                 @foreach($answers as $answer)
@@ -132,8 +132,16 @@
                 </div>
                 @endforeach
                 @endforeach
+                @if(!empty($posts->isi))
+                <label class="col-sm-2">Laporan Ringkasan</label>
+                <div class="col-sm-12">
+                  <textarea name="isi" id="rangkum" class="form-control"
+                        style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"> {{$posts->isi}} </textarea>
+                </div>
+                <p>( Jumlah Karakter : <b>{{strlen($posts->isi)}}</b> )</p>
+                @endif
               </div>
-              <div class="box-footer">                
+              <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Edit</button>
                 </form>
                 <form class="form-horizontal" action="{{ route('kirim.laporan.lagi', $posts) }}" method="post" enctype="multipart/form-data">
