@@ -98,6 +98,29 @@ class LaporanController extends Controller
         return view('tampiladmin', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'postfile', 'comments'));
   }
 
+   public function showSelesai($id)
+  {
+        Auth::user()->unreadNotifications()->update(['read_at' => now()]);
+
+        $posts = Post::find($id);
+        $cid = $posts->category_id;
+        $pid = $posts->id;
+        $categories = Category::where("id", $cid)->first();
+
+        $questions = Question::where("category_id", $cid)->get();
+        $answers = Answer::where("post_id", $pid)->get();
+
+        $posting = Post::with('narasumber')->where('condition', '1')->get();
+
+        $postfile = File::where('post_id', $pid)->get();
+
+        $comments = Comment::where("post_id", $pid)->get();
+
+        return view('preview_lap_selesai', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'postfile', 'comments'));
+  }
+
+
+
   public function download($id)
   {
     $posts = Post::find($id);
