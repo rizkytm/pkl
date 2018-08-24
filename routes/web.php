@@ -105,3 +105,5 @@ Route::patch('/tampiladmin/{id}/word', 'WORDController@createWordDocx')->name('d
 Route::delete('/admin/delete/{user}', 'AdminController@usersdestroy')->name('usersadmin.destroy');
 
 Route::resource('/tasks', 'TasksController');
+
+///
