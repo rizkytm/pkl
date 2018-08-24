@@ -296,14 +296,27 @@ class WawancaraController extends Controller
             'kontak' => 'numeric',
         ]);
 
+        $this->validate(request(), [
+            // 'title' => 'required',
+            // 'content' => 'required|min:10',
+            // 'video' => 'mimes:mp4,mkv,avi',
+            // 'pdf' => 'mimes:pdf'
+
+            'lembaga' => 'required',
+            'kontak' => 'numeric|max:13',
+            'topic' => 'required',
+            'filename' => 'mimes:zip,rar'
+
+
+        ]);
+
         $post = Post::create([
             'user_id' => auth()->id(),
             'penulis1' => Auth::user()->name,
             'penulis2' => request('penulis2'),
             'lembaga' => request('lembaga'),
             'topic' => request('topic'),
-            'category_id' => request('kategori_id'),
-
+            'category_id' => request('kategori_id')
         ]);
 
         $files = $request->file('files');
@@ -311,10 +324,12 @@ class WawancaraController extends Controller
         if (is_array($files) || is_object($files))
         {
             foreach ($files as $file) {
-                $filename = $file->store('files');
+                $filename = $file->getClientOriginalName();
+                $file = $file->storeAs('files', $filename);
+                // $filename = $file->store('files');
                 File::create([
                     'post_id' => $post->id,
-                    'filename' => $filename
+                    'filename' => $file
                 ]);
             }
         }
@@ -322,9 +337,34 @@ class WawancaraController extends Controller
         $narasumber = Narasumber::create([
             'post_id' => $post->id,
             //'narasumber' => request('narasumber'),
-            'nama' => request('nama'),
-            'kontak' => request('kontak')
+            'nama' => request('nama1'),
+            'kontak' => request('kontak1')
         ]);
+
+        // $namas = $request->input('namas');
+        // $kontaks = $request->input('kontaks');
+        // if (is_array($namas) || is_object($namas))
+        // {
+        //     foreach ($namas as $nama) {
+        //         Narasumber::create([
+        //             'post_id' => $post->id,
+        //             'nama' => request('namas'),
+        //             'kontak' => request('kontaks')
+        //         ]);
+        //     }
+        // }
+
+        $input = $request->all();
+        foreach($request->input('namas') as $key => $value) {
+            if($request->has('namas'))
+            {
+                Narasumber::create(array(
+                    'post_id' => $post->id,
+                    'nama' => $value,
+                    'kontak' => $input['kontaks'][$key],
+                ));
+            }
+        }
 
         return redirect()->route('rangkuman');
     }
