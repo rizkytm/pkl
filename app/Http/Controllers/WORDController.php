@@ -32,7 +32,7 @@ class WORDController extends Controller
 
         $fontStyle = array('name' => 'Times New Roman', 'size' => 14, 'space' => array('before' => 360, 'after' => 480));
             $newSection->addText('Penulis           : ' . $posts->penulis1 . '; ' . $posts->penulis2, $fontStyle);
-            $newSection->addText('Topik             : ' . $posts->topic, $fontStyle);
+            $newSection->addText('Topik/Judul             : ' . $posts->topic, $fontStyle);
             $newSection->addText('Lembaga        : ' . $posts->lembaga, $fontStyle);
             
             $newSection->addText('Narasumber   : ', $fontStyle);

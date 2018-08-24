@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('topic') ? ' has-error' : '' }}">
-                  <label class="col-sm-2">Topik</label>
+                  <label class="col-sm-2">Topik/Judul</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="topic" name="topic" placeholder="topik wawancara" value="{{ old('topic') }}" required>
                       @if ($errors->has('topic'))

@@ -33,7 +33,7 @@
                   <th>Penulis 2</th>
                   <th>Narasumber</th>
                   <th>Lembaga</th>
-                  <th>Topik</th>
+                  <th>Topik/Judul</th>
                   <th>Tanggal Pembuatan</th>
                   <th>Aksi</th>
                 </tr>

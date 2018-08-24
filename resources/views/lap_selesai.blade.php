@@ -28,7 +28,7 @@
                   <th>Penulis 1</th>
                   <th>Penulis 2</th>
                   <th>Narasumber</th>
-                  <th>Topik</th>
+                  <th>Topik/Judul</th>
                   <th>Kategori</th>
                   <th>Tanggal Pembuatan</th>
                   <th>Aksi</th>

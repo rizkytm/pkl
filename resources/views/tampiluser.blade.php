@@ -52,7 +52,7 @@
             </div>
 
             <div class="form-group">
-              <label class="col-sm-2">Topik</label>
+              <label class="col-sm-2">Topik/Judul</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" id="topic" name="topic" value="{{ $posts->topic }}">
                 </div>
