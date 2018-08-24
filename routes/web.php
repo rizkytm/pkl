@@ -56,6 +56,9 @@ Route::get('admin/query', 'LaporanController@search')->name('admin.query');
   Route::post('/jawabpertanyaan', 'WawancaraController@storejawaban')->name('store.jawaban');
   Route::get('/tampil', 'WawancaraController@tampil')->name('get.tampil');
   Route::get('/tampillagi/{id}', 'WawancaraController@show')->name('show.tampil');
+  Route::patch('/tampillagi/{id}/edit', 'WawancaraController@tampiluserupdate')->name('edit.wawancara');
+
+
   Route::get('/newjawabpertanyaan', 'WawancaraController@new')->name('new.jawab.pertanyaan');
   Route::patch('/wawancara/{id}/update', 'WawancaraController@kirim')->name('kirim.laporan');
   Route::get('/tampiluser/{id}/edit', 'WawancaraController@tampiluseredit')->name('tampil.user.edit');
@@ -80,7 +83,9 @@ Route::get('admin/query', 'LaporanController@search')->name('admin.query');
   Route::get('/lapmasuk', 'LaporanController@masuk')->name('masuk');
   Route::get('/laprevisi', 'LaporanController@laprevisi')->name('laprevisi');
   Route::get('/lapselesai', 'LaporanController@lapselesai')->name('lapselesai');
-  Route::get('/tampiladmin/{id}/update', 'LaporanController@show')->name('show.tampil.admin');
+  Route::get('/tampiladmin/{id}/update', 'LaporanController@show')->name('show.tampil.admin');  
+  Route::get('/tampilselesai/{id}/view', 'LaporanController@showSelesai')->name('show.tampil.selesai');
+
   Route::patch('/tampiladmin/{id}/updat', 'LaporanController@revisi')->name('revisi.laporan');
   Route::get('/tampiladmin/{id}/update/download', 'LaporanController@download')->name('download');
   Route::patch('/tampiladmin/{id}/update', 'LaporanController@selesai')->name('selesai.laporan');
