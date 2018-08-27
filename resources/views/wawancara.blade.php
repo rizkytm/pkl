@@ -84,7 +84,7 @@
                       <input type="text" class="form-control" id="nama" name="namas[]" placeholder="{{$i}}. ">
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="kontak" name="kontaks[]" placeholder="{{$i}}. ">         
+                      <input type="text" class="form-control" id="kontak" name="kontaks[]" placeholder="{{$i}}. ">
                     </div>
                     @endfor
 
@@ -114,7 +114,7 @@
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('files') ? ' has-error' : '' }}">
-                  <label class="col-sm-2">Upload File Dokumentasi</label>
+                  <label class="col-sm-2">Upload File Dokumentasi (.zip / .rar)</label>
                   <div class="col-sm-3">
                     <input class="form-control" type="file" name="files[]" multiple />
                     @if ($errors->has('files'))
@@ -193,7 +193,7 @@
                       <input type="text" class="form-control" id="nama" name="namas[]" placeholder="{{$i}}. ">
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="kontak" name="kontaks[]" placeholder="{{$i}}. ">         
+                      <input type="text" class="form-control" id="kontak" name="kontaks[]" placeholder="{{$i}}. ">
                     </div>
                     @endfor
 
@@ -223,7 +223,7 @@
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('files') ? ' has-error' : '' }}">
-                  <label class="col-sm-2">Upload File Dokumentasi</label>
+                  <label class="col-sm-2">Upload File Dokumentasi (.zip / .rar)</label>
                   <div class="col-sm-3">
                     <input class="form-control" type="file" name="files[]" multiple />
                     @if ($errors->has('files'))

@@ -23,7 +23,7 @@ class LaporanController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    
+
   public function masuk()
   {
       $posts = Post::with('narasumber')->where('condition', '1')->orderBy('created_at', 'desc')->get();
@@ -144,6 +144,15 @@ class LaporanController extends Controller
         $posts->delete();
 
         return redirect()->route('lapselesai')->with('danger', 'Post Berhasil Dihapus');
+    }
+
+  public function postdestroybatal()
+    {
+        $posts = Post::orderBy('created_at', 'desc')->first();
+      //  $posts = Post::find($id);
+        $posts->delete();
+
+        return redirect()->route('wawancara')->with('danger', 'Laporan dibatalkan');
     }
 
   public function tambahkategori()
