@@ -22,16 +22,16 @@
             <div class="form-group">
               <label class="col-sm-2">Penulis</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ $posts->penulis1 }}">
+                  <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ $posts->penulis1 }}" disabled="">
                 </div>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" id="penulis2" name="penulis2" value="{{ $posts->penulis2 }}">
+                  <input type="text" class="form-control" id="penulis2" name="penulis2" value="{{ $posts->penulis2 }}" disabled="">
                 </div>
             </div>
             <div class="form-group">
               <label class="col-sm-2">Lembaga</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="lembaga" name="lembaga" value="{{ $posts->lembaga }}">
+                <input type="text" class="form-control" id="lembaga" name="lembaga" value="{{ $posts->lembaga }}" disabled="">
               </div>
               <label class="col-sm-2">Narasumber</label>
               <div class="col-sm-5">
@@ -42,33 +42,29 @@
               </div>
                 @foreach($posts->narasumber as $nara)
                 <div class="col-sm-2"></div>
+                @if(!empty($nara->nama))
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="namanara[]" value="{{ $nara->nama }}">
+                  <input type="text" class="form-control" name="namanara[]" value="{{ $nara->nama }}" disabled="">
                 </div>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="kontaknara[]" value="{{ $nara->kontak }}">
+                  <input type="text" class="form-control" name="kontaknara[]" value="{{ $nara->kontak }}" disabled="">
                 </div>
+                @endif
                 @endforeach
             </div>
 
             <div class="form-group">
               <label class="col-sm-2">Topik/Judul</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="topic" name="topic" value="{{ $posts->topic }}">
+                  <input type="text" class="form-control" id="topic" name="topic" value="{{ $posts->topic }}" disabled="">
                 </div>
             </div>
 
             <div class="form-group">
               <label class="col-sm-2">Kategori</label>
-              <div class="col-sm-3">
-                <select class="form-control" name="kategori_id">
-                @foreach($allcategory as $category)
-                <!-- @foreach($posts->category()->get() as $postcat)
-                  <option value="{{ $postcat->id }}">{{$postcat->name}}</option> -->
-                  <option value="{{ $category->id }}" {{ $category->id === $posts->category_id ? 'selected' : '' }}>{{$category->name}}</option>
-                @endforeach
-                <!-- @endforeach -->
-                </select>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="kategori_id" name="kategori_id" value="{{ $categories->name }}" disabled>
+
               </div>
             </div>
 
@@ -105,8 +101,8 @@
                 @foreach($answer->question()->get() as $questions)
                 <div class="form-group">
                   <label for="exampleInputEmail1">{{ $questions->question }}</label>
-                  <input name="qid[]" type="hidden" class="form-control" id="name" value="{{ $questions->id }}">
-                  <input name="answers[]" type="text" class="form-control" id="name" placeholder="Jawaban" value="{{ $answer->answer }}">
+                  <input name="qid[]" type="hidden" class="form-control" id="name" value="{{ $questions->id }}" disabled="">
+                  <input name="answers[]" type="text" class="form-control" id="name" placeholder="Jawaban" value="{{ $answer->answer }}" disabled="">
                 </div>
                 @endforeach
                 @endforeach
@@ -114,7 +110,7 @@
                 <label class="col-sm-2">Laporan Ringkasan</label>
                 <div class="col-sm-12">
                   <textarea name="isi" id="rangkum" class="form-control"
-                        style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"> {{$posts->isi}} </textarea>
+                        style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" disabled=""> {{$posts->isi}} </textarea>
                 </div>
                 <p>( Jumlah Karakter : <b>{{strlen($posts->isi)}}</b> )</p>
                 @endif

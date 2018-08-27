@@ -19,8 +19,8 @@
 
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#wawancara" data-toggle="tab">Wawancara</a></li>
-          <li><a href="#rangkuman" data-toggle="tab">Rangkuman</a></li>
+          <li class="active"><h5><a href="#wawancara" data-toggle="tab">Tanya-Jawab</a></h5></li>
+          <li><h5 class="col-sm-3"><a href="#rangkuman" data-toggle="tab">Berita</a><h5></li>
         </ul>
         <div class="tab-content">
 
@@ -114,7 +114,7 @@
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('files') ? ' has-error' : '' }}">
-                  <label class="col-sm-2">Upload File</label>
+                  <label class="col-sm-2">Upload File Dokumentasi</label>
                   <div class="col-sm-3">
                     <input class="form-control" type="file" name="files[]" multiple />
                     @if ($errors->has('files'))
@@ -200,7 +200,7 @@
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('topic') ? ' has-error' : '' }}">
-                  <label class="col-sm-2">Topik</label>
+                  <label class="col-sm-2">Topik/Judul</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="topic" name="topic" placeholder="topik wawancara" value="{{ old('topic') }}" required>
                       @if ($errors->has('topic'))
@@ -223,7 +223,7 @@
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('files') ? ' has-error' : '' }}">
-                  <label class="col-sm-2">Upload File</label>
+                  <label class="col-sm-2">Upload File Dokumentasi</label>
                   <div class="col-sm-3">
                     <input class="form-control" type="file" name="files[]" multiple />
                     @if ($errors->has('files'))
@@ -279,12 +279,16 @@
                     <td><?php echo $counter++; ?>.</td>
                     <td>
                         <div>1. {{ $post->penulis1 }}</div>
+                        @if(!empty($post->penulis2))
                         <div>2. {{ $post->penulis2 }}</div>
+                        @endif
                     </td>
                     <td>
                     <?php $count=1; ?>
                     @foreach ($post->narasumber as $nara)
+                      @if(!empty($nara->nama))
                       <div><?php echo $count++; ?>. {{ $nara->nama }}</div>
+                      @endif
                     @endforeach
                     </td>
                     <td>{{ $post->lembaga }}</td>

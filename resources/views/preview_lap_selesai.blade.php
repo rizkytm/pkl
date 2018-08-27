@@ -41,12 +41,14 @@
               </div>
                 @foreach($posts->narasumber as $nara)
                 <div class="col-sm-2"></div>
+                @if(!empty($nara->nama))
                 <div class="col-sm-5">
                   <input type="text" class="form-control" name="narasumber" value="{{ $nara->nama }}" disabled>
                 </div>
                 <div class="col-sm-5">
                   <input type="text" class="form-control" name="narasumber" value="{{ $nara->kontak }}" disabled>
                 </div>
+                @endif
                 @endforeach
             </div>
 
@@ -109,8 +111,20 @@
               </div>
             <!-- </form> -->
 
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <form class="form-horizontal" action="{{ route('download.word', $posts) }}" method="post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                          {{ method_field('PATCH') }}
+                            <button type="submit" class="btn btn-danger">Download</button>
+                        </form>
+                    </div>
+                </div>
+                        <!-- </form> -->
               </div>
 
+            </div>
           </div>
         </div>
 
@@ -121,18 +135,7 @@
     <div class="col-md-12">
       <div class="box box-primary"> -->
 
-		  <div class="row">
-		    <div class="col-md-12">
-		      	<div class="box box-primary">
-		            <form class="form-horizontal" action="{{ route('download.word', $posts) }}" method="post" enctype="multipart/form-data">
-		                {{ csrf_field() }}
-		          		{{ method_field('PATCH') }}
-		                <button type="submit" class="btn btn-danger">Download</button>
-		            </form>
-		        </div>
-		    </div>
-		            <!-- </form> -->
-		  </div>
+		  
 		<!-- </div>
 		</div>
 	</div>

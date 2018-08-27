@@ -41,12 +41,14 @@
               </div>
                 @foreach($posts->narasumber as $nara)
                 <div class="col-sm-2"></div>
+                @if(!empty($nara->nama))
                 <div class="col-sm-5">
                   <input type="text" class="form-control" name="narasumber" value="{{ $nara->nama }}" disabled>
                 </div>
                 <div class="col-sm-5">
                   <input type="text" class="form-control" name="narasumber" value="{{ $nara->kontak }}" disabled>
                 </div>
+                @endif
                 @endforeach
             </div>
 
