@@ -23,10 +23,10 @@
       {{ method_field('PATCH') }}
               <textarea name="isi" id="rangkum" class="form-control" placeholder="Silakan ketikkan hasil laporan anda..."
                     style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                    <span id="wordCount">0</span> Karakter | <span id="kataCount">0</span> Kata
+                    <span id="wordCount">0</span> Karakter | <span id="kataCount">0</span> Kata | <span> <b>MINIMUM Jumlah Karakter :  6000 </b>
                     <div class="box-footer">
                       <button type="submit" class="btn btn-primary">Tambah</button>
-
+                      <a class="btn btn-danger" href="{{ route('wawancara') }}">Batal</a>
                     </div>
             </form>
 
