@@ -422,9 +422,9 @@ class WawancaraController extends Controller
 
     public function storejawaban(Request $request)
     {
-        // $messages = [
-        //     'min' => 'minimal 10 karakter',
-        // ];
+        $messages = [
+            'min' => 'minimal 10 karakter',
+        ];
         // $validator = Validator::make($request->all(), [
         //     'answers[]' => 'min:10',
         // ]);
@@ -441,12 +441,13 @@ class WawancaraController extends Controller
             $rules['answers.'.$key] = 'nullable|min:10';
         }
             
-        $validator = Validator::make($input, $rules);
+        $validator = Validator::make($input, $rules, $messages);
+        $old = session()->getOldInput();
 
         if ($validator->fails()) {
             return redirect('jawabpertanyaan')
                         ->withErrors($validator)
-                        ->withInput();
+                        ->withInput($request->flash());
         }
         else{
         

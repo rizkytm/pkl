@@ -30,6 +30,9 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ url('asset/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -45,7 +48,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="{{ url('/home') }}" class="logo">
+    <a href="{{ route('admin.dashboard') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>SIW</b></span>
       <!-- logo for regular state and mobile devices -->

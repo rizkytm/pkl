@@ -32,21 +32,25 @@
               <div class="box-body">
 
                 <input name="post_id" type="hidden" class="form-control" id="name" value="{{ $posts->id }}">
-
-                @foreach($questions as $question)
-                <div class="form-group has-feedback {{ $errors->has('answers[]') ? ' has-error' : '' }}">
-                  <label for="exampleInputEmail1">{{ $question->question }}</label>
-                  <input name="qid[]" type="hidden" class="form-control" id="name" value="{{ $question->id }}">
-                  <input name="answers[]" type="text" class="form-control" id="name" placeholder="Jawaban" value="{{ old('answers[]') }}">
-                  @if ($errors->any())
-                  <span class="label label-danger">                      
-                            @foreach ($errors->all() as $error)
-                                {{ $error }}
-                            @endforeach
+                <?php $i = 0; ?>
+                @foreach($questions as $question)                
+                <div class="form-group has-feedback {{ $errors->has('answers.'.$i) ? ' has-error' : '' }}">
+                  <label for="question">{{ $question->question }}</label>
+                  <input name="qid[]" type="hidden" class="form-control" id="qid" value="{{ $question->id }}">
+                  <input name="answers[]" type="text" class="form-control" id="answers" placeholder="Jawaban" value="{{ old('answers.'.$i) }}">
+                  
+                  @if ($errors->has('answers.'.$i))
+                  <span class="help-block">                      
+                            <!-- @foreach ($errors->all() as $error) -->                              
+                                <p>{{ $errors->first('answers.'.$i) }}</p>
+                              
+                            <!-- @endforeach -->
                         
                     </span>
+
                 @endif
                 </div>
+                <?php $i++; ?>                
                 @endforeach
               </div>
               <div class="box-footer">
