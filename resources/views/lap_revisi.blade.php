@@ -44,12 +44,16 @@
                     <td><?php echo $counter++; ?></td>
                     <td>
                         <div>1. {{ $post->penulis1 }}</div>
+                        @if(!empty($post->penulis2))
                         <div>2. {{ $post->penulis2 }}</div>
+                        @endif
                     </td>
                     <td>
                     <?php $count=1; ?>
                     @foreach ($post->narasumber as $nara)
+                      @if(!empty($nara->nama))
                       <div><?php echo $count++; ?>. {{ $nara->nama }}</div>
+                      @endif
                     @endforeach
                     </td>
                     <td>{{ $post->topic }}</td>
