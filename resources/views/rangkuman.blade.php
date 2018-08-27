@@ -23,7 +23,7 @@
       {{ method_field('PATCH') }}
       <div class="form-group has-feedback {{ $errors->has('isi') ? ' is-invalid' : '' }}">
         <div class="col-md-12">
-              <textarea name="isi" id="rangkum" class="form-control" placeholder="Silakan ketikkan hasil laporan anda..." 
+              <textarea name="isi" id="rangkum" class="form-control" placeholder="Silakan ketikkan hasil laporan anda..."
                     style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ old('isi') }}</textarea>
                     @if ($errors->has('isi'))
                       <span class="help-block-danger">
@@ -32,7 +32,7 @@
                   @endif
             </div>
       </div>
-                    <span id="wordCount">0</span> Karakter | <span id="kataCount">0</span> Kata | <span> <b>MINIMUM Jumlah Karakter :  6000 </b>
+                    <span id="wordCount">0</span> Karakter | <span id="kataCount">0</span> Kata | <span> MINIMUM Jumlah Karakter :  <b>6000</b> 
 
                     <div class="box-footer">
                       <button type="submit" class="btn btn-primary">Tambah</button>

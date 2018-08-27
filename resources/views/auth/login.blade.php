@@ -70,8 +70,8 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-            <button type="submit" class="btn btn-primary btn-block btn-flat">
-                {{ __('Login') }}
+            <button type="submit" class="btn btn-primary ">
+                {{ __('Login User') }}
             </button>
         </div>
         <!-- /.col -->
@@ -86,7 +86,7 @@
     <a href="{{ route('password.request') }}">
         I forgot my password
     </a><br>
-    <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+    <a href="{{ route('admin.login') }}" class="text-center">LOGIN ADMIN</a>
 
   </div>
   <!-- /.login-box-body -->
