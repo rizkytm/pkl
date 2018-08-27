@@ -267,7 +267,7 @@
                   <th>Penulis</th>
                   <th>Narasumber</th>
                   <th>Lembaga</th>
-                  <th>Topik</th>
+                  <th>Topik/Judul</th>
                   <th>Tanggal Pembuatan</th>
                   <th>Status</th>
                 </tr>

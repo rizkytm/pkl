@@ -36,6 +36,8 @@
                   <th>Topik/Judul</th>
                   <th>Tanggal Pembuatan</th>
                   <th>Aksi</th>
+                  <th>Status</th>
+
                 </tr>
               </thead>
               <tbody>
@@ -52,12 +54,16 @@
                     @foreach ($post->narasumber as $nara)
                       <div><?php echo $count++; ?>. {{ $nara->nama }}</div>
                     @endforeach
+                    </td>
                     <td>{{ $post->lembaga }}</td>
                     <td>{{ $post->topic }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
-                      @if($post->condition === 2)
                       <a class="btn btn-warning" href="{{ route('tampil.user.edit', $post) }}">Edit</a>
+                    </td>
+                    <td>
+                      @if($post->condition === 2)
+                      <button type="submit" class="btn btn-danger" disabled=""> Revisi </button>
                       @else
                       <button type="submit" class="btn btn-success" disabled=""> Terkirim </button>
                       @endif

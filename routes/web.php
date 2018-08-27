@@ -56,8 +56,11 @@ Route::get('admin/query', 'LaporanController@search')->name('admin.query');
   Route::post('/jawabpertanyaan', 'WawancaraController@storejawaban')->name('store.jawaban');
   Route::get('/tampil', 'WawancaraController@tampil')->name('get.tampil');
   Route::get('/tampillagi/{id}', 'WawancaraController@show')->name('show.tampil');
+
   Route::patch('/tampillagi/{id}/edit', 'WawancaraController@tampiluserupdate')->name('edit.wawancara');
 
+  Route::get('/wawancaraSelesai/{id}', 'WawancaraController@showSelesai')->name('show.selesai');
+  
 
   Route::get('/newjawabpertanyaan', 'WawancaraController@new')->name('new.jawab.pertanyaan');
   Route::patch('/wawancara/{id}/update', 'WawancaraController@kirim')->name('kirim.laporan');
