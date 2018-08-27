@@ -21,10 +21,10 @@
             <form class="form-horizontal" action="{{ route('kirim.rangkuman') }}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
       {{ method_field('PATCH') }}
-      <div class="form-group has-feedback">
+      <div class="form-group has-feedback {{ $errors->has('isi') ? ' is-invalid' : '' }}">
         <div class="col-md-12">
-              <textarea name="isi" id="rangkum" class="form-control{{ $errors->has('isi') ? ' is-invalid' : '' }}" placeholder="Silakan ketikkan hasil laporan anda..." value="{{ old('isi') }}"
-                    style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              <textarea name="isi" id="rangkum" class="form-control" placeholder="Silakan ketikkan hasil laporan anda..." 
+                    style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ old('isi') }}</textarea>
                     @if ($errors->has('isi'))
                       <span class="help-block-danger">
                           <strong>{{ $errors->first('isi') }}</strong>
@@ -33,7 +33,7 @@
             </div>
       </div>
                     <span id="wordCount">0</span> Karakter | <span id="kataCount">0</span> Kata | <span> <b>MINIMUM Jumlah Karakter :  6000 </b>
-                      
+
                     <div class="box-footer">
                       <button type="submit" class="btn btn-primary">Tambah</button>
                       <a class="btn btn-danger" href="{{ route('wawancara') }}">Batal</a>

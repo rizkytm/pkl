@@ -321,14 +321,27 @@ class WawancaraController extends Controller
     {
       $post = Post::orderBy('created_at', 'desc')->first();
 
-      $this->validate(request(), [
-            'isi' => 'min:6000'
-        ]);
+      $messages = [
+            'min' => 'minimal 6000 karakter',
+        ];
 
-      $post->isi = $request->input('isi');
+      $validator = Validator::make($request->all(), [
+            'isi' => 'min:6000',
+        ], $messages);
+
+      if ($validator->fails()) {
+            return redirect('rangkuman')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else {
+            $post->isi = $request->input('isi');
 
       $post->save();
       return redirect()->route('wawancara')->with('success', 'Rangkuman Berhasil Ditambahkan');
+        }      
+
+      
     }
 
 
