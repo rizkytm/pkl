@@ -12,10 +12,13 @@ use App\Question;
 use App\Answer;
 use App\Comment;
 use App\File;
+use App\Admin;
 
 use App\Notifications\RevisiNotification;
 use App\Notifications\SelesaiNotification;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class LaporanController extends Controller
 {
@@ -225,5 +228,44 @@ class LaporanController extends Controller
         $users->delete();
 
         return redirect()->route('manage.user')->with('danger', 'User Berhasil Dihapus');
+    }
+
+    public function userbaru()
+    {
+      return view('tambahuseradmin');
+    }
+
+    public function userbarustore(Request $request)
+    {
+      $this->validate(request(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+      ]);
+
+      User::create([
+            'name' => request('name'),
+            'email' => request('email'),
+            'password' => Hash::make(request('password')),
+      ]);
+
+      return redirect()->back()->with('success', 'Pengguna Berhasil Ditambahkan');
+    }
+
+    public function adminbarustore(Request $request)
+    {
+      $this->validate(request(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+      ]);
+
+      Admin::create([
+            'name' => request('name'),
+            'email' => request('email'),
+            'password' => Hash::make(request('password')),
+      ]);
+
+      return redirect()->back()->with('success', 'Admin Berhasil Ditambahkan');
     }
 }

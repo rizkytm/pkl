@@ -321,6 +321,10 @@ class WawancaraController extends Controller
     {
       $post = Post::orderBy('created_at', 'desc')->first();
 
+      $this->validate(request(), [
+            'isi' => 'min:6000'
+        ]);
+
       $post->isi = $request->input('isi');
 
       $post->save();
@@ -480,7 +484,6 @@ class WawancaraController extends Controller
         }
             
         $validator = Validator::make($input, $rules, $messages);
-        $old = session()->getOldInput();
 
         if ($validator->fails()) {
             return redirect('jawabpertanyaan')

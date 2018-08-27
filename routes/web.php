@@ -109,4 +109,6 @@ Route::delete('/admin/delete/{user}', 'AdminController@usersdestroy')->name('use
 
 Route::resource('/tasks', 'TasksController');
 
-///
+Route::get('/userbaru', 'LaporanController@userbaru')->name('user.admin.baru');
+Route::post('/userbaru', 'LaporanController@userbarustore')->name('userbaru.store');
+Route::post('/adminbaru', 'LaporanController@adminbarustore')->name('admin.store');

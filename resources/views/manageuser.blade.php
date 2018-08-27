@@ -6,13 +6,9 @@
 <div class="content-wrapper">
 <section class="content-header">
   <h1>
-    Manage User
+    Manage User <a href={{ route('user.admin.baru') }} class="btn btn-primary">Tambah Pengguna</a>
   </h1>
   @include('partials._alerts')
-  <ol class="breadcrumb">
-    <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Wawancara Selesai</li>
-  </ol>
 </section>
 
     <!-- Main content -->

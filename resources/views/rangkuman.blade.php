@@ -17,12 +17,21 @@
                       <!-- /. tools -->
           </div>
           <!-- /.box-header -->
-          <div class="box-body pad">
+          <div class="box-body">
             <form class="form-horizontal" action="{{ route('kirim.rangkuman') }}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
       {{ method_field('PATCH') }}
-              <textarea name="isi" id="rangkum" class="form-control" placeholder="Silakan ketikkan hasil laporan anda..."
+      <div class="form-group has-feedback">
+        <div class="col-md-12">
+              <textarea name="isi" id="rangkum" class="form-control{{ $errors->has('isi') ? ' is-invalid' : '' }}" placeholder="Silakan ketikkan hasil laporan anda..." value="{{ old('isi') }}"
                     style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    @if ($errors->has('isi'))
+                      <span class="help-block-danger">
+                          <strong>{{ $errors->first('isi') }}</strong>
+                      </span>
+                  @endif
+            </div>
+      </div>
                     <span id="wordCount">0</span> Karakter | <span id="kataCount">0</span> Kata
                     <div class="box-footer">
                       <button type="submit" class="btn btn-primary">Tambah</button>
