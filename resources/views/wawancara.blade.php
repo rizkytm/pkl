@@ -264,11 +264,10 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Penulis 1</th>
-                  <th>Penulis 2</th>
+                  <th>Penulis</th>
                   <th>Narasumber</th>
                   <th>Lembaga</th>
-                  <th>Topik</th>
+                  <th>Topik/Judul</th>
                   <th>Tanggal Pembuatan</th>
                   <th>Status</th>
                 </tr>
@@ -278,12 +277,14 @@
                 @foreach ($posts as $post)
                   <tr>
                     <td><?php echo $counter++; ?>.</td>
-                    <td>{{ $post->penulis1 }}</td>
-                    <td>{{ $post->penulis2 }} </td>
+                    <td>
+                        <div>1. {{ $post->penulis1 }}</div>
+                        <div>2. {{ $post->penulis2 }}</div>
+                    </td>
                     <td>
                     <?php $count=1; ?>
                     @foreach ($post->narasumber as $nara)
-                      <div> {{ $nara->nama }}</div>
+                      <div><?php echo $count++; ?>. {{ $nara->nama }}</div>
                     @endforeach
                     </td>
                     <td>{{ $post->lembaga }}</td>
@@ -295,12 +296,10 @@
                       <form class="form-horizontal" action="{{ route('kirim.laporan', $post) }}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
           {{ method_field('PATCH') }}
-                      <button type="submit" class="btn btn-danger"> kirim </button>
+                      <button type="submit" class="btn btn-primary"> kirim </button>
                     </form>
-                    @elseif($post->condition === 1)
-                    <button type="submit" class="btn btn-primary"> Terkirim </button>
                     @else
-                    <button type="submit" class="btn btn-success"> Selesai </button>
+                    <button type="submit" class="btn btn-success" disabled=""> Terkirim </button>
                     @endif
 
                     </td>

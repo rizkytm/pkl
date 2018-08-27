@@ -2,6 +2,7 @@
 
 @include('partials.sidebar')
 
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
@@ -61,14 +62,25 @@
             <a href="{{ route('selesai') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <!-- ./col -->
+        <!-- ./col -->      
+        
       </div>
       <!-- /.row -->
 
+
     </section>
         <!-- right col -->
+
+    
+
+        </div>
+      </div>
+    </section>
+
+
   </div>
       <!-- /.row (main row) -->
+
 
 @include('partials.footer')
 

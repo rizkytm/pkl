@@ -29,8 +29,7 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Penulis 1</th>
-                  <th>Penulis 2</th>
+                  <th>Penulis</th>
                   <th>Narasumber</th>
                   <th>Lembaga</th>
                   <th>Topik/Judul</th>
@@ -43,12 +42,16 @@
                 @foreach ($posts as $post)
                   <tr>
                     <td><?php echo $counter++; ?></td>
-                    <td>{{ $post->penulis1 }} </td>
-                    <td>{{ $post->penulis2 }} </td>
                     <td>
-                    @foreach($post->narasumber as $nara)
-                    {{ $nara->nama }}
-                    @endforeach</td>
+                        <div>1. {{ $post->penulis1 }}</div>
+                        <div>2. {{ $post->penulis2 }}</div>
+                    </td>
+                    <td>
+                    <?php $count=1; ?>
+                    @foreach ($post->narasumber as $nara)
+                      <div><?php echo $count++; ?>. {{ $nara->nama }}</div>
+                    @endforeach
+                    </td>
                     <td>{{ $post->topic }}</td>
                     <td>{{ $post->category->name }}</td>
                     <td>{{ $post->created_at }}</td>

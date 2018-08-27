@@ -37,7 +37,7 @@ class WawancaraController extends Controller
 
     public function index()
     {
-        $posts = Post::where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
+        $posts = Post::where('condition', NULL)->orWhere('condition', '1')->where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
         $categories = Category::paginate(10);
         $categories->links();
         $users = User::where("id", "=", Auth::user()->id)->get();
@@ -81,6 +81,44 @@ class WawancaraController extends Controller
 
         // return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'postfile', 'comments'));
     }
+
+    public function showSelesai($id)
+    {
+        Auth::user()->unreadNotifications()->update(['read_at' => now()]);
+        $posts = Post::find($id);
+        $cid = $posts->category_id;
+        $pid = $posts->id;
+        $categories = Category::where("id", $cid)->first();
+        $allcategory = Category::all();
+
+        $questions = Question::where("category_id", $cid)->get();
+        $answers = Answer::where("post_id", $pid)->get();
+
+        $posting = Post::with('narasumber')->get();
+
+        $postfile = File::where('post_id', $pid)->get();
+
+        $comments = Comment::where("post_id", $pid)->get();
+
+        return view('wawancaraSelesai', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'comments', 'postfile', 'allcategory'));
+
+        // $posts = Post::find($id);
+        // $cid = $posts->category_id;
+        // $pid = $posts->id;
+        // $categories = Category::where("id", $cid)->first();
+
+        // $questions = Question::where("category_id", $cid)->get();
+        // $answers = Answer::where("post_id", $pid)->get();
+
+        // $posting = Post::with('narasumber')->where('condition', '1')->get();
+
+        // $postfile = File::where('post_id', $pid)->get();
+
+        // $comments = Comment::where("post_id", $pid)->get();
+
+        // return view('tampil', compact('posts', 'categories', 'narasumber', 'users', 'questions', 'answers', 'posting', 'postfile', 'comments'));
+    }
+
 
     public function tampiluseredit($id)
     {
@@ -380,7 +418,7 @@ class WawancaraController extends Controller
     public function showTable()
  	  {
  	 	// $posts = Post::paginate(10);
- 	 	$posts = Post::with('narasumber')->where('condition', '2')->where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
+ 	 	$posts = Post::with('narasumber')->where('condition', '2')->orWhere('condition', '3')->where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
 
  		return view('revisi', compact('posts'));
  	  }
