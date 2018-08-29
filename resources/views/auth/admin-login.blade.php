@@ -36,7 +36,7 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg"><b>Masuk</b></p>
+    <p class="login-box-msg"><b>Masuk Admin</b></p>
 
     <form method="POST" action="{{ route('admin.login.submit') }}" aria-label="{{ __('Login') }}">
         @csrf
@@ -70,8 +70,8 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-            <button type="submit" class="btn btn-primary btn-block btn-flat">
-                {{ __('Login') }}
+            <button type="submit" class="btn btn-primary">
+                {{ __('Login Admin') }}
             </button>
         </div>
         <!-- /.col -->
@@ -86,7 +86,7 @@
     <a href="{{ route('password.request') }}">
         I forgot my password
     </a><br>
-    <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+    <a href="{{ route('login') }}" class="text-center">LOGIN USER</a>
 
   </div>
   <!-- /.login-box-body -->

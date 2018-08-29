@@ -259,7 +259,7 @@
 
                 <div class="col-sm-2"></div>
                 <div class="form-group">
-                  <input type="submit" name="" class="btn btn-warning col-sm-3" value="Buat rangkuman">
+                  <input type="submit" name="" class="btn btn-warning col-sm-3" value="Buat rangkuman berita">
                 </div>
                 </form>
             </div>
