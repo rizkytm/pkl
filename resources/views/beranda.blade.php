@@ -74,11 +74,6 @@
     
 
         </div>
-      </div>
-    </section>
-
-
-  </div>
       <!-- /.row (main row) -->
 
 
