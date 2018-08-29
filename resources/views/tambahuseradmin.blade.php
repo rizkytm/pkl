@@ -19,7 +19,7 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Pengguna Baru</h3>
+              <h3 class="box-title">User Baru</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -58,7 +58,7 @@
                 <div class="form-group has-feedback">
                   <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Retype Password" required>
                 </div>
-                
+
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Tambah</button>
                 <a class="btn btn-warning" href="{{ route('admin.dashboard') }}">Kembali</a>
@@ -110,7 +110,7 @@
                 <div class="form-group has-feedback">
                   <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Retype Password" required>
                 </div>
-                
+
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Tambah</button>
                 <a class="btn btn-warning" href="{{ route('admin.dashboard') }}">Kembali</a>
