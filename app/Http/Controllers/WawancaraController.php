@@ -357,14 +357,14 @@ class WawancaraController extends Controller
                         'kontak' => $input['kontaks'][$key],
                     ));
 
-                    dd($narasumber);
+                    ($narasumber);
                 }
             }
 
             return redirect()->route('jawab.pertanyaan');
             }
 
-        
+
 
     }
 
@@ -390,9 +390,9 @@ class WawancaraController extends Controller
 
       $post->save();
       return redirect()->route('wawancara')->with('success', 'Rangkuman Berhasil Ditambahkan');
-        }      
+        }
 
-      
+
     }
 
 
@@ -516,7 +516,7 @@ class WawancaraController extends Controller
         return view('rangkuman');
     }
 
-    
+
 
     public function jawabpertanyaan()
     {
@@ -535,7 +535,7 @@ class WawancaraController extends Controller
         //     'answers[]' => 'min:10',
         // ]);
 
-        
+
         // $request->validate([
         //     'answer' => 'min:10',
         // ]);
@@ -546,7 +546,7 @@ class WawancaraController extends Controller
         {
             $rules['answers.'.$key] = 'nullable|min:10';
         }
-            
+
         $validator = Validator::make($input, $rules, $messages);
 
         if ($validator->fails()) {
@@ -555,7 +555,7 @@ class WawancaraController extends Controller
                         ->withInput($request->flash());
         }
         else{
-        
+
         foreach($request->input('answers') as $key => $value) {
             if($request->has('answers'))
             {
@@ -569,10 +569,10 @@ class WawancaraController extends Controller
 
       return redirect()->route('wawancara')->with('success', 'Wawancara Berhasil Ditambahkan');
   }
-        
-        
 
-        
+
+
+
 
     }
 
