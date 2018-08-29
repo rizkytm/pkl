@@ -19,8 +19,8 @@
 
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><h5><a href="#wawancara" data-toggle="tab">Tanya-Jawab</a></h5></li>
-          <li><h5 class="col-sm-3"><a href="#rangkuman" data-toggle="tab">Berita</a><h5></li>
+          <li class="active col-xs-2"><h5><center><a href="#wawancara" data-toggle="tab">Tanya-Jawab</a></center></h5></li>
+          <li class="col-xs-2"><h5><center><a href="#rangkuman" data-toggle="tab">Berita</a></center><h5></li>
         </ul>
         <div class="tab-content">
 
@@ -51,7 +51,7 @@
                       </div>
                   </div>
 
-                <div class="form-group has-feedback {{ $errors->has('kontak') ? ' has-error' : '' }}">
+                <div class="form-group has-feedback">
                   <label class="col-sm-2">Narasumber :</label>
                   <div class="col-sm-5">
                       <label>Nama</label>
@@ -62,7 +62,7 @@
 
                   <div class="col-sm-2"></div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="nama" name="nama1" placeholder="1. " required>
+                      <input type="text" class="form-control{{ $errors->has('nama1') ? ' has-error' : '' }}" id="nama" name="nama1" placeholder="1. " value="{{ old('nama1') }}" required>
                       @if ($errors->has('nama1'))
                           <span class="help-block">
                             <p>{{ $errors->first('nama1') }}</p>
@@ -70,22 +70,34 @@
                         @endif
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="kontak" name="kontak1" placeholder="1. " value="{{ old('kontak1') }}" required>
+                      <input type="text" class="form-control{{ $errors->has('kontak1') ? ' has-error' : '' }}" id="kontak" name="kontak1" placeholder="1. " value="{{ old('kontak1') }}" required>
                       @if ($errors->has('kontak1'))
                           <span class="help-block">
                             <p>{{ $errors->first('kontak1') }}</p>
                           </span>
                         @endif
                     </div>
-
+                    
+                    <?php $in = 0; ?>
                     @for($i = 2; $i < 5; $i++)
                     <div class="col-sm-2"></div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="nama" name="namas[]" placeholder="{{$i}}. ">
+                      <input type="text" class="form-control{{ $errors->has('namas.'.$in) ? ' has-error' : '' }}" id="nama" name="namas[]" placeholder="{{$i}}. ">
+                      @if ($errors->has('namas.'.$i))
+                        <span class="help-block">                                                  
+                            <p>{{ $errors->first('namas') }}</p>
+                        </span>
+                      @endif
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="kontak" name="kontaks[]" placeholder="{{$i}}. ">
+                      <input type="text" class="form-control{{ $errors->has('kontaks.'.$in) ? ' has-error' : '' }}" id="kontak" name="kontaks[]" placeholder="{{$i}}. ">
+                      @if ($errors->has('kontaks.'.$i))
+                        <span class="help-block">                                                  
+                            <p>{{ $errors->first('kontaks') }}</p>
+                        </span>
+                      @endif
                     </div>
+                    <?php $in++; ?>
                     @endfor
 
                 </div>
@@ -112,11 +124,10 @@
                     </select>
                   </div>
                 </div>
-
                 <div class="form-group has-feedback {{ $errors->has('files') ? ' has-error' : '' }}">
                   <label class="col-sm-2">Upload File Dokumentasi (.zip / .rar)</label>
                   <div class="col-sm-3">
-                    <input class="form-control" type="file" name="files[]" multiple />
+                    <input class="form-control" type="file" name="files">
                     @if ($errors->has('files'))
                       <span class="help-block">
                         <p>{{ $errors->first('files') }}</p>
@@ -171,7 +182,7 @@
 
                   <div class="col-sm-2"></div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="nama" name="nama1" placeholder="1. " required>
+                      <input type="text" class="form-control{{ $errors->has('nama1') ? ' has-error' : '' }}" id="nama" name="nama1" placeholder="1. " value="{{ old('nama1') }}" required>
                       @if ($errors->has('nama1'))
                           <span class="help-block">
                             <p>{{ $errors->first('nama1') }}</p>
@@ -179,7 +190,7 @@
                         @endif
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="kontak" name="kontak1" placeholder="1. " value="{{ old('kontak1') }}" required>
+                      <input type="text" class="form-control{{ $errors->has('kontak1') ? ' has-error' : '' }}" id="kontak" name="kontak1" placeholder="1. " value="{{ old('kontak1') }}" required>
                       @if ($errors->has('kontak1'))
                           <span class="help-block">
                             <p>{{ $errors->first('kontak1') }}</p>
@@ -187,14 +198,26 @@
                         @endif
                     </div>
 
+                    <?php $in = 0; ?>
                     @for($i = 2; $i < 5; $i++)
                     <div class="col-sm-2"></div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="nama" name="namas[]" placeholder="{{$i}}. ">
+                      <input type="text" class="form-control{{ $errors->has('namas.'.$in) ? ' has-error' : '' }}" id="nama" name="namas[]" placeholder="{{$i}}. ">
+                      @if ($errors->has('namas.'.$i))
+                        <span class="help-block">                                                  
+                            <p>{{ $errors->first('namas') }}</p>
+                        </span>
+                      @endif
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="kontak" name="kontaks[]" placeholder="{{$i}}. ">
+                      <input type="text" class="form-control{{ $errors->has('kontaks.'.$in) ? ' has-error' : '' }}" id="kontak" name="kontaks[]" placeholder="{{$i}}. ">
+                      @if ($errors->has('kontaks.'.$i))
+                        <span class="help-block">                                                  
+                            <p>{{ $errors->first('kontaks') }}</p>
+                        </span>
+                      @endif
                     </div>
+                    <?php $in++; ?>
                     @endfor
 
                 </div>
@@ -225,7 +248,7 @@
                 <div class="form-group has-feedback {{ $errors->has('files') ? ' has-error' : '' }}">
                   <label class="col-sm-2">Upload File Dokumentasi (.zip / .rar)</label>
                   <div class="col-sm-3">
-                    <input class="form-control" type="file" name="files[]" multiple />
+                    <input class="form-control" type="file" name="files">
                     @if ($errors->has('files'))
                       <span class="help-block">
                         <p>{{ $errors->first('files') }}</p>
@@ -273,10 +296,10 @@
                 </tr>
               </thead>
               <tbody>
-                <?php $counter=1; ?>
+                <?php $i = ($posts->currentpage()-1)* $posts->perpage() + 1 ;?>
                 @foreach ($posts as $post)
                   <tr>
-                    <td><?php echo $counter++; ?>.</td>
+                    <td>{{ $i++ }}</td>
                     <td>
                         <div>1. {{ $post->penulis1 }}</div>
                         @if(!empty($post->penulis2))

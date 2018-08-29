@@ -33,6 +33,23 @@
         // page is now ready, initialize the calendar...
         $('#calendar').fullCalendar({
             // put your options and callbacks here
+            // eventClick: function(eventObj) {
+            //   if (eventObj.url) {
+            //     alert(
+            //       'Clicked ' + eventObj.title + '.\n' +
+            //       'Deskripsi ' + eventObj.description
+            //     );              
+            //   },
+            // },
+            // eventRender: function(eventObj, $el) {
+            //   $el.popover({
+            //     title: eventObj.title,
+            //     content: eventObj.description,
+            //     trigger: 'hover',
+            //     placement: 'top',
+            //     container: 'body'
+            //   });
+            // },
             themeSystem : 'bootstrap4',
             events : [
                 @foreach($tasks as $task)
@@ -41,7 +58,6 @@
                     start : '{{ $task->task_date }}',
                     url : '{{ route('tasks.edit', $task->id) }}'
                 },
-
                 @endforeach
             ],            
             header: {

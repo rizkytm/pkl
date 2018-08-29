@@ -59,7 +59,9 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $task = Task::find($id);
+
+        return view('tasks.edit', compact('task'));
     }
 
     /**
@@ -71,7 +73,13 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::find($id);
+        $task->name = $request->input('name');
+        $task->description = $request->input('description');
+        $task->task_date = $request->input('task_date');
+        $task->save();
+
+        return redirect()->back()->with('success', 'Agenda berhasil diedit');
     }
 
     /**

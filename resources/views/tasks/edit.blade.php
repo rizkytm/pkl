@@ -13,19 +13,19 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
 
-<form action="{{ route('tasks.store') }}" method="post">
+<form action="{{ route('tasks.update', $task) }}" method="post">
   {{ csrf_field() }}
   Task name:
   <br />
-  <input type="text" name="name" />
+  <input type="text" name="name" value="{{ $task->name }}" />
   <br /><br />
   Task description:
   <br />
-  <textarea name="description"></textarea>
+  <textarea name="description">{{ $task->description }}</textarea>
   <br /><br />
   Start time:
   <br />
-  <input type="text" name="task_date" class="date" />
+  <input type="text" name="task_date" class="date" value="{{ $task->task_date }}" />
   <br /><br />
   <input type="submit" value="Save" />
 </form>

@@ -37,7 +37,7 @@ class WawancaraController extends Controller
 
     public function index()
     {
-        $posts = Post::where('condition', NULL)->orWhere('condition', '1')->where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
+        $posts = Post::where("user_id", "=", Auth::user()->id)->where(function($query) { $query->where('condition', '1')->orWhereNull('condition');})->orderBy('created_at', 'desc')->paginate(10);
         $categories = Category::paginate(10);
         $categories->links();
         $users = User::where("id", "=", Auth::user()->id)->get();
@@ -239,54 +239,98 @@ class WawancaraController extends Controller
 
     public function storeWawancara(Request $request)
     {
-        $request->validate([
-            'kontak' => 'numeric',
-        ]);
+        $rules = [
+          'files' => 'mimes:zip,rar',
+          'lembaga' => 'required',
+                'kontak1' => 'numeric',
+                // 'kontaks.*' => 'numeric',
+                'topic' => 'required',
+         ];
+         $messages = [
+                'mimes' => 'Harus Zip atau Rar',
+                'numeric' => 'Harus angka'
+                ];
+        $validator1 = Validator::make($request->all(), $rules, $messages);
 
-        $this->validate(request(), [
-            // 'title' => 'required',
-            // 'content' => 'required|min:10',
-            // 'video' => 'mimes:mp4,mkv,avi',
-            // 'pdf' => 'mimes:pdf'
-
-            'lembaga' => 'required',
-            'kontak' => 'numeric|max:13',
-            'topic' => 'required',
-            'filename' => 'mimes:zip,rar'
-
-
-        ]);
-
-        $post = Post::create([
-            'user_id' => auth()->id(),
-            'penulis1' => Auth::user()->name,
-            'penulis2' => request('penulis2'),
-            'lembaga' => request('lembaga'),
-            'topic' => request('topic'),
-            'category_id' => request('kategori_id')
-        ]);
-
-        $files = $request->file('files');
-
-        if (is_array($files) || is_object($files))
-        {
-            foreach ($files as $file) {
-                $filename = $file->getClientOriginalName();
-                $file = $file->storeAs('files', $filename);
-                // $filename = $file->store('files');
-                File::create([
-                    'post_id' => $post->id,
-                    'filename' => $file
-                ]);
-            }
+        if ($validator1->fails()) {
+            return redirect('wawancara')
+                        ->withErrors($validator1)
+                        ->withInput();
         }
 
-        $narasumber = Narasumber::create([
-            'post_id' => $post->id,
-            //'narasumber' => request('narasumber'),
-            'nama' => request('nama1'),
-            'kontak' => request('kontak1')
-        ]);
+        // $request->validate([
+        //     'kontak' => 'numeric',
+        // ]);
+
+        // $this->validate(request(), [
+        //     // 'title' => 'required',
+        //     // 'content' => 'required|min:10',
+        //     // 'video' => 'mimes:mp4,mkv,avi',
+        //     // 'pdf' => 'mimes:pdf'
+
+        //     'lembaga' => 'required',
+        //     'kontak' => 'numeric|max:13',
+        //     'topic' => 'required',
+        //     'filename' => 'mimes:zip,rar'
+
+
+        // ]);
+
+        else {
+
+            // $validator2 = Validator::make($request->all(), [
+            //     'lembaga' => 'required',
+            //     'kontak' => 'numeric|max:13',
+            //     'topic' => 'required',
+            // ]);
+
+            // if ($validator2->fails()) {
+            //     return redirect('wawancara')
+            //             ->withErrors($validator2)
+            //             ->withInput();
+            // }
+
+            // else {
+
+            $post = Post::create([
+                'user_id' => auth()->id(),
+                'penulis1' => Auth::user()->name,
+                'penulis2' => request('penulis2'),
+                'lembaga' => request('lembaga'),
+                'topic' => request('topic'),
+                'category_id' => request('kategori_id')
+            ]);
+
+            $file = $request->file('files');
+            // $allowedfileExtension=['zip','rar'];
+
+            if (is_array($file) || is_object($file))
+            {
+            //     foreach ($files as $file) {
+                    // $extension = $file->getClientOriginalExtension();
+                    $filename = $file->getClientOriginalName();
+                    // $check=in_array($extension,$allowedfileExtension);
+                    // if($check) {
+                    $file = $file->storeAs('files', $filename);
+                    // $filename = $file->store('files');
+                    File::create([
+                        'post_id' => $post->id,
+                        'filename' => $file
+                    ]);
+                    // }
+                    // else{
+                    //     return redirect('wawancara');
+                    // }
+            //     }
+            }
+
+            $narasumber = Narasumber::create([
+                'post_id' => $post->id,
+                //'narasumber' => request('narasumber'),
+                'nama' => request('nama1'),
+                'kontak' => request('kontak1')
+            ]);
+
 
         // $namas = $request->input('namas');
         // $kontaks = $request->input('kontaks');
@@ -301,19 +345,24 @@ class WawancaraController extends Controller
         //     }
         // }
 
-        $input = $request->all();
-        foreach($request->input('namas') as $key => $value) {
-            if($request->has('namas'))
-            {
-                Narasumber::create(array(
-                    'post_id' => $post->id,
-                    'nama' => $value,
-                    'kontak' => $input['kontaks'][$key],
-                ));
-            }
-        }
+            $input = $request->all();
+            foreach($request->input('namas') as $key => $value) {
+                if($request->has('namas'))
+                {
+                    $narasumber = Narasumber::create(array(
+                        'post_id' => $post->id,
+                        'nama' => $value,
+                        'kontak' => $input['kontaks'][$key],
+                    ));
 
-        return redirect()->route('jawab.pertanyaan');
+                    dd($narasumber);
+                }
+            }
+
+            return redirect()->route('jawab.pertanyaan');
+            }
+
+        
 
     }
 

@@ -42,7 +42,7 @@
                   @if ($errors->has('answers.'.$i))
                   <span class="help-block">                      
                             <!-- @foreach ($errors->all() as $error) -->                              
-                                <p>{{ $errors->first('answers.'.$i) }}</p>
+                                <p>{{ $errors->first('answers') }}</p>
                               
                             <!-- @endforeach -->
                         

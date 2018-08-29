@@ -26,7 +26,7 @@
   <br /><br />
   Start time:
   <br />
-  <input type="text" name="task_date" id="datepicker" />
+  <input type="text" class="form-control" name="task_date" id="datepicker" />
   <br /><br />
   <input type="submit" value="Save" />
 </form>
@@ -40,7 +40,7 @@
 </div>
 
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css"></script>
 <script>
