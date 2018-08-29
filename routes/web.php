@@ -83,7 +83,7 @@ Route::get('admin/query', 'LaporanController@search')->name('admin.query');
   Route::get('/manageuser', 'LaporanController@manageuser')->name('manage.user');
   Route::delete('/manageuser/{id}/delete', 'LaporanController@manageuserdestroy')->name('manage.user.destroy');
   Route::delete('/lapselesai/{id}/delete', 'LaporanController@postdestroy')->name('post.destroy');
-  Route::delete('/rangkuman', 'WawancaraController@postdestroybatal')->name('post.destroy.batal');
+  Route::delete('/lapselesai/{id}/deletee', 'LaporanController@postdestroybatal')->name('post.destroy.batal');
   Route::get('/lapmasuk', 'LaporanController@masuk')->name('masuk');
   Route::get('/laprevisi', 'LaporanController@laprevisi')->name('laprevisi');
   Route::get('/lapselesai', 'LaporanController@lapselesai')->name('lapselesai');

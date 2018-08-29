@@ -370,7 +370,7 @@ class WawancaraController extends Controller
 
     public function kirimrangkuman(Request $request)
     {
-      $post = Post::where("id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->first();
+      $post = Post::orderBy('created_at', 'desc')->first();
 
       $messages = [
             'min' => 'minimal 6000 karakter',
@@ -472,7 +472,7 @@ class WawancaraController extends Controller
             }
         }
 
-        return redirect()->route('rangkuman', $post);
+        return redirect()->route('rangkuman');
     }
 
 
@@ -513,18 +513,8 @@ class WawancaraController extends Controller
 
     public function rangkuman()
     {
-      $post = Post::where("id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->first();
-        return view('rangkuman', compact('post'));
+        return view('rangkuman');
     }
-
-    public function postdestroybatal()
-      {
-         $posts = Post::where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->first();
-         //$posts = Post::find($id);
-          $posts->delete();
-
-          return redirect()->route('wawancara')->with('danger', 'Laporan dibatalkan');
-      }
 
 
 

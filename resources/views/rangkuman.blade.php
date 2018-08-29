@@ -36,8 +36,7 @@
 
                     <div class="box-footer">
                       <button type="submit" class="btn btn-primary">Tambah</button>
-                      @include('modalpostbatal')
-                      <button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#batalpost{{$post}}" >Batal</button>
+                      <a class="btn btn-danger" href="{{ route('wawancara') }}">Batal</a>
                     </div>
             </form>
 
