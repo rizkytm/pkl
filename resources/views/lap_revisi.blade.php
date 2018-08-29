@@ -43,9 +43,9 @@
                   <tr>
                     <td><?php echo $counter++; ?></td>
                     <td>
-                        <div>1. {{ $post->penulis1 }}</div>
+                        <div><b>{{ $post->penulis1 }};</b></div>
                         @if(!empty($post->penulis2))
-                        <div>2. {{ $post->penulis2 }}</div>
+                        <div><b>{{ $post->penulis2 }};</b></div>
                         @endif
                     </td>
                     <td>

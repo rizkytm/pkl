@@ -37,7 +37,9 @@ class WawancaraController extends Controller
 
     public function index()
     {
-        $posts = Post::where("user_id", "=", Auth::user()->id)->where(function($query) { $query->where('condition', '1')->orWhereNull('condition');})->orderBy('created_at', 'desc')->paginate(10);
+        $posts = Post::where("user_id", "=", Auth::user()->id)->where(function($query){
+            $query->where('condition', '1')->orWhereNull('condition');
+        })->orderBy('created_at', 'desc')->paginate(10);
         $categories = Category::paginate(10);
         $categories->links();
         $users = User::where("id", "=", Auth::user()->id)->get();
@@ -484,7 +486,7 @@ class WawancaraController extends Controller
     public function showTable()
  	  {
  	 	// $posts = Post::paginate(10);
- 	 	$posts = Post::with('narasumber')->where('condition', '2')->orWhere('condition', '3')->where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
+ 	 	$posts = Post::with('narasumber')->where("user_id", "=", Auth::user()->id)->whereIn('condition', [2,3])->orderBy('created_at', 'desc')->paginate(10);
 
  		return view('revisi', compact('posts'));
  	  }
