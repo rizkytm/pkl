@@ -27,6 +27,7 @@ class WORDController extends Controller
         //$narasumber = $posts->narasumber()->get();
     	
         $wordTest = new \PhpOffice\PhpWord\PhpWord();
+
         $newSection = $wordTest->addSection(array('paperSize' => 'A4', 'marginLeft' => 1500, 'marginRight' => 1500, 'marginTop' => 1500, 'marginBottom' => 1500));
 
 
@@ -77,11 +78,14 @@ class WORDController extends Controller
             $fontA = array('name' => 'Times New Roman', 'size' => 12);
             $para = array('space' => array('before' => 250, 'after' => 50));
             
-            
-                    $newSection->addText($posts->isi, 
-                        $fontA,
-                        $para
-                    );        
+                    $text=$posts->isi;
+                    $textlines=explode("\n", $text);
+                    foreach($textlines as $text){
+                        $newSection->addText(htmlspecialchars($text), 
+                            $fontA,
+                            $para
+                        );
+                    }        
             
         }
     		

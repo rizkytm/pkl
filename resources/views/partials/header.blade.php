@@ -30,8 +30,6 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ url('asset/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
-
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -77,17 +75,17 @@
             <ul class="dropdown-menu">
               <li>
                 <!-- inner menu: contains the actual data -->
-                <ul class="menu">  
-                @if(auth()->user()->unreadNotifications->count())  
-                @foreach(auth()->user()->unreadNotifications as $notification)  
-                @if(!empty($notification->data['revisi']['topic']))            
+                <ul class="menu">
+                @if(auth()->user()->unreadNotifications->count())
+                @foreach(auth()->user()->unreadNotifications as $notification)
+                @if(!empty($notification->data['revisi']['topic']))
                   <li>
                     <a href="{{ route('tampil.user.edit', $notification->data['revisi']['id']) }}">
                       Revisi - {{ $notification->data['revisi']['topic'] }}
                     </a>
                   </li>
                 @endif
-                @if(!empty($notification->data['selesai']['topic']))            
+                @if(!empty($notification->data['selesai']['topic']))
                   <li>
                     <a href="{{ route('selesai', $notification->data['selesai']['id']) }}">
                       Selesai - {{ $notification->data['selesai']['topic'] }}
@@ -145,7 +143,7 @@
                       class="btn btn-default btn-flat">Sign out</button>
                   <form id="logout-form" action="{{ route('user.logout') }}" method="GET" style="display: none;">
                     @csrf
-                  </form>                  
+                  </form>
                 </div>
               </li>
             </ul>
