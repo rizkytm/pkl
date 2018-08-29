@@ -149,14 +149,6 @@ class LaporanController extends Controller
         return redirect()->route('lapselesai')->with('danger', 'Post Berhasil Dihapus');
     }
 
-  public function postdestroybatal()
-    {
-        $posts = Post::orderBy('created_at', 'desc')->first();
-      //  $posts = Post::find($id);
-        $posts->delete();
-
-        return redirect()->route('wawancara')->with('danger', 'Laporan dibatalkan');
-    }
 
   public function tambahkategori()
     {
@@ -193,7 +185,7 @@ class LaporanController extends Controller
     {
         $categories = Category::all();
         $countquestion = Question::where("id", "=", 1)->count() + 1;
-        $questions = Question::with('category')->orderBy('category_id', 'asc')->get();
+        $questions = Question::with('category')->orderBy('category_id', 'asc')->paginate(5);
         return view('tambahpertanyaan', compact('categories', 'countquestion', 'questions'));
     }
 

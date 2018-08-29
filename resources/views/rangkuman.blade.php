@@ -32,11 +32,12 @@
                   @endif
             </div>
       </div>
-                    <span id="wordCount">0</span> Karakter | <span id="kataCount">0</span> Kata | <span> MINIMUM Jumlah Karakter :  <b>6000</b> 
+                    <span id="wordCount">0</span> Karakter | <span id="kataCount">0</span> Kata | <span> MINIMUM Jumlah Karakter :  <b>6000</b>
 
                     <div class="box-footer">
                       <button type="submit" class="btn btn-primary">Tambah</button>
-                      <a class="btn btn-danger" href="{{ route('wawancara') }}">Batal</a>
+                      @include('modalpostbatal')
+                      <button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#batalpost{{$post}}" >Batal</button>
                     </div>
             </form>
 

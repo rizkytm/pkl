@@ -92,16 +92,17 @@
             </div>
             <div class="box-body">
               <table class="table table-bordered">
-                <?php $counter = 1; ?>
+              
                 <tr>
                   <th style="width: 30px">No</th>
                   <th>Nama Pertanyaan</th>
                   <th>Aksi</th>
                 </tr>
+                <?php $i = ($questions->currentpage()-1)* $questions->perpage() + 1 ;?>
                 @foreach($questions as $question)
                 @if($category->id == $question->category_id)
                 <tr>
-                  <td><?php echo $counter++; ?></td>
+                    <td>{{ $i++ }}</td>
                   <td>{{ $question->question }}</td>
                   <td>
                     <button type="submit" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editpertanyaan{{$question->id}}">Edit Pertanyaan</button>
@@ -113,6 +114,7 @@
                 @endforeach
               </table>
             </div>
+              <center>{!! $questions->render() !!}</center>
           </div>
           @endforeach
 
