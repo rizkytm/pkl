@@ -38,10 +38,12 @@
                 </tr>
               </thead>
               <tbody>
+                <?php $i = ($posts->currentpage()-1)* $posts->perpage() + 1 ;?>
                 <?php $counter=1; ?>
                 @foreach ($posts as $post)
                   <tr>
-                    <td><?php echo $counter++; ?></td>
+                    <td>{{ $i++ }}</td>
+                    
                     <td>
                         <div><b>{{ $post->penulis1 }};</b></div>
                         @if(!empty($post->penulis2))
@@ -68,8 +70,7 @@
             </table>
           </div>
           <!-- /.box-body -->
-
-
+          <center>{!! $posts->render() !!}</center>
         </div>
     </section>
   </div>
