@@ -64,13 +64,15 @@
                     <td>{{ $post->topic }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
+                      @if($post->condition === 2)
                       <a class="btn btn-warning" href="{{ route('tampil.user.edit', $post) }}">Edit</a>
+                      @endif
                     </td>
                     <td>
                       @if($post->condition === 2)
-                      <button type="submit" class="btn btn-danger" disabled=""> Revisi </button>
+                      <p><b> REVISI </b></p>
                       @else
-                      <button type="submit" class="btn btn-success" disabled=""> Terkirim </button>
+                      <P> REVISI TERKIRIM </P>
                       @endif
                     </td>
                   </tr>

@@ -32,16 +32,16 @@ class WORDController extends Controller
 
 
         $fontStyle = array('name' => 'Times New Roman', 'size' => 14, 'space' => array('before' => 360, 'after' => 480));
-            $newSection->addText('Penulis           : ' . $posts->penulis1 . '; ' . $posts->penulis2, $fontStyle);
-            $newSection->addText('Topik/Judul    : ' . $posts->topic, $fontStyle);
-            $newSection->addText('Lembaga        : ' . $posts->lembaga, $fontStyle);
+            $newSection->addText(htmlspecialchars('Penulis           : ' . $posts->penulis1 . '; ' . $posts->penulis2), $fontStyle);
+            $newSection->addText(htmlspecialchars('Topik/Judul    : ' . $posts->topic), $fontStyle);
+            $newSection->addText(htmlspecialchars('Lembaga        : ' . $posts->lembaga), $fontStyle);
             
-            $newSection->addText('Narasumber   : ', $fontStyle);
+            $newSection->addText(htmlspecialchars('Narasumber   : '), $fontStyle);
             
             $i = 1;
             foreach ($posts->narasumber as $nara){
                 if(($nara->nama)!=NULL){
-                    $newSection->addText('                      ' .$i.'. ' .$nara->nama. ' ('.$nara->kontak. ')', $fontStyle);
+                    $newSection->addText(htmlspecialchars('                      ' .$i.'. ' .$nara->nama. ' ('.$nara->kontak. ')'), $fontStyle);
                     $i++;
                 }
             }
@@ -61,13 +61,13 @@ class WORDController extends Controller
             $i = 1;
         	foreach ($answers as $answer) {
         		foreach ($answer->question()->get() as $question) {
-        			$newSection->addText($i . '. ' .
-        				$question->question, 
+        			$newSection->addText(htmlspecialchars($i . '. ' .
+                                            $question->question), 
         				$fontQ,
                         $para
         			);
                     $i++;
-        			$newSection->addText('   ' .$answer->answer, $fontA);
+        			$newSection->addText(htmlspecialchars('   ' .$answer->answer), $fontA);
         		}   		
         	}
         } else{

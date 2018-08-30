@@ -143,8 +143,8 @@
               </form>
             </div>
           </div>
+          
           <div class="tab-pane" id="rangkuman">
-
             <div class="box-body">
                 <form class="form-horizontal" action="{{ route('store.rangkuman') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
@@ -318,7 +318,9 @@
                     <td>{{ $post->topic }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
+                      @if($post->condition === null)
                       <a class="btn btn-warning" href="{{ route('show.tampil',$post) }}"> preview </a>
+                      @endif
                       @if($post->condition === null)
                       <form class="form-horizontal" action="{{ route('kirim.laporan', $post) }}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
