@@ -495,7 +495,9 @@ class WawancaraController extends Controller
     {
         //$posts = Post::paginate(10);
         Auth::user()->unreadNotifications()->update(['read_at' => now()]);
-        $posts = Post::with('narasumber')->where('condition', '4')->where("user_id", "=", Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
+        $posts = Post::with('narasumber')-where("user_id", "=", Auth::user()->id)->where(function($query){
+            $query->where('condition', '4')->whereNotIn('deleteCondition',[2]);
+        })->orderBy('created_at', 'desc')->paginate(10);
 
         return view('selesai', compact('posts', 'narasumbers'));
     }

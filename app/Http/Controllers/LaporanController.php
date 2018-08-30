@@ -43,7 +43,7 @@ class LaporanController extends Controller
 
   public function lapselesai()
   {
-    $posts = Post::with('narasumber')->where('condition', '4')->orderBy('created_at', 'desc')->paginate(10);
+    $posts = Post::with('narasumber')->where('condition', '4')->whereNotIn('deleteCondition',[1])->orderBy('created_at', 'desc')->paginate(10);
 
       return view('lap_selesai', compact('posts'));
   }
@@ -144,7 +144,13 @@ class LaporanController extends Controller
   public function postdestroy($id)
     {
         $posts = Post::find($id);
-        $posts->delete();
+        if($posts->deleteCondition==null){
+          $posts->deleteCondition=1;
+          $posts->save();
+        }
+        else{
+          $posts->delete();
+        }
 
         return redirect()->route('lapselesai')->with('danger', 'Post Berhasil Dihapus');
     }
