@@ -29,21 +29,21 @@ class LaporanController extends Controller
 
   public function masuk()
   {
-      $posts = Post::with('narasumber')->where('condition', '1')->orderBy('created_at', 'desc')->get();
+      $posts = Post::with('narasumber')->where('condition', '1')->orderBy('created_at', 'desc')->paginate(10);
 
       return view('lap_masuk', compact('posts'));
   }
 
   public function laprevisi()
   {
-      $posts = Post::with('narasumber')->where('condition', '3')->orderBy('created_at', 'desc')->get();
+      $posts = Post::with('narasumber')->where('condition', '3')->orderBy('created_at', 'desc')->paginate(10);
 
       return view('lap_revisi', compact('posts'));
   }
 
   public function lapselesai()
   {
-    $posts = Post::with('narasumber')->where('condition', '4')->orderBy('created_at', 'desc')->get();
+    $posts = Post::with('narasumber')->where('condition', '4')->orderBy('created_at', 'desc')->paginate(10);
 
       return view('lap_selesai', compact('posts'));
   }
@@ -149,14 +149,6 @@ class LaporanController extends Controller
         return redirect()->route('lapselesai')->with('danger', 'Post Berhasil Dihapus');
     }
 
-  public function postdestroybatal()
-    {
-        $posts = Post::orderBy('created_at', 'desc')->first();
-      //  $posts = Post::find($id);
-        $posts->delete();
-
-        return redirect()->route('wawancara')->with('danger', 'Laporan dibatalkan');
-    }
 
   public function tambahkategori()
     {
