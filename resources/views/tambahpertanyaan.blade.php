@@ -19,7 +19,7 @@
     <section class="content">
       <div class="row">
         <!-- left column -->
-        <div class="col-md-12">
+        <div class="col-md-6">
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
@@ -53,42 +53,43 @@
               </div>
             </form>
           </div>
+          </div>
 
-          <!-- <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Daftar Pertanyaan</h3>
-            </div>
-            <div class="box-body">
-              <table class="table table-bordered">
-                <?php $counter = 1; ?>
-                <tr>
-                  <th style="width: 30px">No</th>
-                  <th>Nama Kategori</th>
-                  <th>Nama Pertanyaan</th>
-                  <th>Aksi</th>
-                </tr>
-                @foreach($questions as $question)
-                @foreach($question->category()->get() as $category)
-                <tr>
-                  <td><?php $counter++; ?></td>
-                  <td>{{ $category->name }}</td>
-                  <td>{{ $question->question }}</td>
-                  <td>
-                    <button type="submit" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editpertanyaan{{$question->id}}">Edit Pertanyaan</button>
-                    @include('modalpertanyaan')
-                    <button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deletepertanyaan{{$question->id}}">Hapus Pertanyaan</button>
-                  </td>
-                </tr>
-                @endforeach
-                @endforeach
-              </table>
-            </div>
-          </div> -->
-          <!-- /.box -->
-          @foreach($categories as $category)
+          <div class="col-md-6">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Daftar Pertanyaan | Kategori {{ $category->name }}</h3>
+              <h3 class="box-title">Daftar Kategori</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                  Pilih Kategori
+                    <span class="fa fa-caret-down"></span>
+                </button>                  
+                <div class="dropdown-menu">
+                  @foreach($categories as $category)
+                  <li><a class="dropdown-item" href="{{ route('tambah.pertanyaan', $category) }}">{{ $category->name }}</a></li>
+                  @endforeach
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->            
+          </div>
+        </div>
+
+      </div>
+
+
+
+          
+
+         
+          <div class="row">
+            <div class="col-md-12">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Daftar Pertanyaan | Kategori {{ $categoryname->name }}</h3>
             </div>
             <div class="box-body">
               <table class="table table-bordered">
@@ -98,8 +99,7 @@
                   <th>Nama Pertanyaan</th>
                   <th>Aksi</th>
                 </tr>
-                @foreach($questions as $question)
-                @if($category->id == $question->category_id)
+                @foreach($questions as $question)                
                 <tr>
                   <td><?php echo $counter++; ?></td>
                   <td>{{ $question->question }}</td>
@@ -109,18 +109,20 @@
                     <button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deletepertanyaan{{$question->id}}">Hapus Pertanyaan</button>
                   </td>
                 </tr>
-                @endif
                 @endforeach
+                
+                
               </table>
             </div>
+            <center>{!! $questions->render() !!}</center>
           </div>
-          @endforeach
-
-
         </div>
-              <!-- /.box-body -->
+      </div>
+          
 
-</div>
+
+        
+              <!-- /.box-body -->
 
 </section>
 <!-- /.content-wrapper -->

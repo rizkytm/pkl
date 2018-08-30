@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use App\Post;
+use App\Category;
 
 class AdminController extends Controller
 {
@@ -20,7 +21,8 @@ class AdminController extends Controller
       $countmasuk = Post::where("condition", 1)->count();
       $countrev = Post::where("condition", 3)->count();
       $countsel = Post::where("condition", 4)->count();
-        return view('beranda2', compact('users', 'countmasuk', 'countrev', 'countsel'));
+      $question = Category::orderBy('created_at', 'asc')->first();
+        return view('beranda2', compact('users', 'countmasuk', 'countrev', 'countsel', 'question'));
     }
 
     public function usersdestroy($id)

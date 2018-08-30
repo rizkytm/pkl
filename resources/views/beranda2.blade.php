@@ -70,7 +70,7 @@
   <section class="content">
   <div class="row">
     <a class="btn btn-primary" href="{{ route('tambah.kategori') }}">Tambah Kategori</a>
-    <a class="btn btn-success" href="{{ route('tambah.pertanyaan') }}">Tambah Pertanyaan</a>
+    <a class="btn btn-success" href="{{ route('tambah.pertanyaan', $question) }}">Tambah Pertanyaan</a>
     <a class="btn btn-danger" href="{{ route('manage.user') }}">Manage User</a>
   </div>
   <div class="row"><br></div>

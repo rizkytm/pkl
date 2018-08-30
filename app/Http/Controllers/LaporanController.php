@@ -160,7 +160,7 @@ class LaporanController extends Controller
 
   public function tambahkategori()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(5);
         return view('tambahkategori', compact('categories'));
     }
 
@@ -189,12 +189,14 @@ class LaporanController extends Controller
         return redirect()->route('tambah.kategori')->with('success', 'Kategori Berhasil Ditambahkan');
     }
 
-    public function tambahpertanyaan()
+    public function tambahpertanyaan($id)
     {
         $categories = Category::all();
+        $categoryname = Category::find($id);
         $countquestion = Question::where("id", "=", 1)->count() + 1;
-        $questions = Question::with('category')->orderBy('category_id', 'asc')->get();
-        return view('tambahpertanyaan', compact('categories', 'countquestion', 'questions'));
+        // $questions = Question::with('category')->orderBy('category_id', 'asc')->get();
+        $questions = Question::where('category_id', $id)->paginate(5);
+        return view('tambahpertanyaan', compact('categories', 'countquestion', 'questions', 'categoryname'));
     }
 
     public function updatepertanyaan($id, Request $request)
@@ -203,7 +205,7 @@ class LaporanController extends Controller
         $questions->question = $request->input('pertanyaan');
         $questions->save();
 
-        return redirect()->route('tambah.pertanyaan')->with('success', 'Pertanyaan Berhasil Diedit');
+        return redirect()->route('tambah.pertanyaan', $questions->category_id)->with('success', 'Pertanyaan Berhasil Diedit');
     }
 
     public function pertanyaandestroy($id)
@@ -211,22 +213,22 @@ class LaporanController extends Controller
         $questions = Question::find($id);
         $questions->delete();
 
-        return redirect()->route('tambah.pertanyaan')->with('danger', 'Pertanyaan Berhasil Dihapus');
+        return redirect()->route('tambah.pertanyaan', $questions->category_id)->with('danger', 'Pertanyaan Berhasil Dihapus');
     }
 
     public function storepertanyaan(Request $request)
     {
-        Question::create([
+        $cid = Question::create([
             'category_id' => request('category_id'),
             'nomor' => (Question::where('category_id', request('category_id'))->count() + 1),
             'question' => request('name')
         ]);
-        return redirect()->route('tambah.pertanyaan')->with('success', 'Pertanyaan Berhasil Ditambahkan');
+        return redirect()->route('tambah.pertanyaan', $cid->category_id)->with('success', 'Pertanyaan Berhasil Ditambahkan');
     }
 
     public function manageuser()
     {
-        $users = User::all();
+        $users = User::paginate(10);
 
         return view('manageuser', compact('users'));
     }

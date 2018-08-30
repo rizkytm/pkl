@@ -52,7 +52,7 @@
             <!-- /.box-header -->
             <div class="box-body">
               <table class="table table-bordered">
-                <?php $counter = 1; ?>
+                <?php $i = ($categories->currentpage()-1)* $categories->perpage() + 1 ;?>
                 <tr>
                   <th style="width: 30px">No</th>
                   <th>Nama Kategori</th>
@@ -60,7 +60,7 @@
                 </tr>
                 @foreach($categories as $category)
                 <tr>
-                  <td><?php echo $counter++; ?></td>
+                  <td>{{ $i++ }}</td>
                   <td>{{ $category->name }}</td>
                   <td>
                     <button type="submit" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editcategory{{$category->id}}" >Edit Kategori</button>
@@ -72,7 +72,7 @@
               </table>
             </div>
             <!-- /.box-body -->
-
+            <center>{!! $categories->render() !!}</center>
           </div>
         </div>
 

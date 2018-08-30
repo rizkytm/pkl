@@ -76,7 +76,7 @@ Route::get('admin/query', 'LaporanController@search')->name('admin.query');
   Route::post('/tambahkategori', 'LaporanController@storekategori')->name('store.kategori');
   Route::patch('/tambahkategori/{id}/update', 'LaporanController@updatekategori')->name('update.kategori');
   Route::delete('/tambahkategori/{id}/delete', 'LaporanController@categorydestroy')->name('category.destroy');
-  Route::get('/tambahpertanyaan', 'LaporanController@tambahpertanyaan')->name('tambah.pertanyaan');
+  Route::get('/tambahpertanyaan/{id}', 'LaporanController@tambahpertanyaan')->name('tambah.pertanyaan');
   Route::post('/tambahpertanyaan', 'LaporanController@storepertanyaan')->name('store.pertanyaan');
   Route::patch('/tambahpertanyaan/{id}/update', 'LaporanController@updatepertanyaan')->name('update.pertanyaan');
   Route::delete('/tambahpertanyaan/{id}/delete', 'LaporanController@pertanyaandestroy')->name('pertanyaan.destroy');

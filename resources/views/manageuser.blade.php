@@ -45,6 +45,7 @@
                 @endforeach
               </table>
             </div>
+            <center>{!! $users->render() !!}</center>
           </div>
           <!-- /.box -->
         </div>
