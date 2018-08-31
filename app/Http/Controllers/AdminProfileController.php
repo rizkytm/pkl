@@ -21,6 +21,12 @@ class AdminProfileController extends Controller
     	return view('adminprofile', compact('user'));
     }
 
+    public function biodata()
+    {
+
+        return view('contact');
+    }
+
     public function editpage(Admin $user)
     {
         $user = Admin::where("id", "=", Auth::user()->id)->get();

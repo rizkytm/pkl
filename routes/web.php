@@ -100,11 +100,17 @@ Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/profile/{user}/edit', 'ProfileController@editpage')->name('profile.editpage');
 Route::patch('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
 Route::delete('profil/{user}/edit', 'ProfileController@destroy')->name('avatar.delete');
+Route::get('/contact', 'ProfileController@biodata')->name('contact.user');
+
+
 
 Route::get('/adminprofile', 'AdminProfileController@index')->name('admin.profile');
 Route::get('/adminprofile/{user}/edit', 'AdminProfileController@editpage')->name('admin.profile.editpage');
 Route::patch('/adminprofile/{user}/edit', 'AdminProfileController@edit')->name('admin.profile.edit');
 Route::delete('adminprofil/{user}/edit', 'AdminProfileController@destroy')->name('admin.avatar.delete');
+Route::get('/contact', 'AdminProfileController@biodata')->name('contact.admin');
+
+
 
 Route::patch('/tampiladmin/{id}/word', 'WORDController@createWordDocx')->name('download.word');
 

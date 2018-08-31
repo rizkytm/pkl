@@ -14,6 +14,11 @@ class ProfileController extends Controller
         $this->middleware('auth');
     }
 
+    public function biodata()
+    {
+
+        return view('contact');
+    }
     public function index(User $user)
     {
     	$user = User::where("id", "=", Auth::user()->id)->get();
