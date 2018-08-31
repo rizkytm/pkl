@@ -97,7 +97,7 @@
     <!-- /.col -->
   </div>
   <!-- /.row -->
-  
+
   <div class="row">
     <div class="col-md-12">
       <div class="box box-primary">
@@ -124,7 +124,7 @@
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Edit</button>
                 </form>
-                
+                <a class="btn btn-warning" href="{{ route('wawancara') }}">Kembali</a>
 
               </div>
             <!-- </form> -->

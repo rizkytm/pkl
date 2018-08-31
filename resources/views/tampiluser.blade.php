@@ -22,7 +22,7 @@
             <div class="form-group">
               <label class="col-sm-2">Penulis</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ $posts->penulis1 }}">
+                  <input type="text" class="form-control" id="penulis1" name="penulis1" value="{{ $posts->penulis1 }}" disabled>
                 </div>
                 <div class="col-sm-5">
                   <input type="text" class="form-control" id="penulis2" name="penulis2" value="{{ $posts->penulis2 }}">
@@ -60,15 +60,9 @@
 
             <div class="form-group">
               <label class="col-sm-2">Kategori</label>
-              <div class="col-sm-3">
-                <select class="form-control" name="kategori_id">
-                @foreach($allcategory as $category)
-                <!-- @foreach($posts->category()->get() as $postcat)
-                  <option value="{{ $postcat->id }}">{{$postcat->name}}</option> -->
-                  <option value="{{ $category->id }}" {{ $category->id === $posts->category_id ? 'selected' : '' }}>{{$category->name}}</option>
-                @endforeach
-                <!-- @endforeach -->
-                </select>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="kategori_id" name="kategori_id" value="{{ $categories->name }}" disabled>
+
               </div>
             </div>
 

@@ -36,7 +36,7 @@
 
                     <div class="box-footer">
                       <button type="submit" class="btn btn-primary">Tambah</button>
-                      <a class="btn btn-danger" href="{{ route('wawancara') }}">Batal</a>
+                    
                     </div>
             </form>
 

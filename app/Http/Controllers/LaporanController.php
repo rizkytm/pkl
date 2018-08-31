@@ -43,7 +43,9 @@ class LaporanController extends Controller
 
   public function lapselesai()
   {
-    $posts = Post::with('narasumber')->where('condition', '4')->whereNotIn('deleteCondition',[1])->orderBy('created_at', 'desc')->paginate(10);
+    $posts = Post::with('narasumber')->where('condition', '4')->where(function($query){
+      $query->where('deleteCondition','2')->orWhereNull('deleteCondition');
+    })->orderBy('created_at', 'desc')->paginate(10);
 
       return view('lap_selesai', compact('posts'));
   }

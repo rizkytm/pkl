@@ -34,6 +34,7 @@
                   <th>Lembaga</th>
                   <th>Topik/Judul</th>
                   <th>Tanggal Pembuatan</th>
+                  <th>Aksi</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -63,8 +64,13 @@
                     <td>{{ $post->created_at }}</td>
                     <td>
                       <a class="btn btn-warning" href="{{ route('show.selesai',$post) }}"> preview </a>
+                      @include('modalpostuser')
+                      <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deletepost{{$post->id}}" >Hapus Post</button>
+                    </td>
+                    <td>
                       <button class="btn btn-success" disabled>Selesai</button>
                     </td>
+
                   </tr>
                 @endforeach
               </tbody>

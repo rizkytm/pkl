@@ -6,11 +6,12 @@
 <div class="content-wrapper">
 <section class="content-header">
   <h1>
-    Tambah Pertanyaan
+    Tanya-Jawab
   </h1>
   <ol class="breadcrumb">
     <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
     <li class="active">Wawancara Selesai</li>
+
   </ol>
 </section>
 
@@ -22,8 +23,11 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Wawancara Baru</h3>
+              <h2 class="box-title">Wawancara Baru</h2>
+              <div>
+                <span style="color:red;"><< MINIMUM 10 Karakter Setiap Pertanyaan >></span>
             </div>
+          </div>
             <!-- /.box-header -->
             <!-- form start -->
             <form action="{{ route('store.jawaban') }}" method="post">
@@ -33,24 +37,24 @@
 
                 <input name="post_id" type="hidden" class="form-control" id="name" value="{{ $posts->id }}">
                 <?php $i = 0; ?>
-                @foreach($questions as $question)                
+                @foreach($questions as $question)
                 <div class="form-group has-feedback {{ $errors->has('answers.'.$i) ? ' has-error' : '' }}">
                   <label for="question">{{ $question->question }}</label>
                   <input name="qid[]" type="hidden" class="form-control" id="qid" value="{{ $question->id }}">
                   <input name="answers[]" type="text" class="form-control" id="answers" placeholder="Jawaban" value="{{ old('answers.'.$i) }}">
-                  
+
                   @if ($errors->has('answers.'.$i))
-                  <span class="help-block">                      
-                            <!-- @foreach ($errors->all() as $error) -->                              
+                  <span class="help-block">
+                            <!-- @foreach ($errors->all() as $error) -->
                                 <p>{{ $errors->first('answers') }}</p>
-                              
+
                             <!-- @endforeach -->
-                        
+
                     </span>
 
                 @endif
                 </div>
-                <?php $i++; ?>                
+                <?php $i++; ?>
                 @endforeach
               </div>
               <div class="box-footer">

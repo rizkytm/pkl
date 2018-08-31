@@ -66,7 +66,7 @@
                 <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
                   Pilih Kategori
                     <span class="fa fa-caret-down"></span>
-                </button>                  
+                </button>
                 <div class="dropdown-menu">
                   @foreach($categories as $category)
                   <li><a class="dropdown-item" href="{{ route('tambah.pertanyaan', $category) }}">{{ $category->name }}</a></li>
@@ -74,7 +74,7 @@
                 </div>
               </div>
             </div>
-            <!-- /.box-body -->            
+            <!-- /.box-body -->
           </div>
         </div>
 
@@ -82,9 +82,9 @@
 
 
 
-          
 
-         
+
+
           <div class="row">
             <div class="col-md-12">
           <div class="box box-primary">
@@ -110,8 +110,8 @@
                   </td>
                 </tr>
                 @endforeach
-                
-                
+
+
               </table>
             </div>
               <center>{!! $questions->render() !!}</center>
@@ -119,10 +119,10 @@
           </div>
         </div>
       </div>
-          
 
 
-        
+
+
               <!-- /.box-body -->
 
 </section>

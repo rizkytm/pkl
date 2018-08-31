@@ -495,12 +495,28 @@ class WawancaraController extends Controller
     {
         //$posts = Post::paginate(10);
         Auth::user()->unreadNotifications()->update(['read_at' => now()]);
-        $posts = Post::with('narasumber')-where("user_id", "=", Auth::user()->id)->where(function($query){
-            $query->where('condition', '4')->whereNotIn('deleteCondition',[2]);
+        $posts = Post::with('narasumber')->where("user_id", "=", Auth::user()->id)->where('condition', '4')->where(function($query){
+            $query->where('deleteCondition', '1')->orWhereNull('deleteCondition');
         })->orderBy('created_at', 'desc')->paginate(10);
 
         return view('selesai', compact('posts', 'narasumbers'));
     }
+
+    public function postdestroyuser($id)
+      {
+          $posts = Post::find($id);
+          if($posts->deleteCondition==null){
+            $posts->deleteCondition=2;
+            $posts->save();
+          }
+          else{
+            $posts->delete();
+          }
+
+          return redirect()->route('selesai')->with('danger', 'Post Berhasil Dihapus');
+      }
+
+
 
     public function store(Request $request)
     {
